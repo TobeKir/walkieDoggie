@@ -1,6 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('FeedCtrl', function($scope) {})
+.controller('MapCtrl', function($scope) {
+	
+})
+
+.controller('FeedCtrl', function($scope) {
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
