@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // setup an abstract state for the tabs directive
   .state('tab', {
-    url: "/tab",
+    url: "/",
     abstract: true,
     templateUrl: "templates/tabs/tabs.html"
   })
@@ -39,7 +39,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each tab has its own nav history stack:
 
   .state('tab.standort', {
-    url: '/standort',
+    url: 'standort',
     views: {
       'tab-standort': {
         templateUrl: 'templates/tabs/tab-standort.html'
@@ -48,7 +48,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.feed', {
-    url: '/feed',
+    url: 'feed',
     views: {
       'tab-feed': {
         templateUrl: 'templates/tabs/tab-feed.html'
@@ -57,7 +57,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.mitglieder', {
-      url: '/mitglieder',
+      url: 'mitglieder',
       views: {
         'tab-mitglieder': {
           templateUrl: 'templates/tabs/tab-mitglieder.html'
@@ -66,7 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
   .state('tab.profil', {
-    url: '/profil',
+    url: 'profil',
     views: {
       'tab-profil': {
         templateUrl: 'templates/tabs/tab-profil.html',
@@ -75,6 +75,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/feed');
+  $urlRouterProvider.otherwise('/feed');
 
 });
