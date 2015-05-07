@@ -34,17 +34,6 @@ angular.module('starter.services', [])
   return {
     all: function() {
       return members;
-    },
-    remove: function(member) {
-      members.splice(members.indexOf(member), 1);
-    },
-    get: function(memberId) {
-      for (var i = 0; i < members.length; i++) {
-        if (members[i].id === parseInt(memberId)) {
-          return members[i];
-        }
-      }
-      return null;
     }
   };
 });

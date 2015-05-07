@@ -33,17 +33,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: "templates/tabs/tabs.html"
   })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.map', {
-    url: '/map',
+  .state('tab.standort', {
+    url: '/standort',
     views: {
-      'tab-map': {
-        templateUrl: 'templates/tab-map.html',
-        controller: 'MapCtrl'
+      'tab-standort': {
+        templateUrl: 'templates/tabs/tab-standort.html'
       }
     }
   })
@@ -52,37 +51,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/feed',
     views: {
       'tab-feed': {
-        templateUrl: 'templates/tab-feed.html',
-        controller: 'FeedCtrl'
+        templateUrl: 'templates/tabs/tab-feed.html'
       }
     }
   })
 
-  .state('tab.members', {
-      url: '/members',
+  .state('tab.mitglieder', {
+      url: '/mitglieder',
       views: {
-        'tab-members': {
-          templateUrl: 'templates/tab-members.html',
-          controller: 'MembersCtrl'
-        }
-      }
-    })
-    .state('tab.member-detail', {
-      url: '/members/:memberId',
-      views: {
-        'tab-members': {
-          templateUrl: 'templates/member-detail.html',
-          controller: 'MemberDetailCtrl'
+        'tab-mitglieder': {
+          templateUrl: 'templates/tabs/tab-mitglieder.html'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.profil', {
+    url: '/profil',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-profil': {
+        templateUrl: 'templates/tabs/tab-profil.html',
       }
     }
   });
