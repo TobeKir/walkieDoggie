@@ -8,15 +8,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+.controller('MembersCtrl', function($scope, Members) {
+  $scope.members = Members.all();
+  $scope.remove = function(member) {
+    Members.remove(member);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('MemberDetailCtrl', function($scope, $stateParams, Members) {
+  $scope.member = Members.get($stateParams.memberId);
 })
 
 .controller('AccountCtrl', function($scope) {
