@@ -1,5 +1,10 @@
-<ion-view view-title="Standort">
-  <ion-content class="padding">
-  
-  </ion-content>
+<ion-view>
+	<ion-tabs class="tabs-top tabs-striped tabs-color-positive">
+		<ion-tab title="Karte" ui-sref="tab.standort.karte">
+			<ion-nav-view name="standort-karte"></ion-nav-view>
+	  	</ion-tab>
+	  	<ion-tab title="Liste" ui-sref="tab.standort.liste">
+	  		<ion-nav-view name="standort-liste"></ion-nav-view>
+	  	</ion-tab>
+	</ion-tabs>
 </ion-view>

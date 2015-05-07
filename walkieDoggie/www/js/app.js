@@ -42,10 +42,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: 'standort',
     views: {
       'tab-standort': {
+        abstract: true,
         templateUrl: 'templates/tabs/tab-standort.html'
       }
     }
+  }).state('tab.standort.liste', {
+    url: '/liste',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/tab-standort/standort-liste.html'
+      }
+    }
+  }).state('tab.standort.karte', {
+    url: '/karte',
+    views: {
+      'standort-karte': {
+        templateUrl: 'templates/tab-standort/standort-karte.html'
+      }
+    }
   })
+
 
   .state('tab.feed', {
     url: 'feed',
@@ -57,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.aktivitaet', {
-    url: '/aktivitaet',
+    url: 'aktivitaet',
     views: {
       'tab-aktivitaet': {
         templateUrl: 'templates/tabs/tab-aktivitaet.html'
