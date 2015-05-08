@@ -123,8 +123,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/feed');
+  $ionicConfigProvider.tabs.position("bottom");
 
-  $ionicConfigProvider.tabs.position('bottom');
-  $ionicConfigProvider.tabs.style('standard');
 
 });
