@@ -1,5 +1,15 @@
 <ion-view view-title="Feed">
   <ion-content class="padding">
-    Hier wird der Feed von Allen erscheinen
+
+    <!-- Feed Inhalt //-->
+    <div class="list card" ng-repeat="i in [1, 2, 3, 4, 5]">
+      <div class="item item-divider">Letzte Aktivität</div>
+      <div class="item item-body">
+        <div>
+          Du warst mit Tobias <b>{{i*5}}</b> Minuten laufen.
+        </div>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
