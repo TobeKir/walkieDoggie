@@ -62,12 +62,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-
   .state('tab.feed', {
     url: 'feed',
     views: {
       'tab-feed': {
+        abstract: true,
         templateUrl: 'templates/tabs/tab-feed.html'
+      }
+    }
+  }).state('tab.feed.alle', {
+    url: '/alle',
+    views: {
+      'feed-alle': {
+        templateUrl: 'templates/tab-feed/feed-alle.html'
+      }
+    }
+  }).state('tab.feed.ich', {
+    url: '/ich',
+    views: {
+      'feed-ich': {
+        templateUrl: 'templates/tab-feed/feed-ich.html'
       }
     }
   })

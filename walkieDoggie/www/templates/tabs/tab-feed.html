@@ -1,12 +1,10 @@
 <ion-view view-title="Feed">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Letzte Aktivität</div>
-      <div class="item item-body">
-        <div>
-          Rebecca ist mit Mina <b>29</b> Minuten gelaufen.
-        </div>
-      </div>
-    </div>
-  </ion-content>
+  <ion-tabs class="tabs-top tabs-striped tabs-color-positive">
+    <ion-tab title="Alle" ui-sref="tab.feed.alle">
+      <ion-nav-view name="feed-alle"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="Ich" ui-sref="tab.feed.ich">
+        <ion-nav-view name="feed-ich"></ion-nav-view>
+      </ion-tab>
+  </ion-tabs>
 </ion-view>
