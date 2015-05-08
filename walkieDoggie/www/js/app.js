@@ -31,15 +31,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // setup an abstract state for the tabs directive
   .state('tab', {
-    url: "/",
     abstract: true,
-    templateUrl: "templates/tabs/tabs.html"
+    templateUrl: "templates/main/tabs.html"
   })
 
   // Each tab has its own nav history stack:
+  .state('login', {
+    url: '/login',
+    templateUrl: "templates/main/login.html"
+  })
+
+  .state('registrieren', {
+    url: '/registrieren',
+    templateUrl: "templates/main/registrieren.html"
+  })
 
   .state('tab.standort', {
-    url: 'standort',
+    url: '/standort',
     views: {
       'tab-standort': {
         abstract: true,
@@ -63,7 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.feed', {
-    url: 'feed',
+    url: '/feed',
     views: {
       'tab-feed': {
         abstract: true,
@@ -87,7 +95,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.aktivitaet', {
-    url: 'aktivitaet',
+    url: '/aktivitaet',
     views: {
       'tab-aktivitaet': {
         templateUrl: 'templates/tabs/tab-aktivitaet.html'
@@ -96,7 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.mitglieder', {
-      url: 'mitglieder',
+      url: '/mitglieder',
       views: {
         'tab-mitglieder': {
           templateUrl: 'templates/tabs/tab-mitglieder.html'
@@ -105,7 +113,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
   .state('tab.profil', {
-    url: 'profil',
+    url: '/profil',
     views: {
       'tab-profil': {
         templateUrl: 'templates/tabs/tab-profil.html',
