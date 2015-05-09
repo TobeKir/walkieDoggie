@@ -107,6 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/mitglieder',
     views: {
       'tab-mitglieder': {
+        abstract: true,
         templateUrl: 'templates/tabs/tab-mitglieder.html'
       }
     }
@@ -122,6 +123,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'mitglieder-freunde': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html'
+      }
+    }
+  }).state('tab.mitglieder.alle-detail', {
+    url: '/alle/detail',
+    views: {
+        'mitglieder-alle': {
+        templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html'
       }
     }
   })
