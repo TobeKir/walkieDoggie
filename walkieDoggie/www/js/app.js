@@ -104,13 +104,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.mitglieder', {
-      url: '/mitglieder',
-      views: {
-        'tab-mitglieder': {
-          templateUrl: 'templates/tabs/tab-mitglieder.html'
-        }
+    url: '/mitglieder',
+    views: {
+      'tab-mitglieder': {
+        templateUrl: 'templates/tabs/tab-mitglieder.html'
       }
-    })
+    }
+  }).state('tab.mitglieder.alle', {
+    url: '/alle',
+    views: {
+      'mitglieder-alle': {
+        templateUrl: 'templates/tab-mitglieder/mitglieder-alle.html'
+      }
+    }
+  }).state('tab.mitglieder.freunde', {
+    url: '/freunde',
+    views: {
+      'mitglieder-freunde': {
+        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html'
+      }
+    }
+  })
 
   .state('tab.profil', {
     url: '/profil',
