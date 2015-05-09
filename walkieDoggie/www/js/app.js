@@ -115,7 +115,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/alle',
     views: {
       'mitglieder-alle': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-alle.html'
+        templateUrl: 'templates/tab-mitglieder/mitglieder-alle.html',
+        controller: 'MitgliederCtrl'
       }
     }
   }).state('tab.mitglieder.freunde', {

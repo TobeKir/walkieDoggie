@@ -1,10 +1,10 @@
 angular.module('starter.services', [])
 
-.factory('Members', function() {
+.factory('Mitglieder', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var members = [{
+  var mitglieder = [{
     id: 0,
     name: 'Hannes Flaig',
     distance: '1 km',
@@ -33,7 +33,15 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return members;
+      return mitglieder;
+    },
+    get: function(mitgliederId) {
+      for (var i = 0; i < mitglieder.length; i++) {
+        if (mitglieder[i].id === parseInt(mitgliederId)) {
+          return mitglieder[i];
+        }
+      }
+      return null;
     }
   };
 });

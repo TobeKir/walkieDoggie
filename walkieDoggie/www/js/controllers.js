@@ -1,1 +1,9 @@
-angular.module('starter.controllers', []);
+angular.module('starter.controllers', [])
+
+.controller('MitgliederCtrl', function($scope, Mitglieder) {
+  $scope.mitglieder = Mitglieder.all();
+})
+
+// .controller('MitgliederDetailCtrl', function($scope, $stateParams, Chats) {
+//   $scope.chat = Chats.get($stateParams.chatId);
+// });

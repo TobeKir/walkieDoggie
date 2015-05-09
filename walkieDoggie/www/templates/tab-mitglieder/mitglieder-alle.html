@@ -3,10 +3,10 @@
 
     <!-- Dummy Liste Alle //-->
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" type="item-text-wrap" ui-sref="tab.mitglieder.alle-detail">
-        <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.35.320.320/p320x320/10155233_10202306793937959_7746588956254689173_n.jpg?oh=2d1e3522b98ae0e5ee5173952a46855b&oe=55D32C99&__gda__=1439349640_89d8470f8b8b25f48b0afffae455bf1b">
-        <h2>Raphael Leuthner</h2>
-        <p>Entfernung</p>
+      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder" type="item-text-wrap" ui-sref="tab.mitglieder.alle-detail">
+        <img ng-src="{{mitglied.face}}">
+        <h2>{{mitglied.name}}</h2>
+        <p><b>{{mitglied.distance}}</b> Entfernung</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
