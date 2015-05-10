@@ -4,6 +4,6 @@ angular.module('starter.controllers', [])
   $scope.mitglieder = Mitglieder.all();
 })
 
-// .controller('MitgliederDetailCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// });
+.controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {
+	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
+});

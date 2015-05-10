@@ -119,18 +119,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'MitgliederCtrl'
       }
     }
+  }).state('tab.mitglieder.alle-detail', {
+    url: '/alle/detail/:mitgliedId',
+    views: {
+        'mitglieder-alle': {
+        templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
+        controller: 'MitgliederDetailCtrl'
+      }
+    }
   }).state('tab.mitglieder.freunde', {
     url: '/freunde',
     views: {
       'mitglieder-freunde': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html'
-      }
-    }
-  }).state('tab.mitglieder.alle-detail', {
-    url: '/alle/detail',
-    views: {
-        'mitglieder-alle': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html'
       }
     }
   })
