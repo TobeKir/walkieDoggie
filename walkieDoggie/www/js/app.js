@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $state, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    $rootScope.state = $state;
   });
 })
 
@@ -32,7 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // setup an abstract state for the tabs directive
   .state('tab', {
     abstract: true,
-    templateUrl: "templates/main/tabs.html"
+    templateUrl: "templates/main/tabs.html",
   })
 
   // Each tab has its own nav history stack:
@@ -120,7 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   }).state('tab.mitglieder.detail', {
-    url: '/detail/:mitgliedId',
+    params: {mitgliedId:{}},
     views: {
       'mitglieder-alle': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
