@@ -119,10 +119,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'MitgliederCtrl'
       }
     }
-  }).state('tab.mitglieder.alle-detail', {
-    url: '/alle/detail/:mitgliedId',
+  }).state('tab.mitglieder.alle.detail', {
+    url: '/detail/:mitgliedId',
     views: {
-        'mitglieder-alle': {
+        'mitglieder-alle@tab.mitglieder': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
         controller: 'MitgliederDetailCtrl'
       }
