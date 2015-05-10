@@ -5,11 +5,27 @@
   The Mitglieder service returns an array of mitglied data
 -->
 <ion-view view-title="{{mitglied.name}}">
-  <ion-content class="padding">
+  <ion-content>
 
-    <img ng-src="{{mitglied.face}}" style="width: 64px; height: 64px">
-    <h2>{{mitglied.name}}</h2>
-    <p><b>{{mitglied.distance}}</b> Entfernung</p>
+	<ion-item class="item item-thumbnail-left">
+	    <img ng-src="{{mitglied.face}}">
+	    <h2>{{mitglied.name}}</h2>
+	    <p>in <b>{{mitglied.distance}}</b> Entfernung</p>
+	</ion-item>
+
+    <ion-list class="list">
+
+		<ion-item class="item item-icon-left" href="#">
+			<i class="icon ion-ios-personadd"></i>
+			Freundschaft anfragen
+		</ion-item>
+
+		<ion-item class="item item-icon-left" href="#">
+			<i class="icon ion-ios-email"></i>
+			Nachricht schreiben
+		</ion-item>
+
+	</ion-list>
 
   </ion-content>
 </ion-view>
