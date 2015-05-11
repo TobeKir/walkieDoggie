@@ -8,7 +8,8 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Hannes Flaig',
     distance: '1 km',
-    face: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c122.2.716.716/s320x320/1385347_637449916305701_79059897_n.jpg?oh=90bd788e2b2dfd9b11bb7c90d26e3603&oe=55C9441E&__gda__=1440372877_079b747f8e88781474e8529291d4b07b'
+    face: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c122.2.716.716/s320x320/1385347_637449916305701_79059897_n.jpg?oh=90bd788e2b2dfd9b11bb7c90d26e3603&oe=55C9441E&__gda__=1440372877_079b747f8e88781474e8529291d4b07b',
+    isFriend: true
   }, {
     id: 1,
     name: 'Raphael Leuthner',
@@ -40,6 +41,9 @@ angular.module('starter.services', [])
     all: function() {
       return mitglieder;
     },
+    // freunde: function() {
+    //   return mitglieder;
+    // },
     get: function(mitgliedId) {
       for (var i = 0; i < mitglieder.length; i++) {
         if (mitglieder[i].id === parseInt(mitgliedId)) {

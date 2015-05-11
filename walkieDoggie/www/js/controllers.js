@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('TabCtrl', function($scope, $ionicModal, $timeout) {
   
   // Später Abfrage der Session, um Modal einzublenden
-  $scope.isLoggedIn = false;
+  $scope.isLoggedIn = true;
 
   // Form data for the login modal
   $scope.loginDaten = {};
@@ -64,8 +64,13 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('MitgliederCtrl', function($scope, Mitglieder) {
-  $scope.mitglieder = Mitglieder.all();
+.controller('MitgliederCtrl', function($scope, $stateParams, Mitglieder) {
+  if($stateParams.viewFreunde) {
+    // get Freunde
+    // $scope.mitglieder = Mitglieder.freunde();
+  } else {
+    $scope.mitglieder = Mitglieder.all();
+  }
 })
 
 .controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {

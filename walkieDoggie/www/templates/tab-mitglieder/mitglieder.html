@@ -3,7 +3,7 @@
 
     <!-- Dummy Liste Alle //-->
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder | filter:{friends:true}" type="item-text-wrap" ui-sref="^.detail({mitgliedId: mitglied.id})">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder" type="item-text-wrap" ui-sref="^.detail({mitgliedId: mitglied.id})">
         <img ng-src="{{mitglied.face}}">
         <h2>{{mitglied.name}}</h2>
         <p><b>{{mitglied.distance}}</b> Entfernung</p>
