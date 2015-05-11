@@ -1,1 +1,17 @@
 /* Empty. Add your own CSS if you like */
+
+.state-name {
+	position: fixed;
+	bottom: 61px;
+	right: 10px;
+	z-index: 100;
+	padding: 3px 7px;
+	border-radius: 3px;
+	background: rgba(0,0,0,0.4);
+	color: #fff;
+	cursor: default;
+}
+
+.state-name:hover {
+	background: #387ef5;
+}

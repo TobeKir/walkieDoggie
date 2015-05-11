@@ -34,17 +34,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab', {
     abstract: true,
     templateUrl: "templates/main/tabs.html",
+    controller: 'TabCtrl'
   })
 
   // Each tab has its own nav history stack:
-  .state('login', {
-    url: '/login',
-    templateUrl: "templates/main/login.html"
-  })
+  // .state('login', {
+  //   url: '/login',
+  //   templateUrl: "templates/main/login.html"
+  // })
 
   .state('registrieren', {
     url: '/registrieren',
-    templateUrl: "templates/main/registrieren.html"
+    templateUrl: "templates/main/registrieren.html",
+    controller: 'RegistrierenCtrl'
   })
 
   .state('tab.standort', {
@@ -147,7 +149,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/feed');
+  $urlRouterProvider.otherwise('/feed/alle');
   $ionicConfigProvider.tabs.position("bottom");
 
 
