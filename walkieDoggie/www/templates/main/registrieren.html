@@ -4,25 +4,35 @@
   </ion-nav-buttons>
 
   <ion-content class="padding">
-    
-    <div class="list list-inset">
-      <label class="item item-input">
-        <input type="text" placeholder="Vorname">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Nachname">
-      </label>
-    </div>
-    <div class="list list-inset">
-      <label class="item item-input">
-        <input type="text" placeholder="Email">
-      </label>
-      <label class="item item-input">
-          <input type="text" placeholder="Password">
-      </label>
-    </div>
+    <form ng-submit="doRegister()">
+      <div class="list list-inset">
 
-    <button ui-sref="registrieren" class="button button-block button-positive">Registrieren</button>
+        <label class="item item-input">
+          <input type="text" placeholder="Vorname" ng-model="loginDaten.vorname">
+        </label>
 
+        <label class="item item-input">
+          <input type="text" placeholder="Nachname" ng-model="loginDaten.nachname">
+        </label>
+
+      </div>
+
+      <div class="list list-inset">
+
+        <label class="item item-input">
+          <input type="text" placeholder="Email" ng-model="loginDaten.email">
+        </label>
+
+        <label class="item item-input">
+            <input type="text" placeholder="Passwort" ng-model="loginDaten.passwort">
+        </label>
+
+      </div>
+
+      <button type="submit" class="button button-block button-positive">Registrieren</button>
+
+      <button ui-sref="tab.feed.alle" class="button button-block button-outline">Abbrechen</button>
+
+    </form>
   </ion-content>
 </ion-view>
