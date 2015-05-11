@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['firebase'])
 
 .factory('Mitglieder', function() {
   // Might use a resource here that returns a JSON array
@@ -53,4 +53,9 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+.factory('Auth', ['$firebaseAuth', function($firebaseAuth) {
+  var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
+  return $firebaseAuth(ref);
+}]);
