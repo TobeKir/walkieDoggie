@@ -11,14 +11,14 @@
       <div class="list list-inset">
 
         <label class="item item-input">
-          <input type="text" placeholder="Email" ng-model="loginDaten.email">
+          <input type="text" placeholder="Email" ng-model="user.email">
         </label>
 
         <label class="item item-input">
-          <input type="password" placeholder="Passwort" ng-model="loginDaten.passwort">
+          <input type="password" placeholder="Passwort" ng-model="user.password">
         </label>
 
-        <button class="button button-block button-positive" type="submit">Login</button>
+        <button class="button button-block button-positive" ng-click="doLogin(user.email,user.password)" type="submit">Login</button>
 
         <button ui-sref="registrieren" ng-click="closeLogin()" class="button button-block button-outline">Registrieren</button>
 

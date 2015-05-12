@@ -1,30 +1,27 @@
 <ion-view view-title="Registrieren">
 
-  <ion-nav-buttons side="right">
-  </ion-nav-buttons>
-
   <ion-content class="padding">
-    <form ng-submit="doRegister()">
+    <form ng-submit="doRegister(user.email,user.password)">
       <div class="list list-inset">
 
-        <label class="item item-input">
-          <input type="text" placeholder="Vorname" ng-model="loginDaten.vorname">
-        </label>
+        <ion-item class="item item-input">
+          <input type="text" placeholder="Vorname" ng-model="user.vorname">
+        </ion-item>
 
-        <label class="item item-input">
-          <input type="text" placeholder="Nachname" ng-model="loginDaten.nachname">
-        </label>
+        <ion-item class="item item-input">
+          <input type="text" placeholder="Nachname" ng-model="user.nachname">
+        </ion-item>
 
       </div>
 
       <div class="list list-inset">
 
         <label class="item item-input">
-          <input type="text" placeholder="Email" ng-model="loginDaten.email">
+          <input type="text" placeholder="Email" ng-model="user.email">
         </label>
 
         <label class="item item-input">
-            <input type="text" placeholder="Passwort" ng-model="loginDaten.passwort">
+            <input type="password" placeholder="Passwort" ng-model="user.password">
         </label>
 
       </div>

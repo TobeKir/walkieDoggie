@@ -24,20 +24,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
   .state('tab', {
     abstract: true,
     templateUrl: "templates/main/tabs.html",
-    controller: 'TabCtrl'
+    controller: 'AuthCtrl'
   })
 
-  // Each tab has its own nav history stack:
   // .state('login', {
   //   url: '/login',
   //   templateUrl: "templates/main/login.html"
@@ -46,7 +40,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('registrieren', {
     url: '/registrieren',
     templateUrl: "templates/main/registrieren.html",
-    controller: 'RegistrierenCtrl'
+    controller: 'AuthCtrl'
   })
 
   .state('tab.standort', {

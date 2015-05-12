@@ -1,12 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('TabCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AuthCtrl', function($scope, $state, $ionicModal, $timeout, Auth) {
   
   // Später Abfrage der Session, um Modal einzublenden
-  $scope.isLoggedIn = true;
+  $scope.isLoggedIn = false;
 
   // Form data for the login modal
-  $scope.loginDaten = {};
+  $scope.user = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/main/login.html', {
@@ -25,17 +25,33 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  // Simulate a Register delay. Remove this and replace with your Register
+  // code if using a Register system
+  $scope.doRegister = function(email,password) {
+    Auth.$createUser({
+      email: email, 
+      password: password
+    }).then(function() {
+      return $scope.doLogin(email,password);
+    });
+  };
+
   // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log("Login \n",
-    "Email: ", $scope.loginDaten.email, "\n",
-    "Passwort: ", $scope.loginDaten.passwort);
+  $scope.doLogin = function(email,password) {
+    Auth.$authWithPassword({
+      email: email,
+      password: password
+    }).then(function(authData) {
+      $scope.closeLogin();
+    }).catch(function(error) {
+      console.error("Authentication failed:", error);
+    });
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    // $timeout(function() {
+    //   $scope.closeLogin();
+    // }, 1000);
 
   };
 
@@ -47,21 +63,6 @@ angular.module('starter.controllers', [])
     }
   }, 1000);
 
-})
-
-.controller('RegistrierenCtrl', function($scope) {
-  // Form data for the Register view
-  $scope.loginDaten = {};
-
-  // Simulate a Register delay. Remove this and replace with your Register
-  // code if using a Register system
-  $scope.doRegister = function() {
-    console.log("Registrieren \n",
-    "Vorname: ", $scope.loginDaten.vorname, "\n",
-    "Nachname: ", $scope.loginDaten.nachname, "\n",
-    "Email: ", $scope.loginDaten.email, "\n",
-    "Passwort: ", $scope.loginDaten.passwort);
-  };
 })
 
 .controller('MitgliederCtrl', function($scope, $stateParams, Mitglieder) {
@@ -76,15 +77,3 @@ angular.module('starter.controllers', [])
 .controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {
 	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
 })
-
-.controller('LoginCtrl', function($scope, Auth) {
-	$scope.authRef = Auth;
-	$scope.authRef.$authWithPassword({
-		email: "kirchner.to@gmail.com",
-		password: "1234"
-	}).then(function(authData) {
-		console.log("Logged in as:", authData.uid);
-	}).catch(function(error) {
-		console.error("Authentication failed:", error);
-	});
-});
