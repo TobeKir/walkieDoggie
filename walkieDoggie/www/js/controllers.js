@@ -2,26 +2,28 @@ angular.module('starter.controllers', [])
 
 .controller('AuthCtrl', function($scope, $state, $timeout, Auth) {
   
-  // Später Abfrage der Session, um Login einzublenden
+  // später Abfrage der Session, um Login einzublenden
   $scope.UserIsLoggedIn = false;
 
-  // Form data for the Login
+  // Fform data for the login
   $scope.user = {};
 
-  // Perform the login action when the user submits the login form
+  // perfrom the login action when the user submits the login form
   $scope.doLogin = function(email,password) {
     Auth.$authWithPassword({
       email: email,
       password: password
     }).then(function(authData) {
       console.log("Nutzer " + email + " wurde eingeloggt");
+      $state.go('tab.feed.alle');
+      console.log("Weiterleitung auf den Feed");
     }).catch(function(error) {
       console.error("Authentication failed:", error);
     });
 
   };
 
-  // Perform the register action when the user submits the register form
+  // perform the register action when the user submits the register form
   $scope.doRegister = function(email,password) {
     Auth.$createUser({
       email: email, 
@@ -32,10 +34,10 @@ angular.module('starter.controllers', [])
     });
   };
 
-  // Show Login if user is logged out
+  // show login if user is logged out
   $timeout(function() {
     if($scope.UserIsLoggedIn == false){
-      // Login öffnen
+      // show login
     }
   }, 1000);
 
