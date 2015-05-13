@@ -1,5 +1,11 @@
 <ion-view view-title="Registrieren">
 
+  <ion-nav-buttons side="right">
+    <ion-button class="button" ng-click="state.go('tab.feed.alle');">
+      Schließen
+    </ion-button>
+  </ion-nav-buttons>
+
   <ion-content class="padding">
     <form ng-submit="doRegister(user.email,user.password)">
       <div class="list list-inset">

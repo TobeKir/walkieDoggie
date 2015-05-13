@@ -1,5 +1,10 @@
 /* Empty. Add your own CSS if you like */
 
+.error {
+	padding-right: 16px;
+	color: red;
+}
+
 .state-name {
 	position: fixed;
 	bottom: 61px;
