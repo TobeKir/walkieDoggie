@@ -112,23 +112,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/alle',
     views: {
       'mitglieder-alle': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder.html',
+        templateUrl: 'templates/tab-mitglieder/mitglieder-alle.html',
         controller: 'MitgliederCtrl'
       }
     }
   }).state('tab.mitglieder.freunde', {
-    params: {viewFreunde: true },
+    // params: {viewFreunde: true },
     url: '/freunde',
     views: {
       'mitglieder-freunde': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder.html',
+        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html',
         controller: 'MitgliederCtrl'
       }
     }
-  }).state('tab.mitglieder.detail', {
+  }).state('tab.mitglieder.alle-detail', {
     params: {mitgliedId:{}},
     views: {
       'mitglieder-alle': {
+        templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
+        controller: 'MitgliederDetailCtrl'
+      }
+    }
+  }).state('tab.mitglieder.freunde-detail', {
+    params: {mitgliedId:{}},
+    views: {
+      'mitglieder-freunde': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
         controller: 'MitgliederDetailCtrl'
       }
