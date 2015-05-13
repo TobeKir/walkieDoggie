@@ -34,12 +34,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MitgliederCtrl', function($scope, $stateParams, Mitglieder) {
-  if($stateParams.viewFreunde) {
-    // get Freunde
-    // $scope.mitglieder = Mitglieder.freunde();
-  } else {
-    $scope.mitglieder = Mitglieder.all();
-  }
+  // if($stateParams.viewFreunde) {
+  //   $scope.mitglieder = Mitglieder.freunde();
+  // } else {
+  //   $scope.mitglieder = Mitglieder.all();
+  // }
+  $scope.mitglieder = Mitglieder.all();
 })
 
 .controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {

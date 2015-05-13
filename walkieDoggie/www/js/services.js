@@ -8,8 +8,8 @@ angular.module('starter.services', ['firebase'])
     id: 0,
     name: 'Hannes Flaig',
     distance: '1 km',
-    face: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c122.2.716.716/s320x320/1385347_637449916305701_79059897_n.jpg?oh=90bd788e2b2dfd9b11bb7c90d26e3603&oe=55C9441E&__gda__=1440372877_079b747f8e88781474e8529291d4b07b',
-    isFriend: true
+    isFriend: true,
+    face: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c122.2.716.716/s320x320/1385347_637449916305701_79059897_n.jpg?oh=90bd788e2b2dfd9b11bb7c90d26e3603&oe=55C9441E&__gda__=1440372877_079b747f8e88781474e8529291d4b07b'
   }, {
     id: 1,
     name: 'Raphael Leuthner',
@@ -19,11 +19,13 @@ angular.module('starter.services', ['firebase'])
     id: 2,
     name: 'Tobias Kirchner',
     distance: '5 km',
+    isFriend: true,
     face: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c1.63.787.787/s320x320/10599149_750965168282660_7017218834142046411_n.jpg?oh=6b37d8ea5c15b9ca8221dde79bdfe6b0&oe=55C8C554&__gda__=1439841744_773d0b7c32083616e34f7f9bcf3471fc'
   }, {
     id: 3,
     name: 'Henrik Müller',
     distance: '3 km',
+    isFriend: true,
     face: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p320x320/10922698_929787937051670_2499390580754583765_n.jpg?oh=3c05e56fe463b8522fe91182be25ac28&oe=55BFFD95&__gda__=1439186576_0459a0dc891238eae806d9a6b248bca4'
   }, {
     id: 4,
@@ -42,7 +44,13 @@ angular.module('starter.services', ['firebase'])
       return mitglieder;
     },
     // freunde: function() {
-    //   return mitglieder;
+    //   var freunde = [];
+    //   for (var i = 0; i < mitglieder.length; i++) {
+    //     if (mitglieder[i].isFriend){
+    //       freunde.push(mitglieder[i]);
+    //     }
+    //   }
+    //   return freunde;
     // },
     get: function(mitgliedId) {
       for (var i = 0; i < mitglieder.length; i++) {
