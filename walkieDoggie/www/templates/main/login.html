@@ -1,5 +1,4 @@
 <ion-view view-title="Login">
-
   <ion-nav-buttons side="right">
     <ion-button class="button" ng-click="state.go('tab.feed.alle');">
       Schließen
@@ -26,6 +25,7 @@
         </label>
 
         <button ng-disabled="loginForm.$invalid" class="button button-block button-positive" type="submit">Login</button>
+        <button class="button button-block button-positive" ng-click="doFacebookConnect()">Facebook Login</button>
 
         <button ui-sref="registrieren" class="button button-block button-outline">Registrieren</button>
 

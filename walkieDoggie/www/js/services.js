@@ -65,5 +65,26 @@ angular.module('starter.services', ['firebase'])
 
 .factory('Auth', ['$firebaseAuth', function($firebaseAuth) {
   var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
-  return $firebaseAuth(ref);
+  var auth = $firebaseAuth(ref);
+  return {
+    register: function (user) {
+      return auth.$createUser({
+        email: user.email, 
+        password: user.password
+    });
+    },
+    login: function (user) {
+      return auth.$authWithPassword({
+        email: user.email, 
+        password: user.password
+      });
+    },
+    logout: function () {
+      return auth.$unauth();
+    },
+    getAuth: function() {
+      return auth.$getAuth();
+    }
+  };
 }]);
+
