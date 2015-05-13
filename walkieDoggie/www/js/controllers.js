@@ -43,6 +43,7 @@ angular.module('starter.controllers', [])
       password: password
     }).then(function(authData) {
       $scope.closeLogin();
+      console.log("jo");
     }).catch(function(error) {
       console.error("Authentication failed:", error);
     });

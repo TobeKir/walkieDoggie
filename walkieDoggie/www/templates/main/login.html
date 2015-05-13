@@ -7,18 +7,25 @@
   </ion-header-bar>
 
   <ion-content class="padding">
-    <form ng-submit="doLogin()">
+    <form name="loginForm" ng-submit="loginForm.$valid && doLogin(user.email,user.password)" novalidate>
       <div class="list list-inset">
 
         <label class="item item-input">
-          <input type="text" placeholder="Email" ng-model="user.email">
+          <input type="text" name="email" placeholder="Email" ng-model="user.email" required>
+          <span style="color:red" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+          <span ng-show="loginForm.email.$error.required">Bitte tragen Sie eine korrekte E-Mail ein.</span>
+          </span>
         </label>
 
         <label class="item item-input">
-          <input type="password" placeholder="Passwort" ng-model="user.password">
+          <input type="password" name="password" placeholder="Passwort" ng-model="user.password" required>
+          <span style="color:red" ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+          <span ng-show="loginForm.password.$error.required">password is required.</span>
+          <span ng-show="loginForm.password.$error.password">Invalid password address.</span>
+          </span>
         </label>
 
-        <button class="button button-block button-positive" ng-click="doLogin(user.email,user.password)" type="submit">Login</button>
+        <button class="button button-block button-positive" type="submit">Login</button>
 
         <button ui-sref="registrieren" ng-click="closeLogin()" class="button button-block button-outline">Registrieren</button>
 
