@@ -1,6 +1,6 @@
 <ion-view view-title="Login">
   <ion-content class="padding">
-    <form name="loginForm" ng-submit="loginForm.$valid && doLogin(user.email,user.password)" novalidate>
+    <form name="loginForm" ng-submit="loginForm.$valid && doLogin()" novalidate>
       <div class="list list-inset">
 
         <label class="item item-input">
@@ -19,6 +19,7 @@
         </label>
 
         <button class="button button-block button-positive" type="submit">Login</button>
+        <button class="button button-block button-positive" ng-click="doFacebookConnect()">Facebook Login</button>
 
         <button ui-sref="registrieren" class="button button-block button-outline">Registrieren</button>
 
