@@ -1,11 +1,4 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Schließen</button>
-    </div>
-  </ion-header-bar>
-
+<ion-view view-title="Login">
   <ion-content class="padding">
     <form name="loginForm" ng-submit="loginForm.$valid && doLogin(user.email,user.password)" novalidate>
       <div class="list list-inset">
@@ -27,9 +20,9 @@
 
         <button class="button button-block button-positive" type="submit">Login</button>
 
-        <button ui-sref="registrieren" ng-click="closeLogin()" class="button button-block button-outline">Registrieren</button>
+        <button ui-sref="registrieren" class="button button-block button-outline">Registrieren</button>
 
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
+</ion-view>

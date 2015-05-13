@@ -28,14 +28,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab', {
     abstract: true,
-    templateUrl: "templates/main/tabs.html",
-    controller: 'AuthCtrl'
+    templateUrl: "templates/main/tabs.html"
   })
 
-  // .state('login', {
-  //   url: '/login',
-  //   templateUrl: "templates/main/login.html"
-  // })
+  .state('login', {
+    url: '/login',
+    templateUrl: "templates/main/login.html",
+    controller: 'AuthCtrl'
+  })
 
   .state('registrieren', {
     url: '/registrieren',
@@ -145,7 +145,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/feed/alle');
+  $urlRouterProvider.otherwise('/login');
   $ionicConfigProvider.tabs.position("bottom");
 
 
