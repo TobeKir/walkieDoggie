@@ -1,9 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('AuthCtrl', function($scope, $state, $timeout, Auth) {
-  
-  // später Abfrage der Session, um Login einzublenden
-  $scope.UserIsLoggedIn = false;
 
   // Fform data for the login
   $scope.user = {};
@@ -33,13 +30,6 @@ angular.module('starter.controllers', [])
       return $scope.doLogin(email,password);
     });
   };
-
-  // show login if user is logged out
-  $timeout(function() {
-    if($scope.UserIsLoggedIn == false){
-      // show login
-    }
-  }, 1000);
 
 })
 
