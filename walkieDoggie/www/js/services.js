@@ -73,11 +73,17 @@ angular.module('starter.services', ['firebase'])
         password: user.password
     });
     },
+    createProfile: function(user,userData) {
+      return ref.child("users").child(userData.uid).set(user);
+    },
     login: function (user) {
       return auth.$authWithPassword({
         email: user.email, 
         password: user.password
       });
+    },
+    facebook: function() {
+      return auth.$authWithOAuthPopup("facebook");
     },
     logout: function () {
       return auth.$unauth();

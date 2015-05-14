@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
     $rootScope.state = $state;
 
-    if(!Auth.$getAuth()){
+    if(!Auth.getAuth()){
       $state.go('login');
     }
   });

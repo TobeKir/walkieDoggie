@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.doFacebookConnect = function() {
-    Auth.$authWithOAuthPopup("facebook")
+    Auth.facebook()
     .then(function(authData) {
       console.log(authData);
     }).catch(function(error) {
@@ -32,8 +32,9 @@ angular.module('starter.controllers', [])
   // perform the register action when the user submits the register form
   $scope.doRegister = function() {
     Auth.register($scope.user).then(function(userData) {
+      Auth.createProfile($scope.user, userData);
       console.log("Nutzer " + userData.uid + " wurde registriert");
-      return Auth.login($scope.user);
+      return $scope.doLogin();
     });
   };
 
