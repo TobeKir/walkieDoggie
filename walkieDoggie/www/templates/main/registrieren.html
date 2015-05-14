@@ -7,15 +7,21 @@
   </ion-nav-buttons>
 
   <ion-content class="padding">
-    <form ng-submit="doRegister(user.email,user.password)">
+    <form name="registerForm" ng-submit="registerForm.$valid && doRegister(user.email,user.password)" novalidate>
       <div class="list list-inset">
 
         <ion-item class="item item-input">
-          <input type="text" placeholder="Vorname" ng-model="user.vorname">
+          <input type="text" name="vorname" placeholder="Vorname" ng-model="user.vorname" required>
+          <span class="error" ng-show="registerForm.vorname.$touched && registerForm.vorname.$invalid">
+            <span ng-show="registerForm.vorname.$error.required">Vorname erforderlich</span>
+          </span>
         </ion-item>
 
         <ion-item class="item item-input">
-          <input type="text" placeholder="Nachname" ng-model="user.nachname">
+          <input type="text" name="nachname" placeholder="Nachname" ng-model="user.nachname" required>
+          <span class="error" ng-show="registerForm.nachname.$touched && registerForm.nachname.$invalid">
+            <span ng-show="registerForm.nachname.$error.required">Nachname erforderlich</span>
+          </span>
         </ion-item>
 
       </div>
@@ -23,16 +29,23 @@
       <div class="list list-inset">
 
         <label class="item item-input">
-          <input type="text" placeholder="Email" ng-model="user.email">
+          <input type="email" name="email" placeholder="Email" ng-model="user.email" required>
+          <span class="error" ng-show="registerForm.email.$touched && registerForm.email.$invalid">
+            <span ng-show="registerForm.email.$error.required">Email erforderlich</span>
+            <span ng-show="registerForm.email.$error.email">Email ist ungültig</span>
+          </span>
         </label>
 
         <label class="item item-input">
-            <input type="password" placeholder="Passwort" ng-model="user.password">
+          <input type="password" name="password" placeholder="Passwort" ng-model="user.password" required>
+          <span class="error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
+            <span ng-show="registerForm.password.$error.required">Password erforderlich</span>
+          </span>
         </label>
 
       </div>
 
-      <button type="submit" class="button button-block button-positive">Registrieren</button>
+      <button ng-disabled="registerForm.$invalid" type="submit" class="button button-block button-positive">Registrieren</button>
 
       <button ui-sref="tab.feed.alle" class="button button-block button-outline">Abbrechen</button>
 

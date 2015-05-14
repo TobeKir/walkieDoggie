@@ -130,6 +130,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   }).state('tab.mitglieder.alle-detail', {
+    url: '/alle/:mitgliedId',
     params: {mitgliedId:{}},
     views: {
       'mitglieder-alle': {
@@ -138,6 +139,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   }).state('tab.mitglieder.freunde-detail', {
+    url: '/freunde/:mitgliedId',
     params: {mitgliedId:{}},
     views: {
       'mitglieder-freunde': {
