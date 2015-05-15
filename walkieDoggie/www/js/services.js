@@ -92,5 +92,14 @@ angular.module('starter.services', ['firebase'])
       return auth.$getAuth();
     }
   };
+}])
+
+.factory('User', ['$firebaseObject','Auth', function($firebaseObject, Auth) {
+  var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
+  return {
+    getUser: function() {
+      return $firebaseObject(ref.child("users").child(Auth.getAuth().uid));
+    }
+  }
 }]);
 

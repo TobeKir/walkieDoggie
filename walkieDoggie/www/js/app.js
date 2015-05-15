@@ -154,6 +154,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-profil': {
         templateUrl: 'templates/tabs/tab-profil.html',
+        controller: 'ProfilCtrl'
+      }
+    }
+  }).state('tab.profil.ich', {
+    url: '/ich',
+    views: {
+      'profil-ich': {
+        templateUrl: 'templates/tab-profil/profil-ich.html'
+      }
+    }
+  }).state('tab.profil.rudel', {
+    url: '/rudel',
+    views: {
+      'profil-rudel': {
+        templateUrl: 'templates/tab-profil/profil-rudel.html'
       }
     }
   });

@@ -52,3 +52,7 @@ angular.module('starter.controllers', [])
 .controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {
 	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
 })
+
+.controller('ProfilCtrl', function($scope, User){
+  User.getUser().$bindTo($scope, "user");
+})
