@@ -1,14 +1,62 @@
 <ion-view view-title="Mein Profil">
+
+  <ion-nav-buttons side="right">
+    <ion-button class="button button-icon icon ion-ios-compose-outline"></ion-button>
+  </ion-nav-buttons>
+
   <ion-content>
-	<form name="" novalidate>
+	 <form name="" novalidate>
+
+      <div class="item-thumbnail-left">
+        <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c0.35.320.320/p320x320/10155233_10202306793937959_7746588956254689173_n.jpg?oh=2d1e3522b98ae0e5ee5173952a46855b&oe=55D32C99&__gda__=1439349640_89d8470f8b8b25f48b0afffae455bf1b">
+      </div> 
+
       <div class="list list-inset">
         <label class="item item-input">
-          <input type="text" name="vorname" ng-model="user.vorname">
+          <input type="text" name="vorname" ng-model="user.vorname" placeholder="Vorname" required>
         </label>
         <label class="item item-input">
-          <input type="text" name="nachname" ng-model="user.nachname">
+          <input type="text" name="nachname" ng-model="user.nachname" placeholder="Nachname" required>
         </label>
       </div>
-     </form>
+
+      <div class="list list-inset">
+        <div class="item item-divider">
+          optionale Angaben
+        </div>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Geschlecht
+          </div>
+          <select name="geschlecht" ng-model="user.geschlecht" >
+            <option selected>männlich</option>
+            <option>weiblich</option>
+          </select>
+        </label>
+        <label class="item item-input">
+          <input type="date" name="geburtsdatum" ng-model="user.geburtsdatum" placeholder="Geburtsdatum">
+        </label>
+        <label class="item item-input">
+          <input type="text" name="ort" ng-model="user.ort" placeholder="Wohnort">
+        </label>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="tel" name="telefon" ng-model="user.telefon" placeholder="Telefon Nr.">
+        </label>
+      </div>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" name="status" ng-model="user.status" placeholder="Status">
+        </label>
+        <label class="item item-input">
+          <textarea name="description" ng-model="user.description" rows="{{user.description.length/60 + 2}}" cols="60" placeholder="Über mich">
+        </label>
+      </div>
+
+    </form>
+
   </ion-content>
 </ion-view>
