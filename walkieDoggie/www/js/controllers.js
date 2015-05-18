@@ -37,11 +37,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MitgliederCtrl', function($scope, $stateParams, Mitglieder) {
-  // if($stateParams.viewFreunde) {
-  //   $scope.mitglieder = Mitglieder.freunde();
-  // } else {
-  //   $scope.mitglieder = Mitglieder.all();
-  // }
   $scope.mitglieder = Mitglieder.all();
 })
 
