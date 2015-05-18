@@ -96,10 +96,14 @@ angular.module('starter.services', ['firebase'])
 
 .factory('User', ['$firebaseObject','Auth', function($firebaseObject, Auth) {
   var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
+  var userObj = $firebaseObject(ref.child("users").child(Auth.getAuth().uid));
   return {
     getUser: function() {
-      return $firebaseObject(ref.child("users").child(Auth.getAuth().uid));
+      return userObj;
     },
+    saveUser: function(user) {
+      return userObj.$save();
+    }
   }
 }]);
 

@@ -49,6 +49,11 @@ angular.module('starter.controllers', [])
 	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
 })
 
-.controller('ProfilCtrl', function($rootScope){
+.controller('ProfilCtrl', function($rootScope, User, $scope) {
+  
+  $rootScope.user = User.getUser();
 
+  $scope.save = function() {
+    User.saveUser($rootScope.user);
+  }
 })
