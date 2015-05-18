@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AuthCtrl', function($scope, $state, $timeout, Auth) {
+.controller('AuthCtrl', function($scope, $state, $timeout, Auth, User) {
 
   $scope.auth = {};
 
@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
   // perform the register action when the user submits the register form
   $scope.doRegister = function() {
     Auth.register($scope.auth).then(function(userData) {
-      Auth.createProfile($scope.auth, userData);
+      User.create($scope.auth, userData);
       console.log("Nutzer " + userData.uid + " wurde registriert");
       return $scope.doLogin();
     });
@@ -42,13 +42,14 @@ angular.module('starter.controllers', [])
 
 .controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {
 	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
+  console.log($scope.mitglied);
 })
 
-.controller('ProfilCtrl', function($rootScope, User, $scope) {
-  
-  $rootScope.user = User.getUser();
+.controller('ProfilCtrl', function($rootScope, $scope, User) {
+
+  $rootScope.user = User.get();
 
   $scope.save = function() {
-    User.saveUser($rootScope.user);
+    User.save($rootScope.user);
   }
 })

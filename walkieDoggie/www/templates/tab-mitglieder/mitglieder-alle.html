@@ -4,7 +4,7 @@
 
     <!-- Dummy Liste Alle //-->
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder" type="item-text-wrap" ui-sref="^.alle-detail({mitgliedId: mitglied.id})">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder" type="item-text-wrap" ui-sref="^.alle-detail({mitgliedId: mitglied.$id})">
         <img ng-src="{{mitglied.image}}">
         <h2>{{mitglied.vorname}}</h2>
         <p><b>{{mitglied.email}}</b> Entfernung</p>

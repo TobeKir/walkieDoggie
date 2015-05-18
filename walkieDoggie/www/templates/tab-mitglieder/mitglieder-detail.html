@@ -4,13 +4,13 @@
   The MitgliederCtrl pulls data from the Mitglieder service (service.js)
   The Mitglieder service returns an array of mitglied data
 -->
-<ion-view view-title="{{mitglied.name}}">
+<ion-view view-title="{{mitglied.vorname}}">
   <ion-content>
 
 	<ion-item class="item item-thumbnail-left">
-	    <img ng-src="{{mitglied.face}}">
-	    <h2>{{mitglied.name}}</h2>
-	    <p>in <b>{{mitglied.distance}}</b> Entfernung</p>
+	    <img ng-src="{{mitglied.image}}">
+	    <h2>{{mitglied.vorname}}</h2>
+	    <p>in <b>{{mitglied.email}}</b> Entfernung</p>
 	</ion-item>
 
     <ion-list class="list">

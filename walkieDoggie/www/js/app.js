@@ -23,8 +23,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     if(!Auth.getAuth()){
       $state.go('login');
     }
+
   });
 })
+
+.constant('FBURL', 'https://boiling-torch-520.firebaseio.com/')
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 

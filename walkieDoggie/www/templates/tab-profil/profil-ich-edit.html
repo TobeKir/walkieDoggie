@@ -5,7 +5,7 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <form name="" novalidate>
+    <form ng-model-options="{updateOn: 'submit'}" novalidate>
 
       <ion-list class="list">
 
@@ -68,7 +68,7 @@
           </textarea>
         </div>
 
-        <!-- Beschreibung //-->
+        <!-- Gassi Zeiten //-->
         <div class="item item-divider">
           Gassi Zeiten
         </div>
@@ -76,9 +76,9 @@
           <span class="input-label">Mo - Fr</span>
           <input type="text" name="gassizeiten" ng-model="user.gassizeiten" placeholder="Gassi Zeiten">
         </label>
-
+        
       </ion-list>
-
+        
     </form>
   </ion-content>
 </ion-view>

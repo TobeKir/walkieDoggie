@@ -1,26 +1,22 @@
 angular.module('starter.services', ['firebase'])
 
-.factory('Mitglieder', ['$firebaseArray', function($firebaseArray) {
+.factory('Mitglieder', ['FBURL', '$firebaseArray', '$firebaseObject', 'User', function(FBURL, $firebaseArray, $firebaseObject, User) {
 
-  var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
+  var ref = new Firebase(FBURL);
+  var users = $firebaseArray(ref.child("users"));
 
   return {
     all: function() {
-      return $firebaseArray(ref.child("users"));
+      return users;
     },
     get: function(mitgliedId) {
-      for (var i = 0; i < mitglieder.length; i++) {
-        if (mitglieder[i].id === parseInt(mitgliedId)) {
-          return mitglieder[i];
-        }
-      }
-      return null;
+      return User.get(mitgliedId);
     }
   };
 }])
 
-.factory('Auth', ['$firebaseAuth', function($firebaseAuth) {
-  var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
+.factory('Auth', ['$firebaseAuth', 'FBURL', function($firebaseAuth, FBURL) {
+  var ref = new Firebase(FBURL);
   var auth = $firebaseAuth(ref);
   return {
     register: function (user) {
@@ -28,9 +24,6 @@ angular.module('starter.services', ['firebase'])
         email: user.email, 
         password: user.password
     });
-    },
-    createProfile: function(user,userData) {
-      return ref.child("users").child(userData.uid).set(auth);
     },
     login: function (user) {
       return auth.$authWithPassword({
@@ -50,15 +43,20 @@ angular.module('starter.services', ['firebase'])
   };
 }])
 
-.factory('User', ['$firebaseObject','Auth', function($firebaseObject, Auth) {
-  var ref = new Firebase("https://boiling-torch-520.firebaseio.com/");
-  var userObj = $firebaseObject(ref.child("users").child(Auth.getAuth().uid));
+.factory('User', ['$firebaseObject','Auth', 'FBURL', function($firebaseObject, Auth, FBURL) {
+  var ref = new Firebase(FBURL);
   return {
-    getUser: function() {
-      return userObj;
+    create: function(auth,userData) {
+      return ref.child("users").child(userData.uid).set(auth);
     },
-    saveUser: function(user) {
-      return userObj.$save();
+    get: function(uid) {
+      if (uid === undefined) {
+        uid = Auth.getAuth().uid;
+      }
+      return $firebaseObject(ref.child("users").child(uid));
+    },
+    save: function(user) {
+      return user.$save();
     }
   }
 }]);
