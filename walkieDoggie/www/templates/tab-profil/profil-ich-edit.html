@@ -1,0 +1,83 @@
+<ion-view view-title="Profil bearbeiten">
+
+  <ion-nav-buttons side="right">
+  </ion-nav-buttons>
+
+  <ion-content>
+    <form name="" novalidate>
+
+      <ion-list class="list">
+
+        <label class="item item-input">
+          <span class="input-label">Profilbild</span>
+          <input type="text" name="image" ng-model="user.image" placeholder="Profilbild URL">
+        </label>
+
+        <!-- Vorname, Name //-->
+        <label class="item item-input">
+          <span class="input-label">Vorname</span>
+          <input type="text" name="vorname" ng-model="user.vorname" placeholder="Vorname" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Nachname</span>
+          <input type="text" name="nachname" ng-model="user.nachname" placeholder="Nachname" required>
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          {{user.email}}
+        </label>
+
+        <div class="item item-divider">
+          Nutzerdaten
+        </div>
+        <!-- Geschlecht //-->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Geschlecht
+          </div>
+          <select name="geschlecht" ng-model="user.geschlecht">
+            <option selected>männlich</option>
+            <option>weiblich</option>
+          </select>
+        </label>
+
+        <!-- Alter //-->
+        <label class="item item-input">
+          <span class="input-label">Geburtsdatum</span>
+          <input type="text" name="geburtsdatum" ng-model="user.geburtsdatum" placeholder="Geburtsdatum">
+        </label>
+
+        <!-- Ort und Telefon //-->
+        <label class="item item-input">
+          <span class="input-label">Wohnort</span>
+          <input type="text" name="ort" ng-model="user.ort" placeholder="Wohnort">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Telefon Nr.</span>
+          <input type="tel" name="telefon" ng-model="user.telefon" placeholder="Telefon Nr.">
+        </label>
+
+        <!-- Beschreibung //-->
+        <div class="item item-divider">
+          Über mich
+        </div>
+        <div class="item item-input">
+          <textarea name="description" ng-model="user.description" rows="{{user.description.length/60 + 2}}" cols="60" placeholder="Über mich">
+          </textarea>
+        </div>
+
+        <!-- Beschreibung //-->
+        <div class="item item-divider">
+          Gassi Zeiten
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Mo - Fr</span>
+          <input type="text" name="gassizeiten" ng-model="user.gassizeiten" placeholder="Gassi Zeiten">
+        </label>
+
+      </ion-list>
+
+    </form>
+  </ion-content>
+</ion-view>

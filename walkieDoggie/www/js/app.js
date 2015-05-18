@@ -120,15 +120,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'MitgliederCtrl'
       }
     }
-  }).state('tab.mitglieder.freunde', {
-    // params: {viewFreunde: true },
-    url: '/freunde',
-    views: {
-      'mitglieder-freunde': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html',
-        controller: 'MitgliederCtrl'
-      }
-    }
   }).state('tab.mitglieder.alle-detail', {
     url: '/alle/:mitgliedId',
     params: {mitgliedId:{}},
@@ -136,6 +127,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       'mitglieder-alle': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
         controller: 'MitgliederDetailCtrl'
+      }
+    }
+  }).state('tab.mitglieder.freunde', {
+    // params: {viewFreunde: true },
+    url: '/freunde',
+    views: {
+      'mitglieder-freunde': {
+        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html',
+        controller: 'MitgliederCtrl'
       }
     }
   }).state('tab.mitglieder.freunde-detail', {
@@ -162,6 +162,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'profil-ich': {
         templateUrl: 'templates/tab-profil/profil-ich.html'
+      }
+    }
+  }).state('tab.profil.ich-edit', {
+    url: '/ich/edit',
+    views: {
+      'profil-ich': {
+        templateUrl: 'templates/tab-profil/profil-ich-edit.html'
       }
     }
   }).state('tab.profil.rudel', {

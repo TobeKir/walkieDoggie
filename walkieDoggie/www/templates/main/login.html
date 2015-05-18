@@ -6,11 +6,12 @@
     </ion-button>
   </ion-nav-buttons>
 
-  <ion-content class="padding">
+  <ion-content class="">
     <form name="loginForm" ng-submit="loginForm.$valid && doLogin()" novalidate>
-      <div class="list list-inset">
+      <div class="list">
 
         <label class="item item-input">
+          <span class="input-label">Email</span>
           <input type="email" name="email" placeholder="Email" ng-model="user.email" required>
           <span class="error" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
             <span ng-show="loginForm.email.$error.required">Email erforderlich</span>
@@ -19,16 +20,17 @@
         </label>
 
         <label class="item item-input">
+          <span class="input-label">Passwort</span>
           <input type="password" name="password" placeholder="Passwort" ng-model="user.password" required>
           <span class="error" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
             <span ng-show="loginForm.password.$error.required">Password erforderlich</span>
           </span>
         </label>
 
-        <button ng-disabled="loginForm.$invalid" class="button button-block button-positive" type="submit">Login</button>
-        <button class="button button-block button-positive" ng-click="doFacebookConnect()">Facebook Login</button>
+        <button ng-disabled="loginForm.$invalid" class="button button-full button-positive" type="submit">Login</button>
+        <button class="button button-full button-positive" ng-click="doFacebookConnect()">Facebook Login</button>
 
-        <button ui-sref="registrieren" class="button button-block button-outline">Registrieren</button>
+        <button ui-sref="registrieren" class="button button-full button-outline">Registrieren</button>
 
       </div>
     </form>
