@@ -74,7 +74,7 @@ angular.module('starter.services', ['firebase'])
     });
     },
     createProfile: function(user,userData) {
-      return ref.child("users").child(userData.uid).set(user);
+      return ref.child("users").child(userData.uid).set(auth);
     },
     login: function (user) {
       return auth.$authWithPassword({
@@ -99,7 +99,7 @@ angular.module('starter.services', ['firebase'])
   return {
     getUser: function() {
       return $firebaseObject(ref.child("users").child(Auth.getAuth().uid));
-    }
+    },
   }
 }]);
 

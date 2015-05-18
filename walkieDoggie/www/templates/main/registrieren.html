@@ -9,7 +9,7 @@
 
         <ion-item class="item item-input">
           <span class="input-label">Vorname</span>
-          <input type="text" name="vorname" placeholder="Vorname" ng-model="user.vorname" required>
+          <input type="text" name="vorname" placeholder="Vorname" ng-model="auth.vorname" required>
           <span class="error" ng-show="registerForm.vorname.$touched && registerForm.vorname.$invalid">
             <span ng-show="registerForm.vorname.$error.required">Vorname erforderlich</span>
           </span>
@@ -17,7 +17,7 @@
 
         <ion-item class="item item-input">
           <span class="input-label">Nachname</span>
-          <input type="text" name="nachname" placeholder="Nachname" ng-model="user.nachname" required>
+          <input type="text" name="nachname" placeholder="Nachname" ng-model="auth.nachname" required>
           <span class="error" ng-show="registerForm.nachname.$touched && registerForm.nachname.$invalid">
             <span ng-show="registerForm.nachname.$error.required">Nachname erforderlich</span>
           </span>
@@ -29,7 +29,7 @@
 
         <label class="item item-input">
           <span class="input-label">Email</span>
-          <input type="email" name="email" placeholder="Email" ng-model="user.email" required>
+          <input type="email" name="email" placeholder="Email" ng-model="auth.email" required>
           <span class="error" ng-show="registerForm.email.$touched && registerForm.email.$invalid">
             <span ng-show="registerForm.email.$error.required">Email erforderlich</span>
             <span ng-show="registerForm.email.$error.email">Email ist ungültig</span>
@@ -38,7 +38,7 @@
 
         <label class="item item-input">
           <span class="input-label">Passwort</span>
-          <input type="password" name="password" placeholder="Passwort" ng-model="user.password" required>
+          <input type="password" name="password" placeholder="Passwort" ng-model="auth.password" required>
           <span class="error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
             <span ng-show="registerForm.password.$error.required">Password erforderlich</span>
           </span>
