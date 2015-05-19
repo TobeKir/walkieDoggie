@@ -1,20 +1,5 @@
 angular.module('starter.services', ['firebase'])
 
-.factory('Mitglieder', ['FBURL', '$firebaseArray', '$firebaseObject', 'User', function(FBURL, $firebaseArray, $firebaseObject, User) {
-
-  var ref = new Firebase(FBURL);
-  var users = $firebaseArray(ref.child("users"));
-
-  return {
-    all: function() {
-      return users;
-    },
-    get: function(mitgliedId) {
-      return User.get(mitgliedId);
-    }
-  };
-}])
-
 .factory('Auth', ['$firebaseAuth', 'FBURL', function($firebaseAuth, FBURL) {
   var ref = new Firebase(FBURL);
   var auth = $firebaseAuth(ref);
@@ -43,17 +28,21 @@ angular.module('starter.services', ['firebase'])
   };
 }])
 
-.factory('User', ['$firebaseObject','Auth', 'FBURL', function($firebaseObject, Auth, FBURL) {
+.factory('User', ['$firebaseObject', '$firebaseArray', 'Auth', 'FBURL', function($firebaseObject, $firebaseArray, Auth, FBURL) {
   var ref = new Firebase(FBURL);
+  var userRef = ref.child("users");
   return {
+    all: function() {
+      return $firebaseArray(userRef);
+    },
     create: function(auth,userData) {
-      return ref.child("users").child(userData.uid).set(auth);
+      return userRef.child(userData.uid).set(auth);
     },
     get: function(uid) {
       if (uid === undefined) {
         uid = Auth.getAuth().uid;
       }
-      return $firebaseObject(ref.child("users").child(uid));
+      return $firebaseObject(userRef.child(uid));
     },
     save: function(user) {
       return user.$save();

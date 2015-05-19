@@ -36,20 +36,30 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MitgliederCtrl', function($scope, $stateParams, Mitglieder) {
-  $scope.mitglieder = Mitglieder.all();
+.controller('MitgliederCtrl', function($scope, $stateParams, User) {
+  $scope.mitglieder = User.all();
 })
 
-.controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {
-	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
-  console.log($scope.mitglied);
+.controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
+	$scope.mitglied = User.get($stateParams.mitgliedId);
 })
 
 .controller('ProfilCtrl', function($rootScope, $scope, User) {
 
   $rootScope.user = User.get();
 
+  $scope.edit = function(user) {
+    $scope.editUser = angular.copy(user);
+  }
+
+  $scope.changePhoto = function() {
+
+  }
+
   $scope.save = function() {
+    angular.forEach($scope.editUser, function(value, key) {
+      this[key] = value;
+    }, $rootScope.user);
     User.save($rootScope.user);
   }
 })
