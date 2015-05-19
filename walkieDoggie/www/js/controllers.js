@@ -36,8 +36,8 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MitgliederCtrl', function($scope, $stateParams, Mitglieder) {
-  $scope.mitglieder = Mitglieder.all();
+.controller('MitgliederCtrl', function($scope, $stateParams, User) {
+  $scope.mitglieder = User.all();
 })
 
 .controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
@@ -48,8 +48,12 @@ angular.module('starter.controllers', [])
 
   $rootScope.user = User.get();
 
-  $scope.edit = function(){
-    $scope.editUser = angular.copy($rootScope.user);
+  $scope.edit = function(user) {
+    $scope.editUser = angular.copy(user);
+  }
+
+  $scope.changePhoto = function() {
+
   }
 
   $scope.save = function() {

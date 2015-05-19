@@ -11,7 +11,8 @@
 
         <label class="item item-input">
           <span class="input-label">Profilbild</span>
-          <input type="text" name="image" ng-model="editUser.image" placeholder="Profilbild URL">
+          <img ng-src="{{editUser.image}}" ng-click="changePhoto()">
+<!--           <input type="text" name="image" ng-model="editUser.image" placeholder="Profilbild URL"> -->
         </label>
 
         <!-- Vorname, Name //-->
