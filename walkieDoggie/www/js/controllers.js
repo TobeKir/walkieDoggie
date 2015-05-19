@@ -44,17 +44,33 @@ angular.module('starter.controllers', [])
 	$scope.mitglied = User.get($stateParams.mitgliedId);
 })
 
-.controller('ProfilCtrl', function($rootScope, $scope, User) {
+.controller('ProfilCtrl', function($rootScope, $scope, User, $cordovaCamera) {
 
   $rootScope.user = User.get();
 
   $scope.edit = function(user) {
-    $scope.editUser = angular.copy(user);
+    $scope.editUser = User.get();
   }
 
   $scope.changePhoto = function() {
-
-  }
+    console.log('clicked!');
+    var options = {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        popoverOptions: CameraPopoverOptions,
+        targetWidth: 100,
+        targetHeight: 100,
+        saveToPhotoAlbum: false
+    };
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+        $rootScope.user.image = imageData;
+        console.log($rootScope.user.image);
+        User.save($rootScope.user);
+    });
+}
 
   $scope.save = function() {
     angular.forEach($scope.editUser, function(value, key) {
