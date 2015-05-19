@@ -5,28 +5,28 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <form ng-model-options="{updateOn: 'submit'}" novalidate>
+    <form novalidate>
 
       <ion-list class="list">
 
         <label class="item item-input">
           <span class="input-label">Profilbild</span>
-          <input type="text" name="image" ng-model="user.image" placeholder="Profilbild URL">
+          <input type="text" name="image" ng-model="editUser.image" placeholder="Profilbild URL">
         </label>
 
         <!-- Vorname, Name //-->
         <label class="item item-input">
           <span class="input-label">Vorname</span>
-          <input type="text" name="vorname" ng-model="user.vorname" placeholder="Vorname" required>
+          <input type="text" name="vorname" ng-model="editUser.vorname" placeholder="Vorname" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Nachname</span>
-          <input type="text" name="nachname" ng-model="user.nachname" placeholder="Nachname" required>
+          <input type="text" name="nachname" ng-model="editUser.nachname" placeholder="Nachname" required>
         </label>
 
         <label class="item item-input">
           <span class="input-label">Email</span>
-          {{user.email}}
+          {{editUser.email}}
         </label>
 
         <div class="item item-divider">
@@ -37,7 +37,7 @@
           <div class="input-label">
             Geschlecht
           </div>
-          <select name="geschlecht" ng-model="user.geschlecht">
+          <select name="geschlecht" ng-model="editUser.geschlecht">
             <option selected>männlich</option>
             <option>weiblich</option>
           </select>
@@ -46,17 +46,17 @@
         <!-- Alter //-->
         <label class="item item-input">
           <span class="input-label">Geburtsdatum</span>
-          <input type="text" name="geburtsdatum" ng-model="user.geburtsdatum" placeholder="Geburtsdatum">
+          <input type="text" name="geburtsdatum" ng-model="editUser.geburtsdatum" placeholder="Geburtsdatum">
         </label>
 
         <!-- Ort und Telefon //-->
         <label class="item item-input">
           <span class="input-label">Wohnort</span>
-          <input type="text" name="ort" ng-model="user.ort" placeholder="Wohnort">
+          <input type="text" name="ort" ng-model="editUser.ort" placeholder="Wohnort">
         </label>
         <label class="item item-input">
           <span class="input-label">Telefon Nr.</span>
-          <input type="tel" name="telefon" ng-model="user.telefon" placeholder="Telefon Nr.">
+          <input type="tel" name="telefon" ng-model="editUser.telefon" placeholder="Telefon Nr.">
         </label>
 
         <!-- Beschreibung //-->
@@ -64,7 +64,7 @@
           Über mich
         </div>
         <div class="item item-input">
-          <textarea name="description" ng-model="user.description" rows="{{user.description.length/60 + 2}}" cols="60" placeholder="Über mich">
+          <textarea name="description" ng-model="editUser.description" rows="{{editUser.description.length/60 + 2}}" cols="60" placeholder="Über mich">
           </textarea>
         </div>
 
@@ -74,9 +74,9 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Mo - Fr</span>
-          <input type="text" name="gassizeiten" ng-model="user.gassizeiten" placeholder="Gassi Zeiten">
+          <input type="text" name="gassizeiten" ng-model="editUser.gassizeiten" placeholder="Gassi Zeiten">
         </label>
-        
+
       </ion-list>
         
     </form>

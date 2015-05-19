@@ -40,16 +40,22 @@ angular.module('starter.controllers', [])
   $scope.mitglieder = Mitglieder.all();
 })
 
-.controller('MitgliederDetailCtrl', function($scope, $stateParams, Mitglieder) {
-	$scope.mitglied = Mitglieder.get($stateParams.mitgliedId);
-  console.log($scope.mitglied);
+.controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
+	$scope.mitglied = User.get($stateParams.mitgliedId);
 })
 
 .controller('ProfilCtrl', function($rootScope, $scope, User) {
 
   $rootScope.user = User.get();
 
+  $scope.edit = function(){
+    $scope.editUser = angular.copy($rootScope.user);
+  }
+
   $scope.save = function() {
+    angular.forEach($scope.editUser, function(value, key) {
+      this[key] = value;
+    }, $rootScope.user);
     User.save($rootScope.user);
   }
 })

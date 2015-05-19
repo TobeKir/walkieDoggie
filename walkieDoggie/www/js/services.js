@@ -1,6 +1,6 @@
 angular.module('starter.services', ['firebase'])
 
-.factory('Mitglieder', ['FBURL', '$firebaseArray', '$firebaseObject', 'User', function(FBURL, $firebaseArray, $firebaseObject, User) {
+.factory('Mitglieder', ['FBURL', '$firebaseArray', '$firebaseObject', function(FBURL, $firebaseArray, $firebaseObject) {
 
   var ref = new Firebase(FBURL);
   var users = $firebaseArray(ref.child("users"));
@@ -8,9 +8,6 @@ angular.module('starter.services', ['firebase'])
   return {
     all: function() {
       return users;
-    },
-    get: function(mitgliedId) {
-      return User.get(mitgliedId);
     }
   };
 }])
