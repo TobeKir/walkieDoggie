@@ -43,7 +43,7 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($rootScope, $scope, User) {
+.controller('ProfilCtrl', function($rootScope, $scope, User, $ionicActionSheet, $cordovaCamera) {
 
   $rootScope.user = User.get();
   $scope.editUser = {};
@@ -58,7 +58,49 @@ angular.module('starter.controllers', [])
 
   $scope.changePhoto = function() {
 
-  }
+    var sel = $ionicActionSheet.show({
+       buttons: [
+         { text: 'Neues Bild aufnehmen' },
+         { text: 'Bild auswählen' }
+       ],
+       titleText: 'Profilbild wählen',
+       cancelText: 'Abbrechen',
+       cancel: function() {
+            // blabla
+          },
+       buttonClicked: function(index) {
+         switch (index){
+              case 0 :
+                $scope.sourceType = Camera.PictureSourceType.CAMERA;
+                $scope.getPicture();
+                return true;
+              case 1 :
+                $scope.sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+                $scope.getPicture();
+                return true;
+            }
+       }
+    });
+    
+  $scope.getPicture = function(){
+    var options = {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : $scope.sourceType,
+        allowEdit : true,
+        correctOrientation: true,
+        encodingType: Camera.EncodingType.JPEG,
+        popoverOptions: CameraPopoverOptions,
+        targetWidth: 100,
+        targetHeight: 100,
+        saveToPhotoAlbum: false
+    };
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+        $rootScope.user.image = imageData;
+        User.save($rootScope.user);
+    });
+  };
+}
 
   $scope.save = function() {
     angular.forEach($scope.editUser, function(value, key) {
