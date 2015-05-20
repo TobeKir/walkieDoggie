@@ -155,6 +155,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/profil',
     views: {
       'tab-profil': {
+        abstract: true,
         templateUrl: 'templates/tabs/tab-profil.html',
         controller: 'ProfilCtrl'
       }
@@ -177,13 +178,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/rudel',
     views: {
       'profil-rudel': {
-        templateUrl: 'templates/tab-profil/profil-rudel.html'
+        templateUrl: 'templates/tab-profil/profil-rudel.html',
+        controller: 'DogCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/feed/alle');
+  // $urlRouterProvider.otherwise('/feed/alle');
+  $urlRouterProvider.otherwise('/profil/rudel');
+
+  // Tab Position for Android
   $ionicConfigProvider.tabs.position("bottom");
 
   // White List für a href

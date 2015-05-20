@@ -20,3 +20,18 @@
 .state-name:hover {
 	background: #387ef5;
 }
+
+a.icon {
+	text-decoration: none;
+	color: #000;
+}
+
+.item-avatar > img:first-child,
+.item-avatar .item-content > img:first-child,
+.item-thumbnail-left > img:first-child,
+.item-thumbnail-left .item-content > img:first-child {
+	background-color: #ddd;
+	background-image: url(../img/default-avatar.png);
+	background-position: center;
+	background-size: cover;
+}

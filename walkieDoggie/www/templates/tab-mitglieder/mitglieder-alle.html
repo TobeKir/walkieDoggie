@@ -1,13 +1,12 @@
 <ion-view view-title="Mitglieder">
   <ion-content>
 
-    <!-- Dummy Liste Alle //-->
     <ion-list>
       <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers" type="item-text-wrap" ui-sref="^.alle-detail({userId: user.$id})">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
         <p>in <b>{{user.ort}}</b></p>
-        <i class="icon ion-ios-personadd-outline"></i>
+        <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon ion-ios-personadd-outline"></a>
       </ion-item>
     </ion-list>
 
