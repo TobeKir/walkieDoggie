@@ -4,7 +4,6 @@ angular.module('starter.controllers', [])
 
   $scope.auth = {};
 
-  // perfrom the login action when the user submits the login form
   $scope.doLogin = function() {
     Auth.login($scope.auth).then(function(authData) {
       console.log("Nutzer " + authData.uid + " wurde eingeloggt");
@@ -25,7 +24,6 @@ angular.module('starter.controllers', [])
     });
   };
 
-  // perform the register action when the user submits the register form
   $scope.doRegister = function() {
     Auth.register($scope.auth).then(function(userData) {
       User.create($scope.auth, userData);
@@ -37,19 +35,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MitgliederCtrl', function($scope, $stateParams, User) {
-  $scope.mitglieder = User.all();
+  $scope.allUsers = User.all();
+  $scope.user = User.get($stateParams.userId);
 })
 
-.controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
-	$scope.mitglied = User.get($stateParams.mitgliedId);
-})
+// .controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
+// 	$scope.mitglied = User.get($stateParams.mitgliedId);
+// })
 
 .controller('ProfilCtrl', function($rootScope, $scope, User) {
 
   $rootScope.user = User.get();
+  $scope.editUser = {};
 
-  $scope.edit = function(user) {
-    $scope.editUser = angular.copy(user);
+  $scope.isProfil = true;
+
+  $scope.edit = function() {
+    angular.forEach($rootScope.user, function(value, key) {
+      this[key] = value;
+    }, $scope.editUser);
   }
 
   $scope.changePhoto = function() {
@@ -62,4 +66,5 @@ angular.module('starter.controllers', [])
     }, $rootScope.user);
     User.save($rootScope.user);
   }
+
 })

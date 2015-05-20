@@ -1,13 +1,12 @@
 <ion-view view-title="Mitglieder">
-
   <ion-content>
 
     <!-- Dummy Liste Alle //-->
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder" type="item-text-wrap" ui-sref="^.alle-detail({mitgliedId: mitglied.$id})">
-        <img ng-src="{{mitglied.image}}">
-        <h2>{{mitglied.vorname}} {{mitglied.nachname}}</h2>
-        <p>in <b>{{mitglied.ort}}</b></p>
+      <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers" type="item-text-wrap" ui-sref="^.alle-detail({userId: user.$id})">
+        <img ng-src="data:image/jpeg;base64,{{user.image}}">
+        <h2>{{user.vorname}} {{user.nachname}}</h2>
+        <p>in <b>{{user.ort}}</b></p>
         <i class="icon ion-ios-personadd-outline"></i>
       </ion-item>
     </ion-list>

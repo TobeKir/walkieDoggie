@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .constant('FBURL', 'https://boiling-torch-520.firebaseio.com/')
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
 
   $stateProvider
 
@@ -124,12 +124,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   }).state('tab.mitglieder.alle-detail', {
-    url: '/alle/:mitgliedId',
-    params: {mitgliedId:{}},
+    url: '/alle/:userId',
+    // params: {mitgliedId:{}},
     views: {
       'mitglieder-alle': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
-        controller: 'MitgliederDetailCtrl'
+        templateUrl: 'templates/shared/user-detail.html',
+        controller: 'MitgliederCtrl'
       }
     }
   }).state('tab.mitglieder.freunde', {
@@ -142,12 +142,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   }).state('tab.mitglieder.freunde-detail', {
-    url: '/freunde/:mitgliedId',
-    params: {mitgliedId:{}},
+    url: '/freunde/:userId',
     views: {
       'mitglieder-freunde': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-detail.html',
-        controller: 'MitgliederDetailCtrl'
+        templateUrl: 'templates/shared/user-detail.html',
+        controller: 'MitgliederCtrl'
       }
     }
   })
@@ -164,7 +163,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/ich',
     views: {
       'profil-ich': {
-        templateUrl: 'templates/tab-profil/profil-ich.html'
+        templateUrl: 'templates/shared/user-detail.html'
       }
     }
   }).state('tab.profil.ich-edit', {
@@ -186,6 +185,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/feed/alle');
   $ionicConfigProvider.tabs.position("bottom");
+
+  // White List für a href
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);
 
 
 });

@@ -1,7 +1,7 @@
 <ion-view view-title="Profil">
 
   <ion-nav-buttons side="right">
-    <ion-button ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
+    <ion-button ng-show="isProfil" ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -9,7 +9,7 @@
     <ion-list class="list">
 
       <ion-item class="item item-thumbnail-left">
-        <img ng-src="{{user.image}}">
+        <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
         <p>{{user.email}}</p>
       </ion-item>
@@ -42,6 +42,18 @@
         <span class="input-label">Mo - Fr</span>
         {{user.gassizeiten}}
       </div>
+
+      <ion-item ng-hide="isProfil" class="item item-divider">
+        Kontakt
+      </ion-item>
+      <ion-item ng-hide="isProfil" class="item item-icon-left" href="javascript:alert('Anfrage gesendet');">
+        <i class="icon ion-ios-personadd"></i>
+        Freundschaft anfragen
+      </ion-item>
+      <ion-item ng-hide="isProfil"class="item item-icon-left" href="javascript:alert('Nachricht wird gesendet');">
+        <i class="icon ion-ios-email"></i>
+        Nachricht schreiben
+      </ion-item>
 
     </ion-list>
 

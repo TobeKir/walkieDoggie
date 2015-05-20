@@ -3,10 +3,10 @@
 
     <!-- Dummy Liste Alle //-->
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="mitglied in mitglieder | filter:{isFriend:true}" type="item-text-wrap" ui-sref="^.freunde-detail({mitgliedId: mitglied.id})">
-        <img ng-src="{{mitglied.face}}">
-        <h2>{{mitglied.name}}</h2>
-        <p><b>{{mitglied.distance}}</b> Entfernung</p>
+      <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers | filter:{ort:'Mosbach'}" type="item-text-wrap" ui-sref="^.freunde-detail({userId: user.$id})">
+        <img ng-src="data:image/jpeg;base64,{{user.image}}">
+        <h2>{{user.vorname}} {{user.nachname}}</h2>
+        <p>in <b>{{user.ort}}</b></p>
         <i class="icon ion-ios-personadd-outline"></i>
       </ion-item>
     </ion-list>
