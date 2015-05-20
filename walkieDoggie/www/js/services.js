@@ -46,6 +46,12 @@ angular.module('starter.services', ['firebase'])
     },
     save: function(user) {
       return user.$save();
+    },
+    allDogs: function(uid) {
+      if (uid === undefined) {
+        uid = Auth.getAuth().uid;
+      }
+      return $firebaseObject(userRef.child(uid).child("dogs"));
     }
   }
 }]);

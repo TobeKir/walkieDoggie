@@ -110,3 +110,20 @@ angular.module('starter.controllers', [])
   }
 
 })
+
+.controller('DogCtrl', function($scope, $stateParams, User) {
+  $scope.allDogs = User.allDogs();
+  console.log($scope.allDogs); 
+  // $scope.user = User.get($stateParams.userId);
+})
+
+
+
+
+
+
+
+
+
+
+
