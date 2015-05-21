@@ -11,7 +11,14 @@
       <ion-item class="item item-thumbnail-left">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
-        <p>{{user.email}}</p>
+        <p>
+          <span ng-if="user.ort">
+            in <b>{{user.ort}}</b>
+          </span> 
+          <span ng-if="user.dogs">
+            mit <b ng-repeat="dog in user.dogs"><span ng-if="!$first">, </span>{{dog.name}}</b>
+          </span>
+        </p>
       </ion-item>
 
       <div class="item item-divider">
@@ -23,7 +30,7 @@
           {{user.geburtsdatum | date : 'dd.MM.yyyy'}}
         </div>
         <div class="col">
-          {{user.ort}}<br>
+          {{user.email}}<br>
           {{user.telefon}}
         </div>
       </div>

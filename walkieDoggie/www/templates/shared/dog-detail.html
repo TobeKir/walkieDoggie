@@ -1,0 +1,53 @@
+<ion-view view-title="Hunde Profil" class="dog-view">
+
+  <ion-nav-buttons side="right">
+    <ion-button class="button button-icon icon ion-ios-compose-outline"></ion-button>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <ion-list class="list">
+
+      <ion-item class="item item-thumbnail-left">
+        <img ng-src="data:image/jpeg;base64,{{dog.image}}">
+        <h2>{{dog.name}}</h2>
+        <p>{{dog.rasse}}</p>
+      </ion-item>
+
+      <div class="item item-divider">
+        Hunde Daten
+      </div>
+      <div class="row item padding">
+        <div class="col">
+          {{dog.geschlecht}}<br>
+          {{dog.alter}} Jahre
+        </div>
+        <div class="col">
+          {{dog.groesse}} cm
+        </div>
+      </div>
+
+      <div class="item item-divider">
+        Gemüt
+      </div>
+      <div class="row item padding">
+        <div class="col">
+          ist <span ng-show="!dog.kastriert">nicht </span>kastriert<br>
+          zur Zeit <span ng-show="!dog.laeufig">nicht </span>läufig
+        </div>
+        <div class="col">
+          verträgt sich gut mit {{dog.vertraeglich}}
+        </div>
+      </div>
+
+      <div class="item item-divider">
+        Beschreibung
+      </div>
+      <div class="item">
+        {{dog.beschreibung}}
+      </div>
+
+    </ion-list>
+
+  </ion-content>
+</ion-view>

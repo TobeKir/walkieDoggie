@@ -182,11 +182,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'DogCtrl'
       }
     }
+  }).state('tab.profil.rudel-detail', {
+    url: '/rudel/:dogId',
+    views: {
+      'profil-rudel': {
+        templateUrl: 'templates/shared/dog-detail.html',
+        controller: 'DogCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/feed/alle');
-  $urlRouterProvider.otherwise('/profil/rudel');
+  $urlRouterProvider.otherwise('/feed/alle');
 
   // Tab Position for Android
   $ionicConfigProvider.tabs.position("bottom");

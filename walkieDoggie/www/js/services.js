@@ -63,18 +63,29 @@ angular.module('starter.services', ['firebase'])
   }
 }])
 
-.factory('Dog', ['$firebaseArray', 'User', 'FBURL', 'Auth', function($firebaseArray, User, FBURL,Auth) {
+.factory('Dog', ['$firebaseArray', '$firebaseObject', 'User', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, User, FBURL,Auth) {
   var ref = new Firebase(FBURL);
   var dogRef = ref.child("dogs");
   return {
-    all: function() {
-      return $firebaseArray(dogRef);
+    all: function(uid) {
+      //return $firebaseArray(dogRef);
+      if (uid === undefined) {
+        uid = Auth.getAuth().uid;
+      }
+      return $firebaseObject(User.userRef.child(uid).child("dogs"));
     },
     add: function(dog, dogs) {
       return dogs.$add(dog).then(function(ref) {
          User.userRef.child(Auth.getAuth().uid).child("dogs").child(ref.key()).set(true);
       })
+    },
+    get: function(dogId, uid) {
+      if (uid === undefined) {
+        uid = Auth.getAuth().uid;
+      }
+      return $firebaseObject(User.userRef.child(uid).child("dogs").child(dogId));
     }
+
   }
 }]);
 

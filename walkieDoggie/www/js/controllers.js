@@ -23,7 +23,9 @@ angular.module('starter.controllers', [])
 
 .controller('MitgliederCtrl', function($scope, $stateParams, User) {
   $scope.allUsers = User.all();
-  $scope.user = User.get($stateParams.userId);
+  if($stateParams.userId){
+    $scope.user = User.get($stateParams.userId);
+  }
 })
 
 // .controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
@@ -114,22 +116,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DogCtrl', function($scope, $stateParams, Dog) {
-  $scope.dogs = Dog.all();
 
-  $scope.dog = {
-    name: 'mina', //input
-    rasse: 'labrador', //select (dutzende :D)
-    beschreibung: 'Das ist ein toller Hund',
-    alter: 12, //input
-    groesse: 183, //cm
-    geschlecht: 'weiblich', //select (weiblich,männlich)
-    laeufig: true, //select oder checkbox (ja,nein)
-    vertraeglich: 'Rüden', //select (alle,keine,Rüden,Hündinnen)
-    kastriert: true,
-    image: 'base64'
-  };
-  Dog.add($scope.dog, $scope.dogs);
+.controller('DogCtrl', function($scope, $stateParams, Dog) {
+  $scope.allDogs = Dog.all();
+
+  if($stateParams.dogId){
+    $scope.dog = Dog.get($stateParams.dogId);
+  }
+
+  // Dog.add($scope.dog, $scope.dogs);
 })
 
 
