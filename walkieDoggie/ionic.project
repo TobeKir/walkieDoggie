@@ -1,12 +1,4 @@
 {
   "name": "Walkie Doggie",
-  "app_id": "f0f9ae5a",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+  "app_id": "f0f9ae5a"
 }
