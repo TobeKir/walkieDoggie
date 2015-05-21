@@ -35,3 +35,10 @@ a.icon {
 	background-position: center;
 	background-size: cover;
 }
+
+.dog-view .item-avatar > img:first-child,
+.dog-view .item-avatar .item-content > img:first-child,
+.dog-view .item-thumbnail-left > img:first-child,
+.dog-view .item-thumbnail-left .item-content > img:first-child {
+	background-image: url(../img/default-avatar-dog.png);
+}

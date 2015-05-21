@@ -1,14 +1,20 @@
-<ion-view view-title="Mein Profil">
+<ion-view view-title="Rudel" class="dog-view">
 
   <ion-nav-buttons side="right">
-    <ion-button class="button button-icon icon ion-ios-compose-outline"></ion-button>
+    <ion-button class="button button-icon icon ion-ios-plus-outline"></ion-button>
   </ion-nav-buttons>
   
   <ion-content>
 
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="dog in allDogs" type="item-text-wrap">
-      	{{dog.name}}
+      <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in allDogs" type="item-text-wrap" ui-sref="^.rudel-detail({dogId: key})">
+
+        <img ng-src="data:image/jpeg;base64,{{value.image}}">
+        <h2>{{value.name}}</h2>
+        <p>
+          <b>{{value.rasse}}</b>, {{value.geschlecht}}
+        </p>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
     </ion-list>
 

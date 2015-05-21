@@ -52,7 +52,14 @@ angular.module('starter.services', ['firebase'])
         uid = Auth.getAuth().uid;
       }
       return $firebaseObject(userRef.child(uid).child("dogs"));
+    },
+    getDog: function(dogId, uid) {
+      if (uid === undefined) {
+        uid = Auth.getAuth().uid;
+      }
+      return $firebaseObject(userRef.child(uid).child("dogs").child(dogId));
     }
+
   }
 }]);
 

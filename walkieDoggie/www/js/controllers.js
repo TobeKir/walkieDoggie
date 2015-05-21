@@ -36,7 +36,9 @@ angular.module('starter.controllers', [])
 
 .controller('MitgliederCtrl', function($scope, $stateParams, User) {
   $scope.allUsers = User.all();
-  $scope.user = User.get($stateParams.userId);
+  if($stateParams.userId){
+    $scope.user = User.get($stateParams.userId);
+  }
 })
 
 // .controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
@@ -112,9 +114,13 @@ angular.module('starter.controllers', [])
 })
 
 .controller('DogCtrl', function($scope, $stateParams, User) {
+
   $scope.allDogs = User.allDogs();
-  console.log($scope.allDogs); 
-  // $scope.user = User.get($stateParams.userId);
+  
+  if($stateParams.dogId){
+    $scope.dog = User.getDog($stateParams.dogId);
+  }
+
 })
 
 

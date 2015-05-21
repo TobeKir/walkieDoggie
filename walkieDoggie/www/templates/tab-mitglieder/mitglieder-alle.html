@@ -5,7 +5,12 @@
       <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers" type="item-text-wrap" ui-sref="^.alle-detail({userId: user.$id})">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
-        <p>in <b>{{user.ort}}</b></p>
+        <p>
+          <span ng-if="user.ort">in</span>
+          <b>{{user.ort}}</b>
+          <span ng-if="user.dogs">mit</span>
+          <b ng-repeat="dog in user.dogs"><span ng-if="!$first">, </span>{{dog.name}}</b>
+        </p>
         <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon ion-ios-personadd-outline"></a>
       </ion-item>
     </ion-list>
