@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($rootScope, $scope, User, $ionicActionSheet, $cordovaCamera) {
+.controller('ProfilCtrl', function($rootScope, $scope, User, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
 
   $rootScope.user = User.get();
   $scope.editUser = {};
@@ -60,35 +60,34 @@ angular.module('starter.controllers', [])
 
   $scope.changePhoto = function() {
 
-    var sel = $ionicActionSheet.show({
-       buttons: [
-         { text: 'Neues Bild aufnehmen' },
-         { text: 'Bild auswählen' }
-       ],
-       titleText: 'Profilbild wählen',
-       cancelText: 'Abbrechen',
-       cancel: function() {
-            // blabla
-          },
-       buttonClicked: function(index) {
-         switch (index){
-              case 0 :
-                $scope.sourceType = Camera.PictureSourceType.CAMERA;
-                $scope.getPicture();
-                return true;
-              case 1 :
-                $scope.sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
-                $scope.getPicture();
-                return true;
-            }
-       }
+    var sourceType;
+    
+    $ionicActionSheet.show({
+      buttons: [
+        { text: 'Neues Bild aufnehmen' },
+        { text: 'Bild auswählen' }
+      ],
+      titleText: 'Profilbild ändern',
+      cancelText: 'Abbrechen',
+      buttonClicked: function(index) {
+        switch (index) {
+          case 0 :
+            sourceType = Camera.PictureSourceType.CAMERA;
+            getPicture(sourceType);
+            return true;
+          case 1 :
+            sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+            getPicture(sourceType);
+            return true;
+          }
+      }
     });
     
-  $scope.getPicture = function(){
-    var options = {
-        quality : 75,
+    function getPicture(sourceType) {
+      var options = {
+        quality : 70,
         destinationType : Camera.DestinationType.DATA_URL,
-        sourceType : $scope.sourceType,
+        sourceType : sourceType,
         allowEdit : true,
         correctOrientation: true,
         encodingType: Camera.EncodingType.JPEG,
@@ -96,13 +95,30 @@ angular.module('starter.controllers', [])
         targetWidth: 100,
         targetHeight: 100,
         saveToPhotoAlbum: false
+      };
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        $scope.editUser.image = imageData;
+      });
     };
-    $cordovaCamera.getPicture(options).then(function(imageData) {
-        $rootScope.user.image = imageData;
-        User.save($rootScope.user);
-    });
-  };
-}
+  }
+
+  $scope.datePicker = function() {
+    var options = {
+      date: new Date($scope.editUser.geburtsdatum),
+      mode: 'date', // or 'time' // TIME HERE
+      minDate: new Date() - 10000,
+      allowOldDates: true,
+      allowFutureDates: false,
+      doneButtonLabel: 'DONE',
+      doneButtonColor: '#F2F3F4',
+      cancelButtonLabel: 'CANCEL',
+      cancelButtonColor: '#000000'
+    };
+
+   $cordovaDatePicker.show(options).then(function (date) {
+       $scope.editUser.geburtsdatum = date.toJSON();
+   });
+  }
 
   $scope.save = function() {
     angular.forEach($scope.editUser, function(value, key) {

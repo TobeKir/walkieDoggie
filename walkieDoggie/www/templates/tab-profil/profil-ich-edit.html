@@ -44,10 +44,12 @@
         </label>
 
         <!-- Alter //-->
-        <label class="item item-input">
-          <span class="input-label">Geburtsdatum</span>
-          <input type="text" name="geburtsdatum" ng-model="editUser.geburtsdatum" placeholder="Geburtsdatum">
-        </label>
+        <div class="item item-button-right">
+          <span>Geburtsdatum</span>
+          <span class="item-note">{{editUser.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
+          <button class="button button-icon" ng-click="datePicker()"><i class="icon ion-ios-calendar-outline"></i></button>
+        </div>
+       
 
         <!-- Ort und Telefon //-->
         <label class="item item-input">

@@ -27,7 +27,7 @@
       <div class="row item padding">
         <div class="col">
           {{user.geschlecht}}<br>
-          {{user.geburtsdatum}}
+          {{user.geburtsdatum | date : 'dd.MM.yyyy'}}
         </div>
         <div class="col">
           {{user.email}}<br>
