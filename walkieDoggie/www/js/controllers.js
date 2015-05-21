@@ -4,31 +4,18 @@ angular.module('starter.controllers', [])
 
   $scope.auth = {};
 
-  $scope.doLogin = function() {
-    Auth.login($scope.auth).then(function(authData) {
-      console.log("Nutzer " + authData.uid + " wurde eingeloggt");
-      $state.go('tab.feed.alle');
-      console.log("Weiterleitung auf den Feed");
-    }).catch(function(error) {
-      console.error("Authentication failed:", error);
-    });
+  $scope.login = function() {
+    Auth.login($scope.auth);
   };
 
-  $scope.doFacebookConnect = function() {
-    Auth.facebook()
-    .then(function(authData) {
-      $state.go('tab.feed.alle');
-      console.log(authData);
-    }).catch(function(error) {
-      console.log("Authentication failed:", error);
-    });
+  $scope.facebookConnect = function() {
+    Auth.facebook();
   };
 
-  $scope.doRegister = function() {
+  $scope.register = function() {
     Auth.register($scope.auth).then(function(userData) {
       User.create($scope.auth, userData);
-      console.log("Nutzer " + userData.uid + " wurde registriert");
-      return $scope.doLogin();
+      Auth.login($scope.auth);
     });
   };
 
@@ -127,10 +114,22 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DogCtrl', function($scope, $stateParams, User) {
-  $scope.allDogs = User.allDogs();
-  console.log($scope.allDogs); 
-  // $scope.user = User.get($stateParams.userId);
+.controller('DogCtrl', function($scope, $stateParams, Dog) {
+  $scope.dogs = Dog.all();
+
+  $scope.dog = {
+    name: 'mina', //input
+    rasse: 'labrador', //select (dutzende :D)
+    beschreibung: 'Das ist ein toller Hund',
+    alter: 12, //input
+    groesse: 183, //cm
+    geschlecht: 'weiblich', //select (weiblich,männlich)
+    laeufig: true, //select oder checkbox (ja,nein)
+    vertraeglich: 'Rüden', //select (alle,keine,Rüden,Hündinnen)
+    kastriert: true,
+    image: 'base64'
+  };
+  Dog.add($scope.dog, $scope.dogs);
 })
 
 

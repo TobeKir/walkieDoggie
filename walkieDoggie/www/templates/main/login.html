@@ -7,7 +7,7 @@
   </ion-nav-buttons>
 
   <ion-content class="">
-    <form name="loginForm" ng-submit="loginForm.$valid && doLogin()" novalidate>
+    <form name="loginForm" ng-submit="loginForm.$valid && login()" novalidate>
       <div class="list">
 
         <label class="item item-input">
@@ -28,7 +28,7 @@
         </label>
 
         <button ng-disabled="loginForm.$invalid" class="button button-full button-positive" type="submit">Login</button>
-        <button class="button button-full button-positive" ng-click="doFacebookConnect()">Facebook Login</button>
+        <button class="button button-full button-positive" ng-click="facebookConnect()">Facebook Login</button>
 
         <button ui-sref="registrieren" class="button button-full button-outline">Registrieren</button>
 
