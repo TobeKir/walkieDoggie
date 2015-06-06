@@ -70,7 +70,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'standort-karte': {
         templateUrl: 'templates/tab-standort/standort-karte.html'
-      }
+      },
+	  controller: 'MapCtrl'
     }
   })
 

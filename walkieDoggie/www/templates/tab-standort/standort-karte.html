@@ -1,9 +1,12 @@
 <ion-view view-title="Standort">
 
-  <ion-content>
+  <!--<ion-content>
 
 	<iframe style="width: 100%; min-height: calc(100% - 48px);"
 	src="https://maps.google.de/maps?hl=de&q=Mosbach, Zwingerstraße 8+(Mosbach)&ie=UTF8&t=&z=17&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" >
 
-  </ion-content>
+  </ion-content>-->
+  <ion-content ng-controller="MapCtrl">
+    <div id="map" data-tap-disabled="true"></div>
+</ion-content>
 </ion-view>

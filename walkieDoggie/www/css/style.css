@@ -42,3 +42,12 @@ a.icon {
 .dog-view .item-thumbnail-left .item-content > img:first-child {
 	background-image: url(../img/default-avatar-dog.png);
 }
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.scroll {
+	height: 100%;
+}
