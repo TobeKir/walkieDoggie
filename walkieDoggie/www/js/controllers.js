@@ -126,6 +126,10 @@ angular.module('starter.controllers', [])
     // durch zweiten Aufruf des Controllers
     $scope.dog = Dog.get($stateParams.dogId);
   }
+  
+  $scope.save = function() {
+    Dog.save($scope.dog);
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
