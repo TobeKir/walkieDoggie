@@ -130,6 +130,7 @@ angular.module('starter.controllers', [])
   // Dog.add($scope.dog, $scope.dogs);
 })
 
+
 .controller('MapCtrl', function($scope, $ionicLoading) {
 
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);

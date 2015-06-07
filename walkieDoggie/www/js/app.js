@@ -134,7 +134,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   }).state('tab.mitglieder.freunde', {
-    // params: {viewFreunde: true },
     url: '/freunde',
     views: {
       'mitglieder-freunde': {
@@ -172,14 +171,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/ich/edit',
     views: {
       'profil-ich': {
-        templateUrl: 'templates/tab-profil/profil-ich-edit.html'
+        templateUrl: 'templates/shared/user-edit.html'
       }
     }
   }).state('tab.profil.rudel', {
     url: '/rudel',
     views: {
       'profil-rudel': {
-        templateUrl: 'templates/tab-profil/profil-dogs.html',
+        templateUrl: 'templates/shared/user-dogs.html',
         controller: 'DogCtrl'
       }
     }

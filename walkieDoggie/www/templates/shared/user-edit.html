@@ -49,7 +49,6 @@
           <span class="item-note">{{editUser.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
           <button class="button button-icon" ng-click="datePicker()"><i class="icon ion-ios-calendar-outline"></i></button>
         </div>
-       
 
         <!-- Ort und Telefon //-->
         <label class="item item-input">
@@ -76,8 +75,12 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Mo - Fr</span>
-          <input type="text" name="gassizeiten" ng-model="editUser.gassizeiten" placeholder="Gassi Zeiten">
+          <input type="text" name="gassizeiten" ng-model="editUser.gassizeiten" placeholder="Uhrzeiten">
         </label>
+
+        <br>
+        <br>
+        <br>
 
       </ion-list>
         
