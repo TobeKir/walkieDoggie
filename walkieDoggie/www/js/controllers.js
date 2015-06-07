@@ -118,9 +118,12 @@ angular.module('starter.controllers', [])
 
 
 .controller('DogCtrl', function($scope, $stateParams, Dog) {
-  $scope.allDogs = Dog.all();
 
-  if($stateParams.dogId){
+  if($stateParams.dogId  === undefined){
+    $scope.allDogs = Dog.all();
+  } else {
+    // $scope.dog ist zugleich edit Kopie für ".rudel-edit"
+    // durch zweiten Aufruf des Controllers
     $scope.dog = Dog.get($stateParams.dogId);
   }
 

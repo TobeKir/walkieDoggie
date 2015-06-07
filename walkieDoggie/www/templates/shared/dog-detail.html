@@ -1,7 +1,7 @@
 <ion-view view-title="Hunde Profil" class="dog-view">
 
   <ion-nav-buttons side="right">
-    <ion-button class="button button-icon icon ion-ios-compose-outline"></ion-button>
+    <ion-button ui-sref="tab.profil.rudel-edit({dogId: dog.$id})" class="button button-icon icon ion-ios-compose-outline"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -20,7 +20,7 @@
       <div class="row item padding">
         <div class="col">
           {{dog.geschlecht}}<br>
-          {{dog.alter}} Jahre
+          {{dog.alter}}{{dog.geburtsdatum}} Jahre
         </div>
         <div class="col">
           {{dog.groesse}} cm

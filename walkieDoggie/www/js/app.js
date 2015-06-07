@@ -179,7 +179,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/rudel',
     views: {
       'profil-rudel': {
-        templateUrl: 'templates/tab-profil/profil-rudel.html',
+        templateUrl: 'templates/tab-profil/profil-dogs.html',
         controller: 'DogCtrl'
       }
     }
@@ -188,6 +188,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'profil-rudel': {
         templateUrl: 'templates/shared/dog-detail.html',
+        controller: 'DogCtrl'
+      }
+    }
+  }).state('tab.profil.rudel-edit', {
+    url: '/rudel/edit/:dogId',
+    views: {
+      'profil-rudel': {
+        templateUrl: 'templates/shared/dog-edit.html',
         controller: 'DogCtrl'
       }
     }
