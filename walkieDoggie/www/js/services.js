@@ -58,32 +58,40 @@ angular.module('starter.services', ['firebase'])
     },
     save: function(user) {
       return user.$save();
-    },
-    userRef: userRef
+    }
   }
 }])
 
 .factory('Dog', ['$firebaseArray', '$firebaseObject', 'User', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, User, FBURL,Auth) {
   var ref = new Firebase(FBURL);
-  var dogRef = ref.child("dogs");
+  var dogKeyRef = ref.child("users").child(Auth.getAuth().uid).child("dogs");
+  var dogs = $firebaseArray(ref.child("dogs"));
   return {
     all: function(uid) {
-      //return $firebaseArray(dogRef);
       if (uid === undefined) {
         uid = Auth.getAuth().uid;
       }
-      return $firebaseObject(User.userRef.child(uid).child("dogs"));
+      var allDogs = [];
+      var dogKeys = $firebaseObject(dogKeyRef);
+      dogKeys.$loaded().then(function() {
+        dogs.$loaded().then(function(){
+          angular.forEach(dogKeys, function(value, key) {
+            this.push(dogs.$getRecord(key));
+          },allDogs)
+        })
+     })
+      return allDogs; 
     },
-    add: function(dog, dogs) {
+    add: function(dog) {
       return dogs.$add(dog).then(function(ref) {
-         User.userRef.child(Auth.getAuth().uid).child("dogs").child(ref.key()).set(true);
+         dogKeyRef.child(ref.key()).set(true);
       })
     },
     get: function(dogId, uid) {
       if (uid === undefined) {
         uid = Auth.getAuth().uid;
       }
-      return $firebaseObject(User.userRef.child(uid).child("dogs").child(dogId));
+      return dogs.$getRecord(dogId);
     }
 
   }
