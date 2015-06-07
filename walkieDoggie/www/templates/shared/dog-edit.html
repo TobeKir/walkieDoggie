@@ -11,17 +11,17 @@
 
         <label class="item item-input" ng-click="changePhoto()">
           <span class="input-label">Bild</span>
-          <img ng-src="data:image/jpeg;base64,{{dog.image}}">
+          <img ng-src="data:image/jpeg;base64,{{editScope.image}}">
         </label>
 
         <!-- Name //-->
         <label class="item item-input">
           <span class="input-label">Name</span>
-          <input type="text" name="name" ng-model="dog.name" placeholder="Name" required>
+          <input type="text" name="name" ng-model="editScope.name" placeholder="Name" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Rasse</span>
-          <input type="text" name="nachname" ng-model="dog.rasse" placeholder="Rasse" required>
+          <input type="text" name="nachname" ng-model="editScope.rasse" placeholder="Rasse" required>
         </label>
 
         <div class="item item-divider">
@@ -32,7 +32,7 @@
           <div class="input-label">
             Geschlecht
           </div>
-          <select name="geschlecht" ng-model="dog.geschlecht">
+          <select name="geschlecht" ng-model="editScope.geschlecht">
             <option selected>männlich</option>
             <option>weiblich</option>
           </select>
@@ -41,29 +41,29 @@
         <!-- Alter //-->
         <div class="item item-button-right">
           <span>Geburtsdatum</span>
-          <span class="item-note">{{dog.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
+          <span class="item-note">{{editScope.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
           <button class="button button-icon" ng-click="datePicker()"><i class="icon ion-ios-calendar-outline"></i></button>
         </div>
 
         <!-- Größe //-->
         <label class="item item-input">
           <span class="input-label">Größe</span>
-          <input type="text" name="ort" ng-model="dog.groesse" placeholder="Größe in cm">
+          <input type="text" name="ort" ng-model="editScope.groesse" placeholder="Größe in cm">
         </label>
 
         <!-- Gemüt //-->
         <div class="item item-divider">
           Gemüt
         </div>
-        <ion-checkbox ng-model="dog.kastriert">ist kastriert</ion-checkbox>
-        <ion-checkbox ng-model="dog.laeufig">ist läufig</ion-checkbox>
+        <ion-checkbox ng-model="editScope.kastriert">ist kastriert</ion-checkbox>
+        <ion-checkbox ng-model="editScope.laeufig">ist läufig</ion-checkbox>
 
         <!-- Geschlecht //-->
         <label class="item item-input item-select">
           <div class="input-label">
             Verträgt sich gut mit
           </div>
-          <select name="geschlecht" ng-model="dog.vertraeglich">
+          <select name="geschlecht" ng-model="editScope.vertraeglich">
             <option selected>Rüden</option>
             <option>Hündin</option>
           </select>
@@ -74,7 +74,7 @@
           Beschreibung
         </div>
         <div class="item item-input">
-          <textarea name="description" ng-model="dog.beschreibung" rows="{{dog.beschreibung.length/60 + 2}}" cols="60" placeholder="Über deinen Hund">
+          <textarea name="description" ng-model="editScope.beschreibung" rows="{{editScope.beschreibung.length/60 + 2}}" cols="60" placeholder="Über deinen Hund">
           </textarea>
         </div>
 

@@ -7,7 +7,7 @@
   <ion-content>
 
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in allDogs" type="item-text-wrap" ui-sref="^.rudel-detail({dogId: key})">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in allDogs" type="item-text-wrap" ui-sref="^.rudel-detail" ng-click="dogDetail(value.$id);">
 
         <img ng-src="data:image/jpeg;base64,{{value.image}}">
         <h2>{{value.name}}</h2>

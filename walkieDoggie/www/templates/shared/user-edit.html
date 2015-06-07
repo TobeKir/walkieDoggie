@@ -1,7 +1,7 @@
 <ion-view view-title="Profil bearbeiten">
 
   <ion-nav-buttons side="right">
-    <ion-button ui-sref="tab.profil.ich" class="button button-icon icon ion-ios-checkmark-outline" ng-click="save()"></ion-button>
+    <ion-button ui-sref="tab.profil.ich" class="button button-icon icon ion-ios-checkmark-outline" ng-click="save(user)"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -11,22 +11,22 @@
 
         <label class="item item-input" ng-click="changePhoto()">
           <span class="input-label">Profilbild</span>
-          <img ng-src="data:image/jpeg;base64,{{editUser.image}}">
+          <img ng-src="data:image/jpeg;base64,{{editScope.image}}">
         </label>
 
         <!-- Vorname, Name //-->
         <label class="item item-input">
           <span class="input-label">Vorname</span>
-          <input type="text" name="vorname" ng-model="editUser.vorname" placeholder="Vorname" required>
+          <input type="text" name="vorname" ng-model="editScope.vorname" placeholder="Vorname" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Nachname</span>
-          <input type="text" name="nachname" ng-model="editUser.nachname" placeholder="Nachname" required>
+          <input type="text" name="nachname" ng-model="editScope.nachname" placeholder="Nachname" required>
         </label>
 
         <label class="item item-input">
           <span class="input-label">Email</span>
-          {{editUser.email}}
+          {{editScope.email}}
         </label>
 
         <div class="item item-divider">
@@ -37,7 +37,7 @@
           <div class="input-label">
             Geschlecht
           </div>
-          <select name="geschlecht" ng-model="editUser.geschlecht">
+          <select name="geschlecht" ng-model="editScope.geschlecht">
             <option selected>männlich</option>
             <option>weiblich</option>
           </select>
@@ -46,18 +46,18 @@
         <!-- Alter //-->
         <div class="item item-button-right">
           <span>Geburtsdatum</span>
-          <span class="item-note">{{editUser.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
+          <span class="item-note">{{editScope.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
           <button class="button button-icon" ng-click="datePicker()"><i class="icon ion-ios-calendar-outline"></i></button>
         </div>
 
         <!-- Ort und Telefon //-->
         <label class="item item-input">
           <span class="input-label">Wohnort</span>
-          <input type="text" name="ort" ng-model="editUser.ort" placeholder="Wohnort">
+          <input type="text" name="ort" ng-model="editScope.ort" placeholder="Wohnort">
         </label>
         <label class="item item-input">
           <span class="input-label">Telefon Nr.</span>
-          <input type="tel" name="telefon" ng-model="editUser.telefon" placeholder="Telefon Nr.">
+          <input type="tel" name="telefon" ng-model="editScope.telefon" placeholder="Telefon Nr.">
         </label>
 
         <!-- Beschreibung //-->
@@ -65,7 +65,7 @@
           Über mich
         </div>
         <div class="item item-input">
-          <textarea name="description" ng-model="editUser.description" rows="{{editUser.description.length/60 + 2}}" cols="60" placeholder="Über mich">
+          <textarea name="description" ng-model="editScope.description" rows="{{editScope.description.length/60 + 2}}" cols="60" placeholder="Über mich">
           </textarea>
         </div>
 
@@ -75,7 +75,7 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Mo - Fr</span>
-          <input type="text" name="gassizeiten" ng-model="editUser.gassizeiten" placeholder="Uhrzeiten">
+          <input type="text" name="gassizeiten" ng-model="editScope.gassizeiten" placeholder="Uhrzeiten">
         </label>
 
         <br>

@@ -32,17 +32,31 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($rootScope, $scope, User, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
+.controller('ProfilCtrl', function($rootScope, $scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
 
+  // Profil
   $rootScope.user = User.get();
-  $scope.editUser = {};
-
+  $scope.editScope = {};
   $scope.isProfil = true;
 
-  $scope.edit = function() {
-    angular.forEach($rootScope.user, function(value, key) {
+  // Hunde Profil
+  $scope.allDogs = Dog.all();
+  $scope.dogDetail = function(dogId) {
+    $scope.dog = Dog.get(dogId);
+  }
+
+  $scope.edit = function(originScope) {
+    $scope.editScope = {};
+    angular.forEach(originScope, function(value, key) {
       this[key] = value;
-    }, $scope.editUser);
+    }, $scope.editScope);
+  }
+
+  $scope.save = function(originScope) {
+    angular.forEach($scope.editScope, function(value, key) {
+      this[key] = value;
+    }, originScope);
+    User.save(originScope);
   }
 
   $scope.changePhoto = function() {
@@ -107,25 +121,6 @@ angular.module('starter.controllers', [])
    });
   }
 
-  $scope.save = function() {
-    angular.forEach($scope.editUser, function(value, key) {
-      this[key] = value;
-    }, $rootScope.user);
-    User.save($rootScope.user);
-  }
-
-})
-
-
-.controller('DogCtrl', function($scope, $stateParams, Dog) {
-
-  if($stateParams.dogId  === undefined){
-    $scope.allDogs = Dog.all();
-  } else {
-    // $scope.dog ist zugleich edit Kopie für ".rudel-edit"
-    // durch zweiten Aufruf des Controllers
-    $scope.dog = Dog.get($stateParams.dogId);
-  }
 })
 
 

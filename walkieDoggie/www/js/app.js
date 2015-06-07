@@ -178,24 +178,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/rudel',
     views: {
       'profil-rudel': {
-        templateUrl: 'templates/shared/user-dogs.html',
-        controller: 'DogCtrl'
+        templateUrl: 'templates/shared/user-dogs.html'
       }
     }
   }).state('tab.profil.rudel-detail', {
-    url: '/rudel/:dogId',
+    url: '/rudel/detail',
     views: {
       'profil-rudel': {
-        templateUrl: 'templates/shared/dog-detail.html',
-        controller: 'DogCtrl'
+        templateUrl: 'templates/shared/dog-detail.html'
       }
     }
   }).state('tab.profil.rudel-edit', {
-    url: '/rudel/edit/:dogId',
+    url: '/rudel/edit',
     views: {
       'profil-rudel': {
-        templateUrl: 'templates/shared/dog-edit.html',
-        controller: 'DogCtrl'
+        templateUrl: 'templates/shared/dog-edit.html'
       }
     }
   });
