@@ -69,9 +69,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/karte',
     views: {
       'standort-karte': {
-        templateUrl: 'templates/tab-standort/standort-karte.html'
-      },
-	  controller: 'MapCtrl'
+        templateUrl: 'templates/tab-standort/standort-karte.html',
+		controller: 'MapCtrl'
+      }
     }
   })
 
