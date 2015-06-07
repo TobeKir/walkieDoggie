@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AuthCtrl', function($scope, $state, $timeout, Auth, User) {
+.controller('AuthCtrl', function($scope, $state, Auth, User) {
 
   $scope.auth = {};
 
@@ -123,8 +123,6 @@ angular.module('starter.controllers', [])
   if($stateParams.dogId){
     $scope.dog = Dog.get($stateParams.dogId);
   }
-
-  // Dog.add($scope.dog, $scope.dogs);
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading) {
