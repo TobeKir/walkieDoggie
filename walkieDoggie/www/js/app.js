@@ -27,7 +27,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.constant('FBURL', 'https://boiling-torch-520.firebaseio.com/')
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
 
@@ -69,9 +68,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/karte',
     views: {
       'standort-karte': {
-        templateUrl: 'templates/tab-standort/standort-karte.html'
-      },
-	  controller: 'MapCtrl'
+        templateUrl: 'templates/tab-standort/standort-karte.html',
+		controller: 'MapCtrl'
+      }
     }
   })
 

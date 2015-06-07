@@ -1,5 +1,7 @@
 angular.module('starter.services', ['firebase'])
 
+.constant('FBURL', 'https://boiling-torch-520.firebaseio.com/')
+
 .factory('Auth', ['$firebaseAuth', 'FBURL', '$state', function($firebaseAuth, FBURL, $state) {
   var ref = new Firebase(FBURL);
   var auth = $firebaseAuth(ref);
@@ -62,7 +64,7 @@ angular.module('starter.services', ['firebase'])
   }
 }])
 
-.factory('Dog', ['$firebaseArray', '$firebaseObject', 'User', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, User, FBURL,Auth) {
+.factory('Dog', ['$firebaseArray', '$firebaseObject', 'User', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, User, FBURL, Auth) {
   var ref = new Firebase(FBURL);
   var dogKeyRef = ref.child("users").child(Auth.getAuth().uid).child("dogs");
   var dogs = $firebaseArray(ref.child("dogs"));
@@ -80,18 +82,18 @@ angular.module('starter.services', ['firebase'])
           },allDogs)
         })
      })
-      return allDogs; 
+      return allDogs;
     },
     add: function(dog) {
       return dogs.$add(dog).then(function(ref) {
          dogKeyRef.child(ref.key()).set(true);
       })
     },
-    get: function(dogId, uid) {
-      if (uid === undefined) {
-        uid = Auth.getAuth().uid;
-      }
+    get: function(dogId) {
       return dogs.$getRecord(dogId);
+    },
+    save: function(dog) {
+      return dogs.$save(dog);
     }
 
   }
