@@ -47,16 +47,26 @@ angular.module('starter.controllers', [])
 
   $scope.edit = function(originScope) {
     $scope.editScope = {};
+    $scope.isEdit = true;
     angular.forEach(originScope, function(value, key) {
       this[key] = value;
     }, $scope.editScope);
   }
 
-  $scope.save = function(originScope) {
+  $scope.editSave = function(originScope) {
     angular.forEach($scope.editScope, function(value, key) {
       this[key] = value;
     }, originScope);
     User.save(originScope);
+  }
+
+  $scope.add = function() {
+    $scope.editScope = {};
+    $scope.isEdit = false;
+  }
+
+  $scope.addSave = function() {
+    Dog.add($scope.editScope);
   }
 
   $scope.changePhoto = function() {
