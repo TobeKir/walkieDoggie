@@ -32,6 +32,17 @@ a.icon {
 	color: #000;
 }
 
+.mini-title{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+.item-input-wrapper{
+    border-radius: 0px;
+}
+
+
 /* Header bar */
 .bar.bar-light .title{
     font-weight: 400;
