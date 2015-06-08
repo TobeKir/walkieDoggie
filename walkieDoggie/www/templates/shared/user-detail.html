@@ -6,8 +6,28 @@
 
   <ion-content>
 
+        <div class="profile-header">
+          
+          <div class="profile-info">
+            <img class="profile-image" ng-src="data:image/jpeg;base64,{{user.image}}">
+            <h2>{{user.vorname}} {{user.nachname}}</h2> 
+            <p>{{user.description}}</p>
+              
+            <div class="row quick-info">
+                <div class="col"><i class="icon-heart"></i><span>&nbsp;47</span></div>  
+                <div class="col"><i class="icon-activity"></i><span>&nbsp;78</span></div> 
+                <div class="col"><i class="icon-group"></i><span>&nbsp;24</span></div> 
+                <div class="col"><i class="icon-star"></i><span>&nbsp;21</span></div> 
+            </div>
+          </div>
+          
+          <div id="profile-bg">
+            <img class="blur full" ng-src="data:image/jpeg;base64,{{user.image}}">
+          </div>
+      </div>
+      
     <ion-list class="list">
-
+        
       <ion-item class="item item-thumbnail-left">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
