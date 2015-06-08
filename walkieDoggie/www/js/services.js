@@ -97,5 +97,26 @@ angular.module('starter.services', ['firebase'])
     }
 
   }
-}]);
+}])
 
+.factory('Location', ['$firebaseArray', '$firebaseObject', 'FBURL', function($firebaseArray, $firebaseObject, FBURL){
+    var ref = new Firebase(FBURL);
+    var locationRef = ref.child("locations");
+    
+    return{
+        all: function(){
+            return $firebaseArray(locationRef);
+        },
+        create: function(location){
+            return locationRef.push(location);
+        },
+        get: function(id){
+            if( id != undefined){
+                return locationRef. $getRecord(id);
+            }
+        },
+        save: function(location) {
+            return locationRef.$save(location);
+        }
+    }
+}]);
