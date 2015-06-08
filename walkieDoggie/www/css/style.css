@@ -1,10 +1,14 @@
-/* Empty. Add your own CSS if you like */
+/* Imports */
+@import url("../lib/ionic/scss/doggicons/style.css");
 
+/* Genereal */
 .error {
 	padding-right: 16px;
 	color: red;
 }
-
+.scroll {
+	height: 100%;
+}
 .state-name {
 	position: fixed;
 	bottom: 61px;
@@ -26,6 +30,7 @@ a.icon {
 	color: #000;
 }
 
+/* Profiles */
 .item-avatar > img:first-child,
 .item-avatar .item-content > img:first-child,
 .item-thumbnail-left > img:first-child,
@@ -43,11 +48,9 @@ a.icon {
 	background-image: url(../img/default-avatar-dog.png);
 }
 
+/* Map */
 #map {
     width: 100%;
     height: 100%;
 }
 
-.scroll {
-	height: 100%;
-}
