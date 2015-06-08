@@ -194,6 +194,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         templateUrl: 'templates/shared/dog-edit.html'
       }
     }
+  }).state('tab.profil.rudel-add', {
+    url: '/rudel/add',
+    views: {
+      'profil-rudel': {
+        templateUrl: 'templates/shared/dog-edit.html'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
