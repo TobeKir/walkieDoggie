@@ -53,20 +53,20 @@ angular.module('starter.controllers', [])
     }, $scope.editScope);
   }
 
-  $scope.editSave = function(originScope) {
-    angular.forEach($scope.editScope, function(value, key) {
-      this[key] = value;
-    }, originScope);
-    User.save(originScope);
+  $scope.save = function(originScope) {
+    if($scope.editScope.$id === undefined){
+      Dog.add($scope.editScope);
+    } else {
+      angular.forEach($scope.editScope, function(value, key) {
+        this[key] = value;
+      }, originScope);
+      Dog.save(originScope);
+    }
   }
 
   $scope.add = function() {
     $scope.editScope = {};
     $scope.isEdit = false;
-  }
-
-  $scope.addSave = function() {
-    Dog.add($scope.editScope);
   }
 
   $scope.changePhoto = function() {
