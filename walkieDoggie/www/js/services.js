@@ -50,6 +50,7 @@ angular.module('starter.services', ['firebase'])
       return $firebaseArray(userRef);
     },
     create: function(auth,userData) {
+      auth.password = undefined;
       return userRef.child(userData.uid).set(auth);
     },
     get: function(id) {
@@ -69,10 +70,7 @@ angular.module('starter.services', ['firebase'])
   var dogKeyRef = ref.child("users").child(Auth.getAuth().uid).child("dogs");
   var dogs = $firebaseArray(ref.child("dogs"));
   return {
-    all: function(uid) {
-      if (uid === undefined) {
-        uid = Auth.getAuth().uid;
-      }
+    all: function() {
       var allDogs = [];
       var dogKeys = $firebaseObject(dogKeyRef);
       dogKeys.$loaded().then(function() {
