@@ -186,7 +186,7 @@ angular.module('starter.controllers', [])
 				 typeof element === "object" &&
 				 "getBoundingClientRect" in element;
 		}
-});
+})
 /*
 .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
       function initialize() {
@@ -246,8 +246,24 @@ angular.module('starter.controllers', [])
       
     });*/
 
+.controller('LocationCtrl', function($scope, $stateParams, Location){
+    $scope.allLocations = Location.all();
+    if($stateParams.locationId){
+        $scope.location = Location.get($stateParams.locationId);
+    }
+})
 
-
+.controller('LocationCreateCtrl', function($scope, $state, $stateParams, Location){
+    $scope.location = {};
+    var location = {};
+    location.type = $scope.type;
+    location.title = $scope.title;
+    location.langitude = $scope.langitude;
+    location.longitude = $scope.longitude;
+    $scope.create = function(){
+        Location.create(location);
+    };
+});
 
 
 
