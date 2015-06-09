@@ -32,22 +32,18 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($rootScope, $scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
+.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
 
-  // Profil
-  $rootScope.user = User.get();
-  $scope.editScope = {};
-  $scope.isProfil = true;
+  // Rudel
+  $scope.allDogs = Dog.all();
 
   // Hunde Profil
-  $scope.allDogs = Dog.all();
   $scope.dogDetail = function(dogId) {
     $scope.dog = Dog.get(dogId);
   }
 
   $scope.edit = function(originScope) {
     $scope.editScope = {};
-    $scope.isEdit = true;
     angular.forEach(originScope, function(value, key) {
       this[key] = value;
     }, $scope.editScope);

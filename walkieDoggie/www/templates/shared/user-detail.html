@@ -1,7 +1,7 @@
 <ion-view view-title="Profil">
 
   <ion-nav-buttons side="right">
-    <ion-button ng-show="isProfil" ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
+    <ion-button ng-show="state.includes('tab.profil')" ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>

@@ -1,8 +1,8 @@
 <ion-view view-title="Hunde Profil bearbeiten" class="dog-view">
 
   <ion-nav-buttons side="right">
-    <ion-button ui-sref="^.rudel-detail" class="button button-icon icon ion-ios-checkmark-outline" ng-show="isEdit" ng-click="save(dog)"></ion-button>
-    <ion-button ui-sref="^.rudel" class="button button-icon icon ion-ios-checkmark" ng-hide="isEdit" ng-click="save()"></ion-button>
+    <ion-button ui-sref="^.rudel-detail" class="button button-icon icon ion-ios-checkmark-outline" ng-show="state.includes('tab.profil.rudel-edit')" ng-click="save(dog)"></ion-button>
+    <ion-button ui-sref="^.rudel" class="button button-icon icon ion-ios-checkmark" ng-show="state.includes('tab.profil.rudel-add')" ng-click="save()"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>
