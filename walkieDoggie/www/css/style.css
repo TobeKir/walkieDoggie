@@ -2,6 +2,10 @@
 
 @import url("../lib/ionic/scss/ionicons/ionicons.scss");
 
+.scroll-content {
+	bottom: 49px;
+}
+
 .error {
 	padding-right: 16px;
 	color: red;
