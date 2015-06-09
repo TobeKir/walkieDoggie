@@ -92,8 +92,12 @@ angular.module('starter.services', ['firebase'])
     },
     save: function(dog) {
       return dogs.$save(dog);
+    },
+    remove: function(dog) {
+      return dogs.$remove(dog).then(function(ref){
+        dogKeyRef.child(ref.key()).remove();
+      })
     }
-
   }
 }])
 

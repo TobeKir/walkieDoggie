@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $state, $rootScope, Auth) {
+.run(function($ionicPlatform, $state, $rootScope, Auth, User) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,10 +18,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+    // show current state in view
     $rootScope.state = $state;
 
+    // lead User to login-page if not signed in
     if(!Auth.getAuth()){
       $state.go('login');
+    } else {
+      $rootScope.user = User.get();
     }
 
   });
@@ -69,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'standort-karte': {
         templateUrl: 'templates/tab-standort/standort-karte.html',
-		controller: 'MapCtrl'
+		    controller: 'MapCtrl'
       }
     }
   })

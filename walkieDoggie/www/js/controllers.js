@@ -54,19 +54,25 @@ angular.module('starter.controllers', [])
   }
 
   $scope.save = function(originScope) {
+    // Unterscheidung zwischen Bearbeitung oder Erstellung (nur existentes hat $id)
     if($scope.editScope.$id === undefined){
       Dog.add($scope.editScope);
     } else {
       angular.forEach($scope.editScope, function(value, key) {
         this[key] = value;
       }, originScope);
-      Dog.save(originScope);
+    
+    // Unterscheidung Hund <-> Mensch (nur Hund hat Rasse)
+    if($scope.editScope.name === undefined){
+      User.save(originScope);
+    } else {
+      Dog.save(originScope);      
+      }
     }
   }
 
-  $scope.add = function() {
-    $scope.editScope = {};
-    $scope.isEdit = false;
+  $scope.remove = function(originScope) {
+    Dog.remove(originScope);
   }
 
   $scope.changePhoto = function() {
