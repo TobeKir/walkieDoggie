@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout) {
+.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
 
   // Rudel
   $scope.allDogs = Dog.all();
@@ -75,6 +75,8 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.allDogs = Dog.all(); 
     }, 300);
+    // goBack to dogList
+    $ionicHistory.goBack(-2);
   }
 
   $scope.changePhoto = function() {
