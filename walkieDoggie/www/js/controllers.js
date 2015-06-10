@@ -165,35 +165,6 @@ angular.module('starter.controllers', [])
         });
  
         $scope.map = map;
-		
-		$scope.refreshMap = function(){
-			setTimeout(function(){
-				var div = document.getElementById("map");
-				reattachMap($scope.map,div);
-			},1);
-		}
-		
-		function reattachMap(map,div) {
-		  if (!isDom(div)) {
-			console.log("div is not dom");
-			return map;
-		  } else {
-			map.set("div", div);
-
-			while(div.parentNode) {
-			  div.style.backgroundColor = 'rgba(0,0,0,0)';
-			  div = div.parentNode;
-			}
-
-			return map;
-		  }
-		}
-
-		function isDom(element) {
-		  return !!element &&
-				 typeof element === "object" &&
-				 "getBoundingClientRect" in element;
-		}
 })
 /*
 .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
