@@ -103,11 +103,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('tab.aktivitaet', {
+
+    .state('tab.aktivitaet', {
     url: '/aktivitaet',
+    abstract: true,
     views: {
       'tab-aktivitaet': {
         templateUrl: 'templates/tabs/tab-aktivitaet.html'
+      }
+    }
+  }).state('tab.aktivitaet.live', {
+    url: '/live',
+    views: {
+      'aktivitaet-live': {
+        templateUrl: 'templates/tab-aktivitaet/aktivitaet-live.html',
+		controller: 'ActivityCtrl'
+      }
+    }
+  }).state('tab.aktivitaet.statistik', {
+    url: '/statistik',
+    views: {
+      'aktivitaet-statistik': {
+        templateUrl: 'templates/tab-aktivitaet/aktivitaet-statistik.html'
       }
     }
   })

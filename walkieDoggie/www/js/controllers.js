@@ -235,6 +235,35 @@ angular.module('starter.controllers', [])
         $scope.map = map;
 })
 
+.controller('ActivityCtrl', function($scope){
+	$scope.activityRecording = false;
+	$scope.activityRecordingPause = false;
+	
+	
+	
+	var activityLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
+ 
+        var activityMapOptions = {
+            center: activityLatlng,
+            zoom: 18,
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+			/*mapTypeId: google.maps.MapTypeId.ROADMAP*/
+        };
+		
+	 var activityMap = new google.maps.Map(document.getElementById("activityMap"), activityMapOptions);
+ 
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            activityMap.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myActivityLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: activityMap,
+                title: "My Location"
+            });
+        });
+	
+	$scope.activityMap = activityMap;
+})
+
 .controller('LocationCtrl', function($scope, $stateParams, Location){
     $scope.allLocations = Location.all();
     if($stateParams.locationId){
