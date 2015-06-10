@@ -117,7 +117,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     views: {
       'tab-mitglieder': {
-        templateUrl: 'templates/tabs/tab-mitglieder.html'
+        templateUrl: 'templates/tabs/tab-mitglieder.html',
+        controller: 'MitgliederCtrl'
       }
     }
   }).state('tab.mitglieder.alle', {
@@ -125,32 +126,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'mitglieder-alle': {
         templateUrl: 'templates/tab-mitglieder/mitglieder-alle.html',
-        controller: 'MitgliederCtrl'
       }
     }
   }).state('tab.mitglieder.alle-detail', {
-    url: '/alle/:userId',
+    url: '/alle/detail',
     // params: {mitgliedId:{}},
     views: {
       'mitglieder-alle': {
-        templateUrl: 'templates/shared/user-detail.html',
-        controller: 'MitgliederCtrl'
+        templateUrl: 'templates/shared/user-detail.html'
       }
     }
   }).state('tab.mitglieder.freunde', {
     url: '/freunde',
     views: {
       'mitglieder-freunde': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html',
-        controller: 'MitgliederCtrl'
+        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html'
       }
     }
   }).state('tab.mitglieder.freunde-detail', {
-    url: '/freunde/:userId',
+    url: '/freunde/detail',
     views: {
       'mitglieder-freunde': {
-        templateUrl: 'templates/shared/user-detail.html',
-        controller: 'MitgliederCtrl'
+        templateUrl: 'templates/shared/user-detail.html'
       }
     }
   })

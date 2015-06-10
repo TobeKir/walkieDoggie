@@ -23,8 +23,9 @@ angular.module('starter.controllers', [])
 
 .controller('MitgliederCtrl', function($scope, $stateParams, User) {
   $scope.allUsers = User.all();
-  if($stateParams.userId){
-    $scope.user = User.get($stateParams.userId);
+
+  $scope.userDetail = function(userId) {
+    $scope.user = User.get(userId);
   }
 })
 
