@@ -163,67 +163,20 @@ angular.module('starter.controllers', [])
                 title: "My Location"
             });
         });
+		
+		//some dummy markers
+		var marker_1 = new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2220),map: map,type: "location",title: "Location 1"});
+		var marker_2 = new google.maps.Marker({position: new google.maps.LatLng(49.1553,9.2223),map: map,type: "location",title: "Location 2"});
+		var marker_3 = new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2223),map: map,type: "location",title: "Location 3"});
+		var marker_4 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"});
+		var marker_5 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"});
+		var marker_6 = new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"});
+		var marker_7 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2230),map: map,type: "poison",title: "Poisonbait 1"});
+		var marker_8 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2228),map: map,type: "poison",title: "Poisonbait 2"});
+		var marker_9 = new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2228),map: map,type: "poison",title: "Poisonbait 3"});
  
         $scope.map = map;
 })
-/*
-.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-      function initialize() {
-        var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
-        
-        var mapOptions = {
-          center: myLatlng,
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-        
-        //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
-
-        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'DHBW'
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-        $scope.map = map;
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-      
-      $scope.centerOnMe = function() {
-        if(!$scope.map) {
-          return;
-        }
-
-        $scope.loading = $ionicLoading.show({
-          content: 'Getting current location...',
-          showBackdrop: false
-        });
-
-        navigator.geolocation.getCurrentPosition(function(pos) {
-          $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          $scope.loading.hide();
-        }, function(error) {
-          alert('Unable to get location: ' + error.message);
-        });
-      };
-      
-      $scope.clickTest = function() {
-        alert('Example of infowindow with ng-click')
-      };
-      
-    });*/
 
 .controller('LocationCtrl', function($scope, $stateParams, Location){
     $scope.allLocations = Location.all();
