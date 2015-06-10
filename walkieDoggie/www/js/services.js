@@ -68,33 +68,33 @@ angular.module('starter.services', ['firebase'])
 .factory('Dog', ['$firebaseArray', '$firebaseObject', 'User', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, User, FBURL, Auth) {
   var ref = new Firebase(FBURL);
   var dogKeyRef = ref.child("users").child(Auth.getAuth().uid).child("dogs");
-  var dogs = $firebaseArray(ref.child("dogs"));
+  var dogList = $firebaseArray(ref.child("dogs"));
   return {
     all: function() {
       var allDogs = [];
       var dogKeys = $firebaseObject(dogKeyRef);
       dogKeys.$loaded().then(function() {
-        dogs.$loaded().then(function(){
+        dogList.$loaded().then(function(){
           angular.forEach(dogKeys, function(value, key) {
-            this.push(dogs.$getRecord(key));
+            this.push(dogList.$getRecord(key));
           },allDogs)
         })
      })
       return allDogs;
     },
     add: function(dog) {
-      return dogs.$add(dog).then(function(ref) {
+      return dogList.$add(dog).then(function(ref) {
          dogKeyRef.child(ref.key()).set(true);
       })
     },
     get: function(dogId) {
-      return dogs.$getRecord(dogId);
+      return dogList.$getRecord(dogId);
     },
     save: function(dog) {
-      return dogs.$save(dog);
+      return dogList.$save(dog);
     },
     remove: function(dog) {
-      return dogs.$remove(dog).then(function(ref){
+      return dogList.$remove(dog).then(function(ref){
         dogKeyRef.child(ref.key()).remove();
       })
     }

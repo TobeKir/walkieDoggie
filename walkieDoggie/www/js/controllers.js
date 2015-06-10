@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
+.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout) {
 
   // Rudel
   $scope.allDogs = Dog.all();
@@ -53,6 +53,9 @@ angular.module('starter.controllers', [])
     // Unterscheidung zwischen Bearbeitung oder Erstellung (nur existentes hat $id)
     if($scope.editScope.$id === undefined){
       Dog.add($scope.editScope);
+      $timeout(function() {
+        $scope.allDogs = Dog.all(); 
+      }, 300);
     } else {
       angular.forEach($scope.editScope, function(value, key) {
         this[key] = value;
@@ -69,6 +72,9 @@ angular.module('starter.controllers', [])
 
   $scope.remove = function(originScope) {
     Dog.remove(originScope);
+    $timeout(function() {
+      $scope.allDogs = Dog.all(); 
+    }, 300);
   }
 
   $scope.changePhoto = function() {
