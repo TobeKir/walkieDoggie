@@ -9,7 +9,9 @@ a{
     color:#333333;
     text-decoration: none;
 }
-
+i{
+    font-size: 18px;
+}
 .mini-title{
     text-transform: uppercase;
     letter-spacing: 1px;

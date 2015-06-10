@@ -24,7 +24,7 @@
           <span ng-if="user.dogs">mit</span>
           <b ng-repeat="dog in user.dogs"><span ng-if="!$first">, </span>{{dog.name}}</b>
         </p>
-        <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon ion-ios-personadd-outline"></a>
+        <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon"><i class="icon-add"></i></a>
       </ion-item>
     </ion-list>
 
