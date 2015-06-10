@@ -6,19 +6,18 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Suche">
         </label>
-        <!--<button class="button button-clear">
-            Cancel
-        </button>-->
     </div>
         
     <ion-item>
-        <p class="mini-title">32 Mitglieder</p>
+        <p class="mini-title">XX Mitglieder</p>
     </ion-item>
       
     <ion-list>
       <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers" type="item-text-wrap" ui-sref="^.alle-detail" ng-click="userDetail(user.$id);">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
-        <h2>{{user.vorname}} {{user.nachname}}</h2>
+        <h2>
+            {{user.vorname}} {{user.nachname}}
+        </h2>
         <p>
           <span ng-if="user.ort">in</span>
           <b>{{user.ort}}</b>

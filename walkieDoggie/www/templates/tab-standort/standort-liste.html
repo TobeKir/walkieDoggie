@@ -1,12 +1,40 @@
 <ion-view view-title="Standort">
   <ion-content>
 
+    <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Suche">
+        </label>
+    </div>
+        
+    <ion-item>
+        <p class="mini-title">XX Ergebnisse</p>
+    </ion-item>
+      
     <ion-list>
-	  <ion-item ng-repeat="item in [1, 2, 3, 4, 5]">
-	    Ort {{item}}
+	  <ion-item class="item-avatar item-icon-right" ng-repeat="item in [1, 2, 3, 4, 5]">
+        <img>
+        <h2>
+          Ort {{item}}
+        </h2>
+        <p>
+          Beschreibung für Ort
+        </p>
 	  </ion-item>
 	</ion-list>
       
+    <ion-footer-bar class="tabs filter">
+	  <div class="tab-item active" onclick="toggleLocationFilter(this)">
+		<span>Orte</span>
+	  </div>
+	  <div class="tab-item active" onclick="toggleUserFilter(this)">
+		<span>Mitglieder</span>
+	  </div>
+	  <div class="tab-item active" onclick="togglePoisonFilter(this)">
+		<span>Giftköder</span>
+	  </div>
+	</ion-footer-bar>
       
   </ion-content>
 </ion-view>
