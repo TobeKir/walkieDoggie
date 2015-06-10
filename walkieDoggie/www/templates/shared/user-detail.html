@@ -1,4 +1,4 @@
-<ion-view view-title="Profil">
+<ion-view view-title="Profil" class="user-view">
 
   <ion-nav-buttons side="right">
     <ion-button ng-show="state.includes('tab.profil')" ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
@@ -22,7 +22,7 @@
           
       </div>
 
-      <div id="profile-bg">
+      <div class="profile-bg">
         <img class="blur full" ng-src="data:image/jpeg;base64,{{user.image}}">
       </div>
         

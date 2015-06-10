@@ -70,10 +70,13 @@ i{
     border:none;
     margin-top: 3px;
 }
+
 /* Tabbar Filter Bottom */
+
 .filter{
     height: 60px;
 }
+
 .filter .tab-item{
     border: 1px solid #333 !important;
     background-color: #fff;
@@ -108,6 +111,27 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 
 /* Profiles */
 
+.dog-view .profile-image,
+.dog-view .profile-bg{
+	background-image: url(../img/default-avatar-dog.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.user-view .profile-image,
+.user-view .profile-bg{
+	background-image: url(../img/default-avatar.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.user-view .profile-bg,
+.dog-view .profile-bg{
+    -webkit-filter: blur(20px); 
+    filter: blur(20px);
+}
+
 .profile-header{
     height:300px;
     background: rgba(0,0,0,0.8);
@@ -123,9 +147,11 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     text-align: center;
     background-color:rgba(0,0,0,0.2);
 }
+
 .profile-info h2{
     margin-top:0px;
 }
+
 .profile-info h2,
 .profile-info p,
 .profile-info span{
@@ -168,7 +194,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     width:100%;
     height:100%;
     padding: 0px;
-    position: absolute;
+    /*position: absolute;*/
     z-index: -1;
 }
 
@@ -178,7 +204,8 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 }
 .full{
     width:110%;
-    height:110%;
+    bottom:0px;
+    position: absolute;
 }
 .sm-row{
     text-align: center;
