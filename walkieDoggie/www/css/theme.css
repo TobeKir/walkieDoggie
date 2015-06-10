@@ -65,6 +65,22 @@ a{
     border:none;
     margin-top: 3px;
 }
+/* Tabbar Filter Bottom */
+.filter{
+    height: 60px;
+}
+.filter .tab-item{
+    border: 1px solid #333 !important;
+    background-color: #fff;
+    color:#333;
+    margin-top: 10px;
+}
+
+.filter .active{
+    background-color: #a0c2cc !important;
+    color:blue;
+    border: 0px !important;
+}
 
 /* Tabbar Bottom */
 
