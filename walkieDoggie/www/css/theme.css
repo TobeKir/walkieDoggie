@@ -3,6 +3,12 @@
 @import url("../lib/ionic/scss/doggicons/style.css");
 
 /* Genereal */
+a{
+    font-size: 14px;
+    font-weight: 500; 
+    color:#333333;
+    text-decoration: none;
+}
 
 .mini-title{
     text-transform: uppercase;
@@ -13,6 +19,24 @@
 .item-input-wrapper{
     border-radius: 0px;
 }
+
+.item-divider,
+.item-button-right,
+.item-button-right .button{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding:16px 20px;
+}
+
+.item-input,
+.input-label{
+    font-size:14px;
+    color: #666666;
+}
+
 
 /* Header bar */
 
@@ -134,4 +158,17 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 .full{
     width:110%;
     height:110%;
+}
+.sm-row{
+    text-align: center;
+}
+.sm{
+    width: 50px;
+    height: 50px;
+    background-color: #a3a3a3;
+    color: #fff;
+    display: inline-block;
+    border-radius: 25px;
+    text-align: center;
+    padding: 15px 0px 0px 0px;
 }

@@ -6,29 +6,31 @@
 
   <ion-content>
 
-        <div class="profile-header">
+    <div class="profile-header">
+
+      <div class="profile-info">
+        <img class="profile-image" ng-src="data:image/jpeg;base64,{{user.image}}">
+        <h2>{{user.vorname}} {{user.nachname}}</h2> 
+        <p>{{user.description}}</p>
+
+        <div class="row quick-info">
+            <div class="col"><i class="icon-heart"></i><span>&nbsp;47</span></div>  
+            <div class="col"><i class="icon-activity"></i><span>&nbsp;78</span></div> 
+            <div class="col"><i class="icon-group"></i><span>&nbsp;24</span></div> 
+            <div class="col"><i class="icon-star"></i><span>&nbsp;21</span></div> 
+        </div>
           
-          <div class="profile-info">
-            <img class="profile-image" ng-src="data:image/jpeg;base64,{{user.image}}">
-            <h2>{{user.vorname}} {{user.nachname}}</h2> 
-            <p>{{user.description}}</p>
-              
-            <div class="row quick-info">
-                <div class="col"><i class="icon-heart"></i><span>&nbsp;47</span></div>  
-                <div class="col"><i class="icon-activity"></i><span>&nbsp;78</span></div> 
-                <div class="col"><i class="icon-group"></i><span>&nbsp;24</span></div> 
-                <div class="col"><i class="icon-star"></i><span>&nbsp;21</span></div> 
-            </div>
-          </div>
-          
-          <div id="profile-bg">
-            <img class="blur full" ng-src="data:image/jpeg;base64,{{user.image}}">
-          </div>
       </div>
+
+      <div id="profile-bg">
+        <img class="blur full" ng-src="data:image/jpeg;base64,{{user.image}}">
+      </div>
+        
+    </div>
       
     <ion-list class="list">
         
-      <ion-item class="item item-thumbnail-left">
+       <!--<ion-item class="item item-thumbnail-left">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
         <p>
@@ -39,40 +41,105 @@
             mit <b ng-repeat="dog in user.dogs"><span ng-if="!$first">, </span>{{dog.name}}</b>
           </span>
         </p>
-      </ion-item>
+      </ion-item>-->
 
       <div class="item item-divider">
         Nutzerdaten
       </div>
-      <div class="row item padding">
-        <div class="col">
-          {{user.geschlecht}}<br>
-          {{user.geburtsdatum | date : 'dd.MM.yyyy'}}
+        <div class="row item padding">
+            <div class="col">
+                <p>
+                    {{user.vorname}} {{user.nachname}}
+                    <br> 
+                    {{user.geschlecht}}
+                    <br>
+                    <br> 
+                    {{user.geburtsdatum | date : 'dd.MM.yyyy'}}
+                </p>
+
+            </div>
+            <div class="col">
+                <p>
+                    <a href="mailto:{{user.email}}">
+                        {{user.email}}
+                    </a>
+                    <br>
+                    <a href="tel:{{user.telefon}}">
+                        {{user.telefon}}
+                    </a>
+                    <br>
+                    <br>
+                    {{user.ort}}
+                </p>
+            </div>
         </div>
-        <div class="col">
-          {{user.email}}<br>
-          {{user.telefon}}
+        
+        <div class="item item-divider">
+            Social Media
         </div>
-      </div>
+        
+        <div class="row item sm-row">
+            <div class="col">
+                <a class="sm facebook" href="#"><i class="icon-facebook"></i></a>
+            </div>
+            <div class="col">
+                <a class="sm twitter" href="#"><i class="icon-twitter"></i></a>
+            </div>
+            <div class="col">
+                <a class="sm googleplus" href="#"><i class="icon-googleplus"></i></a>
+            </div>
+            <div class="col">
+                <a class="sm tumblr" href="#"><i class="icon-tumblr"></i></a>
+            </div>
+        </div>
+
+        
+
+        <div class="item item-divider">
+                Über mich
+        </div>
+        <div class="item">
+            <p>
+                {{user.description}}
+            </p>
+        </div>
 
       <div class="item item-divider">
-        Über mich
-      </div>
-      <div class="item">
-        {{user.description}}
-      </div>
-
-      <div class="item item-divider">
-        Gassi Zeiten
+        Gassi-Zeiten
       </div>
       <div class="item item-input">
         <span class="input-label">Mo - Fr</span>
         {{user.gassizeiten}}
       </div>
+        
+      <div class="item item-divider">
+        {{user.vorname}}s Rudel
+      </div>
+      <a class="item item-avatar" href="#">
+        <img>
+        <h2>Hundename</h2>
+        <p>Rasse des Hundes</p>
+      </a>
 
       <ion-item ng-hide="isProfil" class="item item-divider">
         Kontakt
       </ion-item>
+        
+          <ion-item>
+        <div class="row">
+            <div class="col">
+                <button class="button button-balanced icon-left">
+                    <i class="icon-add"></i> hinzufügen
+                </button>
+            </div>
+            <div class="col">
+                <button class="button button-assertive icon-left">
+                    <i class="icon-report"></i> Profil melden
+                </button>
+            </div>
+        </div>
+    </ion-item>
+        
       <ion-item ng-hide="isProfil" class="item item-icon-left" href="javascript:alert('Anfrage gesendet');">
         <i class="icon ion-ios-personadd"></i>
         Freundschaft anfragen
