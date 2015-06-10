@@ -17,7 +17,7 @@
 
     <!-- Dummy Liste Alle //-->
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers | filter:{ort:'Mosbach'}" type="item-text-wrap" ui-sref="^.freunde-detail({userId: user.$id})">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers | filter:{ort:'Mosbach'}" type="item-text-wrap" ui-sref="^.freunde-detail" ng-click="userDetail(user.$id);">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>{{user.vorname}} {{user.nachname}}</h2>
         <p>in <b>{{user.ort}}</b></p>
