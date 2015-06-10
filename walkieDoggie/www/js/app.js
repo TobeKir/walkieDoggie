@@ -56,9 +56,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.standort', {
     url: '/standort',
+    abstract: true,
     views: {
       'tab-standort': {
-        abstract: true,
         templateUrl: 'templates/tabs/tab-standort.html'
       }
     }
@@ -81,9 +81,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.feed', {
     url: '/feed',
+    abstract: true,
     views: {
       'tab-feed': {
-        abstract: true,
         templateUrl: 'templates/tabs/tab-feed.html'
       }
     }
@@ -114,9 +114,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.mitglieder', {
     url: '/mitglieder',
+    abstract: true,
     views: {
       'tab-mitglieder': {
-        abstract: true,
         templateUrl: 'templates/tabs/tab-mitglieder.html'
       }
     }
@@ -157,9 +157,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.profil', {
     url: '/profil',
+    abstract: true,
     views: {
       'tab-profil': {
-        abstract: true,
         templateUrl: 'templates/tabs/tab-profil.html',
         controller: 'ProfilCtrl'
       }
