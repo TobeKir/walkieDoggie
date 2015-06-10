@@ -1,5 +1,8 @@
-<ion-view view-title="Login">
+<ion-view view-title="Login" class="login">
 
+
+    
+    
   <ion-nav-buttons side="right">
     <ion-button class="button" ng-click="state.go('tab.feed.alle');">
       Schließen
@@ -7,31 +10,56 @@
   </ion-nav-buttons>
 
   <ion-content class="">
+      <div class="row">
+        <div class="col">
+            <img class="logo" src="../../img/logo-walkiedoggie.svg" />
+            <p>Willkommen bei Walkie<span class="orange">Doggie!</span><br><br>
+            <span>Dein Hunde Netzwerk und Aktivitätstracker.</span></p>
+        </div>
+      </div>
+
+      
     <form name="loginForm" ng-submit="loginForm.$valid && login()" novalidate>
       <div class="list">
-
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="email" name="email" placeholder="Email" ng-model="auth.email" required>
-          <span class="error" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
-            <span ng-show="loginForm.email.$error.required">Email erforderlich</span>
-            <span ng-show="loginForm.email.$error.email">Email ist ungültig</span>
-          </span>
-        </label>
-
-        <label class="item item-input">
-          <span class="input-label">Passwort</span>
-          <input type="password" name="password" placeholder="Passwort" ng-model="auth.password" required>
-          <span class="error" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
-            <span ng-show="loginForm.password.$error.required">Password erforderlich</span>
-          </span>
-        </label>
-
-        <button ng-disabled="loginForm.$invalid" class="button button-full button-positive" type="submit">Login</button>
-        <button class="button button-full button-positive" ng-click="facebookConnect()">Facebook Login</button>
-
-        <button ui-sref="registrieren" class="button button-full button-outline">Registrieren</button>
-
+          
+        <div class="row">
+            <div class="col">
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="email" name="email" placeholder="Email" ng-model="auth.email" required>
+                    <span class="error" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
+                        <span ng-show="loginForm.email.$error.required">Email erforderlich</span>
+                        <span ng-show="loginForm.email.$error.email">Email ist ungültig</span>
+                    </span>
+                </label>
+            </div>
+          </div>
+            
+        <div class="row">
+            <div class="col">
+                <label class="item item-input">
+                    <span class="input-label">Passwort</span>
+                    <input type="password" name="password" placeholder="Passwort" ng-model="auth.password" required>
+                    <span class="error" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
+                        <span ng-show="loginForm.password.$error.required">Password erforderlich</span>
+                    </span>
+                </label>    
+            </div>
+          </div>
+          
+        <div class="row">
+            <div class="col">
+                <button ng-disabled="loginForm.$invalid" class="button button-block button-balanced" type="submit">Login</button>
+                <button class="button button-block button-positive" ng-click="facebookConnect()">Facebook Login</button>
+            </div>
+          </div>
+          
+        <div class="row">
+            <div class="col">
+                <button ui-sref="registrieren" class="button button-block button-outline">Registrieren</button>
+            </div>
+        </div>
+          
       </div>
     </form>
   </ion-content>

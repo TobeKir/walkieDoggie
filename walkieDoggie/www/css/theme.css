@@ -1,8 +1,11 @@
 /* Imports */
 
 @import url("../lib/ionic/scss/doggicons/style.css");
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 /* Genereal */
+body{
+    font-family: 'Open Sans', sans-serif;
+}
 a{
     font-size: 14px;
     font-weight: 500; 
@@ -42,6 +45,31 @@ i{
     color: #666666;
 }
 
+/* Login */
+.login .logo{
+    width:35%;
+    margin: 20px auto;
+    display: block;
+}
+.login p{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 0px 0px 50px 0px;
+    color: #565656;
+}
+.login span{
+    color: #c4c4c4;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.login .orange{
+    color:#F9B343;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: none;
+}
 
 /* Header bar */
 
