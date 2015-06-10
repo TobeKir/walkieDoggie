@@ -145,7 +145,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('MapCtrl', function($scope, $ionicLoading) {
+.controller('MapCtrl', function($scope) {
 
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
@@ -168,16 +168,70 @@ angular.module('starter.controllers', [])
         });
 		
 		//some dummy markers
-		var marker_1 = new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2220),map: map,type: "location",title: "Location 1"});
-		var marker_2 = new google.maps.Marker({position: new google.maps.LatLng(49.1553,9.2223),map: map,type: "location",title: "Location 2"});
-		var marker_3 = new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2223),map: map,type: "location",title: "Location 3"});
-		var marker_4 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"});
-		var marker_5 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"});
-		var marker_6 = new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"});
-		var marker_7 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2230),map: map,type: "poison",title: "Poisonbait 1"});
-		var marker_8 = new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2228),map: map,type: "poison",title: "Poisonbait 2"});
-		var marker_9 = new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2228),map: map,type: "poison",title: "Poisonbait 3"});
- 
+		var markerLocationArray = [];
+		var markerUserArray = [];
+		var markerPoisonArray = [];
+		
+		markerLocationArray.push(
+		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2220),map: map,type: "location",title: "Location 1"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1553,9.2223),map: map,type: "location",title: "Location 2"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2223),map: map,type: "location",title: "Location 3"})
+		);
+		markerUserArray.push(
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
+		);
+		markerPoisonArray.push(
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2230),map: map,type: "poison",title: "Poisonbait 1"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2228),map: map,type: "poison",title: "Poisonbait 2"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2228),map: map,type: "poison",title: "Poisonbait 3"})
+		);
+		
+		toggleLocationFilter = function(param){
+		
+			if(jQuery(param).hasClass("active")){
+				markerLocationArray.forEach(function(marker){
+					marker.setVisible(false);
+				});
+				jQuery(param).removeClass("active");
+			}
+			else {
+				markerLocationArray.forEach(function(marker){
+					marker.setVisible(true);
+				});
+				jQuery(param).addClass("active");
+			}
+		};
+		toggleUserFilter = function(param){
+			if(jQuery(param).hasClass("active")){
+				markerUserArray.forEach(function(marker){
+					marker.setVisible(false);
+				});
+				jQuery(param).removeClass("active");
+			}
+			else {
+				markerUserArray.forEach(function(marker){
+					marker.setVisible(true);
+				});
+				jQuery(param).addClass("active");
+			}
+		};
+		togglePoisonFilter = function(param){
+			if(jQuery(param).hasClass("active")){
+				markerPoisonArray.forEach(function(marker){
+					marker.setVisible(false);
+				});
+				jQuery(param).removeClass("active");
+			}
+			else {
+				markerPoisonArray.forEach(function(marker){
+					marker.setVisible(true);
+				});
+				jQuery(param).addClass("active");
+			}
+		};
+		
         $scope.map = map;
 })
 
