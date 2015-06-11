@@ -1,9 +1,20 @@
 /* Imports */
 
 @import url("../lib/ionic/scss/doggicons/style.css");
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 /* Genereal */
-
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+a{
+    font-size: 14px;
+    font-weight: 500; 
+    color:#333333;
+    text-decoration: none;
+}
+i{
+    font-size: 18px;
+}
 .mini-title{
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -12,6 +23,52 @@
 
 .item-input-wrapper{
     border-radius: 0px;
+}
+
+.item-divider{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding:16px 20px;
+}
+.button-profile{
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.item-input,
+.input-label{
+    font-size:14px;
+    color: #666666;
+}
+
+/* Login */
+.login .logo{
+    width:35%;
+    margin: 20px auto;
+    display: block;
+}
+.login p{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 0px 0px 50px 0px;
+    color: #565656;
+}
+.login span{
+    color: #c4c4c4;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.login .orange{
+    color:#F9B343;
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: none;
 }
 
 /* Header bar */
@@ -42,6 +99,25 @@
     margin-top: 3px;
 }
 
+/* Tabbar Filter Bottom */
+
+.filter{
+    height: 60px;
+}
+
+.filter .tab-item{
+    border: 1px solid #333 !important;
+    background-color: #fff;
+    color:#333;
+    margin-top: 10px;
+}
+
+.filter .active{
+    background-color: #a0c2cc !important;
+    color:blue;
+    border: 0px !important;
+}
+
 /* Tabbar Bottom */
 
 .tab-nav, .tabs{
@@ -63,6 +139,27 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 
 /* Profiles */
 
+.dog-view .profile-image,
+.dog-view .profile-bg{
+	background-image: url(../img/default-avatar-dog.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.user-view .profile-image,
+.user-view .profile-bg{
+	background-image: url(../img/default-avatar.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.user-view .profile-bg,
+.dog-view .profile-bg{
+    -webkit-filter: blur(20px); 
+    filter: blur(20px);
+}
+
 .profile-header{
     height:300px;
     background: rgba(0,0,0,0.8);
@@ -78,9 +175,11 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     text-align: center;
     background-color:rgba(0,0,0,0.2);
 }
+
 .profile-info h2{
     margin-top:0px;
 }
+
 .profile-info h2,
 .profile-info p,
 .profile-info span{
@@ -123,7 +222,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     width:100%;
     height:100%;
     padding: 0px;
-    position: absolute;
+    /*position: absolute;*/
     z-index: -1;
 }
 
@@ -133,5 +232,19 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 }
 .full{
     width:110%;
-    height:110%;
+    bottom:0px;
+    position: absolute;
+}
+.sm-row{
+    text-align: center;
+}
+.sm{
+    width: 50px;
+    height: 50px;
+    background-color: #a3a3a3;
+    color: #fff;
+    display: inline-block;
+    border-radius: 25px;
+    text-align: center;
+    padding: 15px 0px 0px 0px;
 }

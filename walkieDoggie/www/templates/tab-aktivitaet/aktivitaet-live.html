@@ -1,0 +1,18 @@
+<ion-view view-title="Aktivität">
+	<ion-content>
+		<div class="row responsive-sm">1</div>
+		<div class="row responsive-sm">2</div>
+
+			<div id="activityMap" data-tap-disabled="true"></div>
+
+
+		<ion-footer-bar class="button-bar">
+			<a class="button button-balanced" ng-show="!activityRecording" ng-click="activityRecording = true">Start</a>
+			<div ng-show="activityRecording" class="button-bar">
+				<a class="button button-stable"  ng-click="activityRecordingPause = !activityRecordingPause"><span ng-show="!activityRecordingPause">Pause</span><span ng-show="activityRecordingPause">Weiter</span></a>
+				<a class="button button-stable" ng-show="activityRecording">Beenden</a>
+				<a class="button button-stable" ng-show="activityRecording" ng-click="activityRecording = false">Abbrechen</a>
+			</div>
+		</ion-footer-bar>
+	</ion-content>
+</ion-view>

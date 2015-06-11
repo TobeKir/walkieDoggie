@@ -1,8 +1,19 @@
 <ion-view view-title="Standort">
-
     <ion-nav-buttons side="right">
         <ion-button class="button button-icon icon ion-ios-plus-outline" ui-sref="tab.standort.liste-ort-add" ng-click="edit();"></ion-button>
     </ion-nav-buttons>
+
+<ion-content>
+    <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Suche">
+        </label>
+    </div>
+        
+    <ion-item>
+        <p class="mini-title">XX Ergebnisse</p>
+    </ion-item>
 
     <ion-content>
         <ion-list>
@@ -16,6 +27,19 @@
 <!--                <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon ion-ios-personadd-outline"></a>-->
             </ion-item>
         </ion-list>
-    </ion-content>
 
+        <ion-footer-bar class="tabs filter">
+	       <div class="tab-item active" onclick="toggleLocationFilter(this)">
+		      <span>Orte</span>
+	       </div>
+	       <div class="tab-item active" onclick="toggleUserFilter(this)">
+		      <span>Mitglieder</span>
+	       </div>
+	       <div class="tab-item active" onclick="togglePoisonFilter(this)">
+		      <span>Giftköder</span>
+	       </div>
+	   </ion-footer-bar>
+
+      
+  </ion-content>
 </ion-view>

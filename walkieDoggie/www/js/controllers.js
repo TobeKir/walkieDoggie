@@ -23,8 +23,9 @@ angular.module('starter.controllers', [])
 
 .controller('MitgliederCtrl', function($scope, $stateParams, User) {
   $scope.allUsers = User.all();
-  if($stateParams.userId){
-    $scope.user = User.get($stateParams.userId);
+
+  $scope.userDetail = function(userId) {
+    $scope.user = User.get(userId);
   }
 })
 
@@ -32,7 +33,7 @@ angular.module('starter.controllers', [])
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker) {
+.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
 
   // Rudel
   $scope.allDogs = Dog.all();
@@ -53,6 +54,9 @@ angular.module('starter.controllers', [])
     // Unterscheidung zwischen Bearbeitung oder Erstellung (nur existentes hat $id)
     if($scope.editScope.$id === undefined){
       Dog.add($scope.editScope);
+      $timeout(function() {
+        $scope.allDogs = Dog.all(); 
+      }, 300);
     } else {
       angular.forEach($scope.editScope, function(value, key) {
         this[key] = value;
@@ -69,6 +73,11 @@ angular.module('starter.controllers', [])
 
   $scope.remove = function(originScope) {
     Dog.remove(originScope);
+    $timeout(function() {
+      $scope.allDogs = Dog.all(); 
+    }, 300);
+    // goBack to dogList
+    $ionicHistory.goBack(-2);
   }
 
   $scope.changePhoto = function() {
@@ -136,7 +145,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('MapCtrl', function($scope, $ionicLoading) {
+.controller('MapCtrl', function($scope) {
 
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
@@ -156,96 +165,103 @@ angular.module('starter.controllers', [])
                 map: map,
 l            });
         });
- 
-        $scope.map = map;
 		
-		$scope.refreshMap = function(){
-			setTimeout(function(){
-				var div = document.getElementById("map");
-				reattachMap($scope.map,div);
-			},1);
-		}
+		//some dummy markers
+		var markerLocationArray = [];
+		var markerUserArray = [];
+		var markerPoisonArray = [];
 		
-		function reattachMap(map,div) {
-		  if (!isDom(div)) {
-			console.log("div is not dom");
-			return map;
-		  } else {
-			map.set("div", div);
-
-			while(div.parentNode) {
-			  div.style.backgroundColor = 'rgba(0,0,0,0)';
-			  div = div.parentNode;
+		markerLocationArray.push(
+		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2220),map: map,type: "location",title: "Location 1"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1553,9.2223),map: map,type: "location",title: "Location 2"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2223),map: map,type: "location",title: "Location 3"})
+		);
+		markerUserArray.push(
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
+		);
+		markerPoisonArray.push(
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2230),map: map,type: "poison",title: "Poisonbait 1"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2228),map: map,type: "poison",title: "Poisonbait 2"}),
+		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2228),map: map,type: "poison",title: "Poisonbait 3"})
+		);
+		
+		toggleLocationFilter = function(param){
+		
+			if(jQuery(param).hasClass("active")){
+				markerLocationArray.forEach(function(marker){
+					marker.setVisible(false);
+				});
+				jQuery(param).removeClass("active");
 			}
-
-			return map;
-		  }
-		}
-
-		function isDom(element) {
-		  return !!element &&
-				 typeof element === "object" &&
-				 "getBoundingClientRect" in element;
-		}
-})
-/*
-.controller('MapCtrl', function($scope, $ionicLoading, $compile) {
-      function initialize() {
-        var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
-        
-        var mapOptions = {
-          center: myLatlng,
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-        
-        //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
-
-        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'DHBW'
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
+			else {
+				markerLocationArray.forEach(function(marker){
+					marker.setVisible(true);
+				});
+				jQuery(param).addClass("active");
+			}
+		};
+		toggleUserFilter = function(param){
+			if(jQuery(param).hasClass("active")){
+				markerUserArray.forEach(function(marker){
+					marker.setVisible(false);
+				});
+				jQuery(param).removeClass("active");
+			}
+			else {
+				markerUserArray.forEach(function(marker){
+					marker.setVisible(true);
+				});
+				jQuery(param).addClass("active");
+			}
+		};
+		togglePoisonFilter = function(param){
+			if(jQuery(param).hasClass("active")){
+				markerPoisonArray.forEach(function(marker){
+					marker.setVisible(false);
+				});
+				jQuery(param).removeClass("active");
+			}
+			else {
+				markerPoisonArray.forEach(function(marker){
+					marker.setVisible(true);
+				});
+				jQuery(param).addClass("active");
+			}
+		};
+		
         $scope.map = map;
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-      
-      $scope.centerOnMe = function() {
-        if(!$scope.map) {
-          return;
-        }
+})
 
-        $scope.loading = $ionicLoading.show({
-          content: 'Getting current location...',
-          showBackdrop: false
-        });
-
+.controller('ActivityCtrl', function($scope){
+	$scope.activityRecording = false;
+	$scope.activityRecordingPause = false;
+	
+	
+	
+	var activityLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
+ 
+        var activityMapOptions = {
+            center: activityLatlng,
+            zoom: 18,
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+			/*mapTypeId: google.maps.MapTypeId.ROADMAP*/
+        };
+		
+	 var activityMap = new google.maps.Map(document.getElementById("activityMap"), activityMapOptions);
+ 
         navigator.geolocation.getCurrentPosition(function(pos) {
-          $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          $scope.loading.hide();
-        }, function(error) {
-          alert('Unable to get location: ' + error.message);
+            activityMap.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myActivityLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: activityMap,
+                title: "My Location"
+            });
         });
-      };
-      
-      $scope.clickTest = function() {
-        alert('Example of infowindow with ng-click')
-      };
-      
-    });*/
+	
+	$scope.activityMap = activityMap;
+})
 
 
 .controller('LocationCtrl', function($scope, $stateParams, Location){

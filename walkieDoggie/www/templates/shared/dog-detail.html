@@ -5,25 +5,45 @@
   </ion-nav-buttons>
 
   <ion-content>
+      
+    <div class="profile-header">
+
+      <div class="profile-info">
+        <img class="profile-image" ng-src="data:image/jpeg;base64,{{dog.image}}">
+        <h2>{{dog.name}}</h2> 
+        <p>{{dog.beschreibung}}</p>
+
+        <div class="row quick-info">
+            <div class="col"><i class="icon-activity"></i><span>&nbsp;{{dog.rasse}}</span></div>  
+            <div class="col"><i class="icon-heart"></i><span>&nbsp;{{dog.geschlecht}}</span></div> 
+            <div class="col"><i class="icon-user"></i><span>&nbsp;{{user.vorname}} {{user.nachname}}s Hund</span></div> 
+        </div>
+          
+      </div>
+
+      <div class="profile-bg">
+        <img class="blur full" ng-src="data:image/jpeg;base64,{{user.image}}">
+      </div>
+        
+    </div>  
 
     <ion-list class="list">
-
-      <ion-item class="item item-thumbnail-left">
-        <img ng-src="data:image/jpeg;base64,{{dog.image}}">
-        <h2>{{dog.name}}</h2>
-        <p>{{dog.rasse}}</p>
-      </ion-item>
 
       <div class="item item-divider">
         Hunde Daten
       </div>
       <div class="row item padding">
         <div class="col">
-          {{dog.geschlecht}}<br>
-          {{dog.alter}}{{dog.geburtsdatum}} Jahre
+            <p>
+                {{dog.geschlecht}}<br>
+                {{dog.alter}}{{dog.geburtsdatum}} Jahre
+            </p>
         </div>
         <div class="col">
-          {{dog.groesse}} cm
+            <p>
+             {{dog.groesse}} cm<br>
+             {{user.ort}}
+            </p>
         </div>
       </div>
 
@@ -32,11 +52,15 @@
       </div>
       <div class="row item padding">
         <div class="col">
-          ist <span ng-show="!dog.kastriert">nicht </span>kastriert<br>
-          zur Zeit <span ng-show="!dog.laeufig">nicht </span>läufig
+            <p>
+                ist <span ng-show="!dog.kastriert">nicht </span>kastriert<br>
+                zur Zeit <span ng-show="!dog.laeufig">nicht </span>läufig
+            </p>
         </div>
         <div class="col">
-          verträgt sich gut mit {{dog.vertraeglich}}
+            <p>
+                verträgt sich gut mit {{dog.vertraeglich}}
+            </p>
         </div>
       </div>
 
@@ -44,7 +68,9 @@
         Beschreibung
       </div>
       <div class="item">
-        {{dog.beschreibung}}
+          <p>
+            {{dog.beschreibung}}
+          </p>
       </div>
 
     </ion-list>
