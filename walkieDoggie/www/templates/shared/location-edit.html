@@ -1,0 +1,50 @@
+<ion-view view-title="Ort bearbeiten" class="location-view" name="standort-liste-ort">
+
+  <ion-nav-buttons side="right">
+    <ion-button ui-sref="tab.standort.liste" class="button button-icon icon ion-ios-checkmark-outline" ng-click="save(location);"></ion-button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <form novalidate>
+
+      <ion-list class="list">
+
+        
+        <div class="item item-divider">
+          Beschreibung
+        </div>  
+          
+        <!-- Vorname, Name //-->
+        <label class="item item-input">
+          <span class="input-label">Name</span>
+          <input type="text" name="title" ng-model="editScope.title" placeholder="Bezeichnung" required>
+        </label>
+        
+        <label class="item item-input">
+          <span class="input-label">Beschreibung</span>
+          <input type="text" name="title" ng-model="editScope.description" placeholder="Bezeichnung" required>
+        </label>
+      
+
+        <div class="item item-divider">
+          Stelle
+        </div>
+
+        <!-- Ort und Telefon //-->
+        <label class="item item-input">
+          <span class="input-label">Latitude</span>
+          <input type="text" name="ort" ng-model="editScope.latitude" placeholder="Latitude">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Longitude</span>
+          <input type="text" name="telefon" ng-model="editScope.longitude" placeholder="Longitude">
+        </label>
+        <br>
+        <br>
+        <br>
+
+      </ion-list>
+        
+    </form>
+  </ion-content>
+</ion-view>

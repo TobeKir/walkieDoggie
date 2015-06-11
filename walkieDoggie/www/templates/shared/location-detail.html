@@ -1,0 +1,38 @@
+<ion-view view-title="Ort Detail" class="location-view">
+
+  <ion-nav-buttons side="right">
+      <ion-button ui-sref="tab.standort.liste-ort-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(location);"></ion-button>
+  </ion-nav-buttons>    
+    
+  <ion-content>
+
+    <ion-list class="list">
+
+      <ion-item class="item">
+        <h2>{{location.title}}</h2>
+        <p>{{location.type}}</p>
+      </ion-item>
+
+      <div class="item item-divider">
+        Beschreibung
+      </div>
+      <div class="row item padding">
+        <div class="col">
+            <p>{{location.description}}</p>
+        </div>
+      </div>
+      
+      <div class="item item-divider">
+        Stelle
+      </div>
+      <div class="row item padding">
+        <div class="col">
+            <p><b>Latitude:</b>{{location.latitude}}</p>
+            <p><b>Longitude:</b>{{location.longitude}}</p>
+        </div>  
+      </div>
+     
+    </ion-list>
+
+  </ion-content>
+</ion-view>

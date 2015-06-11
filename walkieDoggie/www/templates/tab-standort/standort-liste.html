@@ -1,12 +1,21 @@
 <ion-view view-title="Standort">
-  <ion-content>
 
-    <ion-list>
-	  <ion-item ng-repeat="item in [1, 2, 3, 4, 5]">
-	    Ort {{item}}
-	  </ion-item>
-	</ion-list>
-      
-      
-  </ion-content>
+    <ion-nav-buttons side="right">
+        <ion-button class="button button-icon icon ion-ios-plus-outline" ui-sref="tab.standort.liste-ort-add" ng-click="edit();"></ion-button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <ion-list>
+            <ion-item class="item item-icon-right" ng-repeat="(key, value) in allLocations" type="item-text-wrap" ng-click="locationDetail(value.$id)">
+                <h2>{{value.title}}</h2>
+                <p>{{value.type}}</p>
+                <p>
+                    <b>{{value.latitue}}</b>
+                    <b>{{value.longitute}}</b>
+                </p>              
+<!--                <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon ion-ios-personadd-outline"></a>-->
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
 </ion-view>

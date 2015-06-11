@@ -101,7 +101,7 @@ angular.module('starter.services', ['firebase'])
   }
 }])
 
-.factory('Location', ['$firebaseArray', '$firebaseObject', 'FBURL', function($firebaseArray, $firebaseObject, FBURL){
+.factory('Location', ['$firebaseArray', '$firebaseObject', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, FBURL, Auth){
     var ref = new Firebase(FBURL);
     var locationRef = ref.child("locations");
     
@@ -110,11 +110,13 @@ angular.module('starter.services', ['firebase'])
             return $firebaseArray(locationRef);
         },
         create: function(location){
-            return locationRef.push(location);
+            console.log('.factory create --> location: ' + location);
+            console.log('.factory locationRef.push().set(location) ' + locationRef.push().set(location));
+            return locationRef.push().set(location);
         },
         get: function(id){
             if( id != undefined){
-                return locationRef. $getRecord(id);
+                return locationRef.$getRecord(id);
             }
         },
         save: function(location) {

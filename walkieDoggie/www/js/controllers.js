@@ -154,8 +154,7 @@ angular.module('starter.controllers', [])
             var myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
                 map: map,
-                title: "My Location"
-            });
+l            });
         });
  
         $scope.map = map;
@@ -248,24 +247,52 @@ angular.module('starter.controllers', [])
       
     });*/
 
+
 .controller('LocationCtrl', function($scope, $stateParams, Location){
     $scope.allLocations = Location.all();
-    if($stateParams.locationId){
+    console.log('controller called');
+    $scope.locationDetail = function(locationId){
         $scope.location = Location.get($stateParams.locationId);
     }
-})
+    
+//    $scope.createEditScope = function(){
+//        $scope.editScope = {};
+//    }
+    
+    $scope.edit = function(originScope) {
+        $scope.editScope = {};
+        angular.forEach(originScope, function(value, key) {
+        this[key] = value;
+        }, $scope.editScope);
+    }
 
-.controller('LocationCreateCtrl', function($scope, $state, $stateParams, Location){
-    $scope.location = {};
-    var location = {};
-    location.type = $scope.type;
-    location.title = $scope.title;
-    location.langitude = $scope.langitude;
-    location.longitude = $scope.longitude;
-    $scope.create = function(){
-        Location.create(location);
-    };
+    $scope.save = function(originScope) {
+        if($scope.editScope.$id === undefined){
+            Location.create($scope.editScope);
+        } else {
+            angular.forEach($scope.editScope, function(value, key) {
+                this[key] = value;
+            }, originScope);
+            Location.save(originScope);
+        }
+    }
+
 });
+
+//.controller('LocationCreateCtrl', function($scope, $state, $stateParams, Location){
+//    $scope.location = {};
+//    
+//    var location = {};
+//    location.type  = $scope.type;
+//    location.title = $scope.title;
+//    location.latitude  = $scope.latitude;
+//    location.longitude = $scope.longitude;
+//    location.description = $scope.description;
+//    
+//    $scope.create = function(){
+//        Location.create(location);
+//    };
+//});
 
 
 

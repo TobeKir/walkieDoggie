@@ -66,7 +66,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/liste',
     views: {
       'standort-liste': {
-        templateUrl: 'templates/tab-standort/standort-liste.html'
+        abstract: true,
+        templateUrl: 'templates/tab-standort/standort-liste.html',
+        controller: 'LocationCtrl'
+      }
+    }
+  }).state('tab.standort.liste-ort-detail', {
+    url: '/location/:locationId',
+    // params: {locationId:{}},
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/shared/location-detail.html'
+      }
+    }
+  }).state('tab.standort.liste-ort-edit', {
+    url: '/location/edit',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/shared/location-edit.html'
+      }
+    }
+  }).state('tab.standort.liste-ort-add', {
+    url: '/location/add',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/shared/location-edit.html'
       }
     }
   }).state('tab.standort.karte', {
@@ -77,9 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 		    controller: 'MapCtrl'
       }
     }
-  })
-
-  .state('tab.feed', {
+  }).state('tab.feed', {
     url: '/feed',
     views: {
       'tab-feed': {
