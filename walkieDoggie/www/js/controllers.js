@@ -265,8 +265,10 @@ l            });
 
 
 .controller('LocationCtrl', function($scope, $stateParams, Location){
+    
+    console.log('LocationController called');
     $scope.allLocations = Location.all();
-    console.log('controller called');
+    
     $scope.locationDetail = function(locationId){
         $scope.location = Location.get($stateParams.locationId);
     }

@@ -110,9 +110,8 @@ angular.module('starter.services', ['firebase'])
             return $firebaseArray(locationRef);
         },
         create: function(location){
-            console.log('.factory create --> location: ' + location);
-            console.log('.factory locationRef.push().set(location) ' + locationRef.push().set(location));
-            return locationRef.push().set(location);
+            console.log('.factory create --> location: ' + location);            
+             return locationRef.push(location);
         },
         get: function(id){
             if( id != undefined){
