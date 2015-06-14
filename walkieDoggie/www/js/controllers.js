@@ -54,9 +54,6 @@ angular.module('starter.controllers', [])
     // Unterscheidung zwischen Bearbeitung oder Erstellung (nur existentes hat $id)
     if($scope.editScope.$id === undefined){
       Dog.add($scope.editScope);
-      $timeout(function() {
-        $scope.allDogs = Dog.all(); 
-      }, 300);
     } else {
       angular.forEach($scope.editScope, function(value, key) {
         this[key] = value;
@@ -69,6 +66,11 @@ angular.module('starter.controllers', [])
       Dog.save(originScope);      
       }
     }
+
+    $timeout(function() {
+      $scope.allDogs = Dog.all(); 
+    }, 300);
+    
   }
 
   $scope.remove = function(originScope) {
@@ -163,7 +165,7 @@ angular.module('starter.controllers', [])
             var myLocation = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
                 map: map,
-l            });
+            });
         });
 		
 		//some dummy markers
@@ -264,13 +266,13 @@ l            });
 })
 
 
-.controller('LocationCtrl', function($scope, $stateParams, Location){
+.controller('LocationCtrl', function($scope, $stateParams, Location, $timeout){
     
     console.log('LocationController called');
     $scope.allLocations = Location.all();
     
     $scope.locationDetail = function(locationId){
-        $scope.location = Location.get($stateParams.locationId);
+        $scope.location = Location.get(locationId);
     }
     
 //    $scope.createEditScope = function(){
@@ -293,8 +295,11 @@ l            });
             }, originScope);
             Location.save(originScope);
         }
-    }
 
+        $timeout(function() {
+          $scope.allLocations = Location.all(); 
+        }, 300);
+    }
 });
 
 //.controller('LocationCreateCtrl', function($scope, $state, $stateParams, Location){

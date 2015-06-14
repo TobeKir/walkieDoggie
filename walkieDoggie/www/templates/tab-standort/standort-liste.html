@@ -1,6 +1,6 @@
 <ion-view view-title="Standort">
     <ion-nav-buttons side="right">
-        <ion-button class="button button-icon icon ion-ios-plus-outline" ui-sref="tab.standort.liste-ort-add" ng-click="edit();"></ion-button>
+        <ion-button class="button button-icon icon ion-ios-plus-outline" ui-sref="^.ort-add" ng-click="edit();"></ion-button>
     </ion-nav-buttons>
 
 <ion-content>
@@ -10,19 +10,14 @@
             <input type="search" placeholder="Suche">
         </label>
     </div>
-        
-    <ion-item>
-        <p class="mini-title">XX Ergebnisse</p>
-    </ion-item>
 
-    <ion-content>
         <ion-list>
-            <ion-item class="item item-icon-right" ng-repeat="(key, value) in allLocations" type="item-text-wrap" ng-click="locationDetail(value.$id)">
-                <h2>{{value.title}}</h2>
-                <p>{{value.type}}</p>
+            <ion-item class="item item-icon-right" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
+                <h2>{{location.title}}</h2>
+                <p>{{location.type}}</p>
                 <p>
-                    <b>{{value.latitue}}</b>
-                    <b>{{value.longitute}}</b>
+                    <b>{{location.latitue}}</b>
+                    <b>{{location.longitute}}</b>
                 </p>              
 <!--                <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon ion-ios-personadd-outline"></a>-->
             </ion-item>
@@ -40,6 +35,5 @@
 	       </div>
 	   </ion-footer-bar>
 
-      
   </ion-content>
 </ion-view>

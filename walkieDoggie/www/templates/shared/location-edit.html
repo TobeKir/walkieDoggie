@@ -1,7 +1,8 @@
 <ion-view view-title="Ort bearbeiten" class="location-view" name="standort-liste-ort">
 
   <ion-nav-buttons side="right">
-    <ion-button ui-sref="tab.standort.liste" class="button button-icon icon ion-ios-checkmark-outline" ng-click="save();"></ion-button>
+    <ion-button ui-sref="^.ort-detail" class="button button-icon icon ion-ios-checkmark-outline" ng-show="state.includes('tab.standort.ort-edit')" ng-click="save(location);"></ion-button>
+    <ion-button ui-sref="^.liste" class="button button-icon icon ion-ios-checkmark-outline" ng-show="state.includes('tab.standort.ort-add')" ng-click="save();"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>

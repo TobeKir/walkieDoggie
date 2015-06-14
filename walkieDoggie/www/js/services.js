@@ -104,22 +104,23 @@ angular.module('starter.services', ['firebase'])
 .factory('Location', ['$firebaseArray', '$firebaseObject', 'FBURL', 'Auth', function($firebaseArray, $firebaseObject, FBURL, Auth){
     var ref = new Firebase(FBURL);
     var locationRef = ref.child("locations");
+    var locations = $firebaseArray(locationRef);
     
     return{
         all: function(){
-            return $firebaseArray(locationRef);
+            return locations;
         },
         create: function(location){
             console.log('.factory create --> location: ' + location);            
-             return locationRef.push(location);
+            return locations.$add(location);
         },
         get: function(id){
             if( id != undefined){
-                return locationRef.$getRecord(id);
+              return locations.$getRecord(id);
             }
         },
         save: function(location) {
-            return locationRef.$save(location);
+            return locations.$save(location);
         }
     }
 }]);

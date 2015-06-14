@@ -59,38 +59,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     views: {
       'tab-standort': {
-        templateUrl: 'templates/tabs/tab-standort.html'
-      }
-    }
-  }).state('tab.standort.liste', {
-    url: '/liste',
-    views: {
-      'standort-liste': {
-        abstract: true,
-        templateUrl: 'templates/tab-standort/standort-liste.html',
+        templateUrl: 'templates/tabs/tab-standort.html',
         controller: 'LocationCtrl'
-      }
-    }
-  }).state('tab.standort.liste-ort-detail', {
-    url: '/location/:locationId',
-    // params: {locationId:{}},
-    views: {
-      'standort-liste': {
-        templateUrl: 'templates/shared/location-detail.html'
-      }
-    }
-  }).state('tab.standort.liste-ort-edit', {
-    url: '/location/edit',
-    views: {
-      'standort-liste': {
-        templateUrl: 'templates/shared/location-edit.html'
-      }
-    }
-  }).state('tab.standort.liste-ort-add', {
-    url: '/location/add',
-    views: {
-      'standort-liste': {
-        templateUrl: 'templates/shared/location-edit.html'
       }
     }
   }).state('tab.standort.karte', {
@@ -98,7 +68,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'standort-karte': {
         templateUrl: 'templates/tab-standort/standort-karte.html',
-		controller: 'MapCtrl'
+        controller: 'MapCtrl'
+      }
+    }
+  }).state('tab.standort.liste', {
+    url: '/liste',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/tab-standort/standort-liste.html',
+      }
+    }
+  }).state('tab.standort.ort-detail', {
+    url: '/location/detail',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/shared/location-detail.html'
+      }
+    }
+  }).state('tab.standort.ort-edit', {
+    url: '/location/edit',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/shared/location-edit.html'
+      }
+    }
+  }).state('tab.standort.ort-add', {
+    url: '/location/add',
+    views: {
+      'standort-liste': {
+        templateUrl: 'templates/shared/location-edit.html'
       }
     }
   }).state('tab.feed', {
@@ -139,7 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'aktivitaet-live': {
         templateUrl: 'templates/tab-aktivitaet/aktivitaet-live.html',
-		controller: 'ActivityCtrl'
+		    controller: 'ActivityCtrl'
       }
     }
   }).state('tab.aktivitaet.statistik', {
