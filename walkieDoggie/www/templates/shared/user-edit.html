@@ -29,26 +29,23 @@
           {{editScope.email}}
         </label>
 
-        <div class="item item-divider">
-          Nutzerdaten
-        </div>
         <!-- Geschlecht //-->
         <label class="item item-input item-select">
           <div class="input-label">
             Geschlecht
           </div>
           <select name="geschlecht" ng-model="editScope.geschlecht">
-            <option selected>männlich</option>
+            <option value="" disabled>Geschlecht wählen</option>
+            <option>männlich</option>
             <option>weiblich</option>
           </select>
         </label>
 
         <!-- Alter //-->
-        <div class="item item-button-right">
-          <span>Geburtsdatum</span>
-          <span class="item-note">{{editScope.geburtsdatum | date : 'dd.MM.yyyy'}}</span>
-          <button class="button button-icon" ng-click="datePicker()"><i class="icon ion-ios-calendar-outline"></i></button>
-        </div>
+        <label class="item item-input">
+          <span class="input-label">Geburtsdatum</span>
+          <input type="date" ng-click="datePicker()" placeholder="Geburtstag wählen">{{editScope.geburtsdatum | date : 'dd.MM.yyyy'}}</input>
+        </label>
 
         <!-- Ort und Telefon //-->
         <label class="item item-input">
@@ -61,13 +58,11 @@
         </label>
 
         <!-- Beschreibung //-->
-        <div class="item item-divider">
-          Über mich
-        </div>
-        <div class="item item-input">
-          <textarea name="description" ng-model="editScope.description" rows="{{editScope.description.length/60 + 2}}" cols="60" placeholder="Über mich">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Über Mich</span>
+          <textarea name="description" ng-model="editScope.description" rows="{{editScope.description.length/60 + 2}}" cols="60" placeholder="Beschreibe dich kurz in zwei Sätzen!">
           </textarea>
-        </div>
+        </label>
 
         <!-- Gassi Zeiten //-->
         <div class="item item-divider">
@@ -75,12 +70,12 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Mo - Fr</span>
-          <input type="text" name="gassizeiten" ng-model="editScope.gassizeiten" placeholder="Uhrzeiten">
+          <input type="time" name="gassizeiten" ng-model="editScope.gassizeiten" placeholder="Uhrzeit">
         </label>
+        <button class="button button-full button-positive">
+          Neue Gassi-Zeit hinzufügen
+        </button>
 
-        <br>
-        <br>
-        <br>
 
       </ion-list>
         
