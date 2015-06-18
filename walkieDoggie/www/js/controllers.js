@@ -21,19 +21,25 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MitgliederCtrl', function($scope, $stateParams, User) {
+.controller('MitgliederCtrl', function($scope, $state, User, Dog) {
   $scope.allUsers = User.all();
 
   $scope.userDetail = function(userId) {
     $scope.user = User.get(userId);
+    $scope.dogs = Dog.all(userId);
   }
+
+  $scope.dogDetail = function(dogId) {
+    $scope.dog = Dog.get(dogId);
+  }
+  
 })
 
 // .controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
 // 	$scope.mitglied = User.get($stateParams.mitgliedId);
 // })
 
-.controller('ProfilCtrl', function($scope, $stateParams, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
+.controller('ProfilCtrl', function($scope, $state, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
 
   // Rudel
   $scope.allDogs = Dog.all();
@@ -52,7 +58,7 @@ angular.module('starter.controllers', [])
 
   $scope.save = function(originScope) {
     // Unterscheidung zwischen Bearbeitung oder Erstellung (nur existentes hat $id)
-    if($scope.editScope.$id === undefined){
+    if($state.includes('tab.profil.rudel-add')){
       Dog.add($scope.editScope);
     } else {
       angular.forEach($scope.editScope, function(value, key) {

@@ -70,7 +70,10 @@ angular.module('starter.services', ['firebase'])
   var dogKeyRef = ref.child("users").child(Auth.getAuth().uid).child("dogs");
   var dogList = $firebaseArray(ref.child("dogs"));
   return {
-    all: function() {
+    all: function(id) {
+      if(id){
+        dogKeyRef = ref.child("users").child(id).child("dogs");
+      }
       var allDogs = [];
       var dogKeys = $firebaseObject(dogKeyRef);
       dogKeys.$loaded().then(function() {

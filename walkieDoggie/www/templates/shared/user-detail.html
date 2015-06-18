@@ -1,11 +1,11 @@
 <ion-view view-title="Profil" class="user-view">
 
   <ion-nav-buttons side="right">
+    <ion-button ng-show="state.includes('tab.profil')" ui-sref="tab.profil.einstellungen" class="button button-icon icon ion-ios-gear-outline"></ion-button>
     <ion-button ng-show="state.includes('tab.profil')" ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>
-
     <div class="profile-header">
 
       <div class="profile-info">
@@ -94,32 +94,44 @@
         </div>
 
         
+        <div ng-show="user.description">
+          <div class="item item-divider">
+                  Über mich
+          </div>
+          <div class="item">
+              <p>
+                  {{user.description}}
+              </p>
+          </div>
+        </div>
 
+      <div ng-show="user.gassizeiten">
         <div class="item item-divider">
-                Über mich
+          Gassi-Zeiten
         </div>
-        <div class="item">
-            <p>
-                {{user.description}}
-            </p>
+        <div class="item item-input">
+          <span class="input-label">Mo - Fr</span>
+          {{user.gassizeiten}}
         </div>
+      </div>
 
-      <div class="item item-divider">
-        Gassi-Zeiten
+      <div ng-show="user.dogs">
+        <div class="item item-divider">
+          {{user.vorname}}s Rudel
+        </div>
+        <ion-list>
+          <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in dogs" type="item-text-wrap" ui-sref=".rudel-detail" ng-click="dogDetail(value.$id);">
+
+            <img ng-src="data:image/jpeg;base64,{{value.image}}">
+            <h2>{{value.name}}</h2>
+            <p>
+              <b>{{value.rasse}}</b>, {{value.geschlecht}}
+            </p>
+            <i class="icon ion-ios-arrow-right"></i>
+            
+          </ion-item>
+        </ion-list>
       </div>
-      <div class="item item-input">
-        <span class="input-label">Mo - Fr</span>
-        {{user.gassizeiten}}
-      </div>
-        
-      <div class="item item-divider">
-        {{user.vorname}}s Rudel
-      </div>
-      <a class="item item-avatar" href="#">
-        <img>
-        <h2>Hundename</h2>
-        <p>Rasse des Hundes</p>
-      </a>
 
       <ion-item ng-hide="isProfil" class="item item-divider">
         Kontakt

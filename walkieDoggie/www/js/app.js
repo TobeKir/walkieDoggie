@@ -173,6 +173,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         templateUrl: 'templates/shared/user-detail.html'
       }
     }
+  }).state('tab.mitglieder.rudel-detail', {
+    url: '/alle/detail/rudel/detail',
+    // params: {mitgliedId:{}},
+    views: {
+      'mitglieder-alle': {
+        templateUrl: 'templates/shared/dog-detail.html'
+      }
+    }
   }).state('tab.mitglieder.freunde', {
     url: '/freunde',
     views: {
@@ -238,6 +246,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'profil-rudel': {
         templateUrl: 'templates/shared/dog-edit.html'
+      }
+    }
+  }).state('tab.profil.einstellungen', {
+    url: '/einstellungen',
+    views: {
+      'profil-ich': {
+        templateUrl: 'templates/main/einstellungen.html'
+      }
+    }
+  }).state('tab.profil.rechtliches', {
+    url: '/einstellungen/rechtliches',
+    views: {
+      'profil-ich': {
+        templateUrl: 'templates/einstellungen/rechtliches.html'
       }
     }
   });
