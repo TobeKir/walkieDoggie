@@ -15,15 +15,28 @@
           Beschreibung
         </div>  
           
-        <!-- Vorname, Name //-->
+        <!-- Name des Ortes //-->
         <label class="item item-input">
           <span class="input-label">Name</span>
           <input type="text" name="title" ng-model="editScope.title" placeholder="Bezeichnung" required>
         </label>
         
-        <label class="item item-input">
+        <!-- Beschreibung //-->
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Beschreibung</span>
-          <input type="text" name="title" ng-model="editScope.description" placeholder="Bezeichnung" required>
+          <textarea name="description" ng-model="editScope.description" rows="{{editScope.description.length/60 + 2}}" cols="60" placeholder="Füge dem Ort eine kurze Beschreibung hinzu">
+          </textarea>
+        </label>
+        
+        <!-- Geschlecht //-->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Typ
+          </div>
+          <select name="typ" ng-model="editScope.typ">
+            <option selected>Orte</option>
+            <option>Giftköder</option>
+          </select>
         </label>
       
 
