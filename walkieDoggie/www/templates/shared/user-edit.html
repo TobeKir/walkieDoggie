@@ -10,18 +10,18 @@
       <ion-list class="list">
 
         <label class="item item-input" ng-click="changePhoto()">
-          <span class="input-label">Profilbild</span>
+          <span class="input-label">Profilbild ändern</span>
           <img ng-src="data:image/jpeg;base64,{{editScope.image}}">
         </label>
 
         <!-- Vorname, Name //-->
         <label class="item item-input">
           <span class="input-label">Vorname</span>
-          <input type="text" name="vorname" ng-model="editScope.vorname" placeholder="Vorname" required>
+          <input type="text" name="vorname" ng-model="editScope.vorname" placeholder="z.B. Klaus" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Nachname</span>
-          <input type="text" name="nachname" ng-model="editScope.nachname" placeholder="Nachname" required>
+          <input type="text" name="nachname" ng-model="editScope.nachname" placeholder="z.B. Rupprecht" required>
         </label>
 
         <label class="item item-input">
@@ -50,17 +50,17 @@
         <!-- Ort und Telefon //-->
         <label class="item item-input">
           <span class="input-label">Wohnort</span>
-          <input type="text" name="ort" ng-model="editScope.ort" placeholder="Wohnort">
+          <input type="text" name="ort" ng-model="editScope.ort" placeholder="z.B. Lieblos">
         </label>
         <label class="item item-input">
-          <span class="input-label">Telefon Nr.</span>
-          <input type="tel" name="telefon" ng-model="editScope.telefon" placeholder="Telefon Nr.">
+          <span class="input-label">Telefon</span>
+          <input type="tel" name="telefon" ng-model="editScope.telefon" placeholder="z.B. 01742730834">
         </label>
 
         <!-- Beschreibung //-->
         <label class="item item-input item-stacked-label">
           <span class="input-label">Über Mich</span>
-          <textarea name="description" ng-model="editScope.description" rows="{{editScope.description.length/60 + 2}}" cols="60" placeholder="Beschreibe dich kurz in zwei Sätzen!">
+          <textarea name="description" ng-model="editScope.description" rows="{{editScope.description.length/60 + 2}}" cols="60" placeholder="Beschreibe dich kurz in zwei Sätzen">
           </textarea>
         </label>
 
