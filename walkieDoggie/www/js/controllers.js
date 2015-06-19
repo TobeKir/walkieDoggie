@@ -268,9 +268,10 @@ angular.module('starter.controllers', [])
 	$scope.timerRunning = false;
 	$scope.activityRecordingPause = false;
 	$scope.activityTime = 0;
+	$scope.routeLength = 0;
 	
-	watch_id = null;
-	tracking_data = [];
+	var watch_id = null;
+	var tracking_data = [];
 	var activityRoute;
 	
 	$scope.startTimer = function (){
@@ -282,6 +283,8 @@ angular.module('starter.controllers', [])
 			function(pos){
 				//$scope.tracking_data.push(position);
 				tracking_data.push(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+				$scope.routeLength = (Math.round((google.maps.geometry.spherical.computeLength(activityRoute.getPath().getArray())*100)/100))/1000;
+				console.log($scope.routeLength);
 			},
 			 
 			// Error
@@ -296,7 +299,7 @@ angular.module('starter.controllers', [])
 		//dummy polyline data
 		tracking_data.push(new google.maps.LatLng(49.1550,9.2220),new google.maps.LatLng(49.1540,9.2212),new google.maps.LatLng(49.1540,9.2230));
 		
-		var activityRoute = new google.maps.Polyline({
+		activityRoute = new google.maps.Polyline({
 			path: tracking_data,
 			geodesic: true,
 			strokeColor: '#FF0000',
@@ -324,23 +327,21 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-stop');
 		$scope.timerRunning = false;
 		console.log('Finished - data = ', tracking_data);
-		//save route
+		//save route HIER HANNES activityRoute enthält die route
 		
 		navigator.geolocation.clearWatch(watch_id);
 		tracking_data = [];
-		markerLocationArray.forEach(function(marker){
-					marker.setVisible(false);
-				});
 		activityRoute.setMap(null);
 	};
 	
 	$scope.abortTimer = function (){
 		//clearing time not working yet
-		$scope.$broadcast('timer-clear');
+		$scope.$broadcast('timer-reset');
 		$scope.timerRunning = false;
 		navigator.geolocation.clearWatch(watch_id);
 		tracking_data = [];
 		activityRoute.setMap(null);
+		$scope.routeLength = 0;
 	};
  
 	$scope.$on('timer-stopped', function (event, data){
