@@ -293,11 +293,11 @@ angular.module('starter.controllers', [])
 			},
 			 
 			// Settings
-			{ frequency: 10, enableHighAccuracy: true }
+			{ frequency: 5000, enableHighAccuracy: true }
 		);
 		
 		//dummy polyline data
-		tracking_data.push(new google.maps.LatLng(49.1550,9.2220),new google.maps.LatLng(49.1540,9.2212),new google.maps.LatLng(49.1540,9.2230));
+		//removed for testing tracking_data.push(new google.maps.LatLng(49.1550,9.2220),new google.maps.LatLng(49.1540,9.2212),new google.maps.LatLng(49.1540,9.2230));
 		
 		activityRoute = new google.maps.Polyline({
 			path: tracking_data,
