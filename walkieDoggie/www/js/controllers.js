@@ -153,7 +153,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('MapCtrl', function($scope) {
+.controller('MapCtrl', function($scope, $cordovaGeolocation) {
 
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
@@ -242,12 +242,7 @@ angular.module('starter.controllers', [])
         $scope.map = map;
 })
 
-.controller('ActivityCtrl', function($scope){
-	$scope.activityRecording = false;
-	$scope.activityRecordingPause = false;
-	
-	
-	
+.controller('ActivityCtrl', function($scope, $cordovaGeolocation){
 	var activityLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
         var activityMapOptions = {
@@ -269,6 +264,92 @@ angular.module('starter.controllers', [])
         });
 	
 	$scope.activityMap = activityMap;
+	
+	$scope.timerRunning = false;
+	$scope.activityRecordingPause = false;
+	$scope.activityTime = 0;
+	$scope.routeLength = 0;
+	
+	var watch_id = null;
+	var tracking_data = [];
+	var activityRoute;
+	
+	$scope.startTimer = function (){
+		$scope.$broadcast('timer-start');
+		$scope.timerRunning = true;
+		
+		$watch_id = navigator.geolocation.watchPosition(
+			// Success
+			function(pos){
+				//$scope.tracking_data.push(position);
+				tracking_data.push(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+				$scope.routeLength = (Math.round((google.maps.geometry.spherical.computeLength(activityRoute.getPath().getArray())*100)/100))/1000;
+				console.log($scope.routeLength);
+			},
+			 
+			// Error
+			function(error){
+				console.log(error);
+			},
+			 
+			// Settings
+			{ frequency: 5000, enableHighAccuracy: true }
+		);
+		
+		//dummy polyline data
+		//removed for testing tracking_data.push(new google.maps.LatLng(49.1550,9.2220),new google.maps.LatLng(49.1540,9.2212),new google.maps.LatLng(49.1540,9.2230));
+		
+		activityRoute = new google.maps.Polyline({
+			path: tracking_data,
+			geodesic: true,
+			strokeColor: '#FF0000',
+			strokeOpacity: 0.8,
+			strokeWeight: 6
+		});
+		
+		activityRoute.setMap(activityMap);
+	};
+	
+	$scope.resumepauseTimer = function (){
+		if ($scope.activityRecordingPause == true){
+			$scope.$broadcast('timer-resume');
+			//$scope.timerRunning = true;
+			$scope.activityRecordingPause = false;
+		}
+		else{
+			$scope.$broadcast('timer-stop');
+			//$scope.timerRunning = false;
+			$scope.activityRecordingPause = true;
+		}
+	};
+	
+	$scope.endTimer = function (){
+		$scope.$broadcast('timer-stop');
+		$scope.timerRunning = false;
+		console.log('Finished - data = ', tracking_data);
+		//save route HIER HANNES activityRoute enthält die route
+		
+		navigator.geolocation.clearWatch(watch_id);
+		tracking_data = [];
+		activityRoute.setMap(null);
+	};
+	
+	$scope.abortTimer = function (){
+		//clearing time not working yet
+		$scope.$broadcast('timer-reset');
+		$scope.timerRunning = false;
+		navigator.geolocation.clearWatch(watch_id);
+		tracking_data = [];
+		activityRoute.setMap(null);
+		$scope.routeLength = 0;
+	};
+ 
+	$scope.$on('timer-stopped', function (event, data){
+		console.log('Timer Stopped - data = ', data);
+		$scope.activityTime = data;
+	});
+	
+	
 })
 
 
