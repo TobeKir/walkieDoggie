@@ -152,13 +152,7 @@ angular.module('starter.controllers', [])
 
 })
 
-
-<<<<<<< HEAD
-.controller('MapCtrl', function($scope, Location) {
-=======
 .controller('MapCtrl', function($scope, $cordovaGeolocation) {
->>>>>>> 7129af28f388443db360a22f83f6bad07684b046
-
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
         var mapOptions = {
