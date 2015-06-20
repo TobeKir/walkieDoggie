@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MapCtrl', function($scope, $cordovaGeolocation) {
+.controller('MapCtrl', function($scope, $cordovaGeolocation, Location) {
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
         var mapOptions = {
@@ -355,7 +355,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('LocationCtrl', function($scope, $stateParams, Location, $timeout){
+.controller('LocationCtrl', function($scope, $stateParams, Location, $timeout, $ionicActionSheet, $cordovaCamera){
     
     console.log('LocationController called');
     $scope.allLocations = Location.all();
@@ -389,6 +389,71 @@ angular.module('starter.controllers', [])
           $scope.allLocations = Location.all(); 
         }, 300);
     }
+    
+    $scope.getCssClass = function(locationType){
+        if(locationType == 'Ausbildung'){
+            return 'training';
+        }else if (locationType == 'Betreuung & Pflege'){
+            return 'care';
+        }else if (locationType == 'Gesundheit'){
+            return 'health';
+        }else if (locationType == 'Hundefreundliche Orte'){
+            return 'dogfriendly';
+        }else if (locationType == 'Hundeklo'){
+            return 'toilet';
+        }else if (locationType == 'Shopping'){
+            return 'shopping';
+        }else if (locationType == 'Spielen & Gassi gehen'){
+            return 'entertainment';
+        }else if (locationType == 'Sonstiges'){
+            return 'other';
+        }else{
+            return 'basic';
+        }
+    }
+    
+    $scope.changePhoto = function() {
+
+        var sourceType;
+        $ionicActionSheet.show({
+          buttons: [
+            { text: 'Neues Bild aufnehmen' },
+            { text: 'Bild auswählen' }
+          ],
+          titleText: 'Ortsbild ändern',
+          cancelText: 'Abbrechen',
+          buttonClicked: function(index) {
+            switch (index) {
+              case 0 :
+                sourceType = Camera.PictureSourceType.CAMERA;
+                getPicture(sourceType);
+                return true;
+              case 1 :
+                sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+                getPicture(sourceType);
+                return true;
+              }
+          }
+        });
+
+        function getPicture(sourceType) {
+          var options = {
+            quality : 70,
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : sourceType,
+            allowEdit : true,
+            correctOrientation: true,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            targetWidth: 100,
+            targetHeight: 100,
+            saveToPhotoAlbum: false
+          };
+          $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.editUser.image = imageData;
+          });
+        };
+      }
 });
 
 //.controller('LocationCreateCtrl', function($scope, $state, $stateParams, Location){

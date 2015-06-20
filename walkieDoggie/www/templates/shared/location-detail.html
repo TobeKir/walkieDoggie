@@ -6,8 +6,9 @@
     
   <ion-content>
 
-    <ion-list class="list {{location.typ}}">
-
+    <ion-list class="list" ng-class="getCssClass(location.typ);">
+    
+      <img class="location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
       <ion-item class="item">
         <h2>{{location.title}}</h2>
         <p>{{location.typ}}</p>

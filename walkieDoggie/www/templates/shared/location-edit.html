@@ -10,7 +10,11 @@
 
       <ion-list class="list">
 
-        
+        <label class="item item-input" ng-click="changePhoto()">
+          <span class="input-label">Ortsbild ändern</span>
+          <img ng-src="data:image/jpeg;base64,{{editScope.image}}">
+        </label>
+          
         <div class="item item-divider">
           Beschreibung
         </div>  
@@ -34,8 +38,14 @@
             Typ
           </div>
           <select name="typ" ng-model="editScope.typ">
-            <option selected>Orte</option>
-            <option>Giftköder</option>
+            <option selected>Ausbildung</option>
+            <option>Betreuung &amp; Pflege</option>
+            <option>Gesundheit</option>
+            <option>Hundefreundliche Orte</option>
+            <option>Hundeklo</option>
+            <option>Shopping</option>
+            <option>Spielen &amp; Gassi gehen</option>
+            <option>Sonstiges</option>
           </select>
         </label>
       

@@ -12,7 +12,8 @@
     </div>
 
         <ion-list>
-            <ion-item class="item item-icon-right {{location.typ}}" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
+            <ion-item class="item item-icon-right" ng-class="getCssClass(location.typ);" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
+                <img class="list location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
                 <h2>{{location.title}}</h2>
                 <p>{{location.typ}}</p>
                 <p>
