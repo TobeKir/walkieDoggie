@@ -53,6 +53,13 @@ a.icon {
 	background-image: url(../img/default-avatar-dog.png);
 }
 
+.standort-liste .item-avatar > img:first-child,
+.standort-liste .item-avatar .item-content > img:first-child,
+.standort-liste .item-thumbnail-left > img:first-child,
+.standort-liste .item-thumbnail-left .item-content > img:first-child {
+	background-image: url(../img/default-avatar-location.png);
+}
+
 /* Map */
 
 #map {

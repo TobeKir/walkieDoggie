@@ -1,9 +1,10 @@
-<ion-view view-title="Standort">
+<ion-view view-title="Standort" class="standort-liste">
     <ion-nav-buttons side="right">
         <ion-button class="button button-icon icon ion-ios-plus-outline" ui-sref="^.ort-add" ng-click="edit();"></ion-button>
     </ion-nav-buttons>
 
 <ion-content>
+    
     <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -11,8 +12,14 @@
         </label>
     </div>
 
+    
+    <ion-item>
+        <p class="mini-title">XX Ergebnisse</p>
+    </ion-item>
+    
+    
         <ion-list>
-            <ion-item class="item item-icon-right" ng-class="getCssClass(location.typ);" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
+            <ion-item class="item-avatar item-icon-right" ng-class="getCssClass(location.typ);" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
                 <img class="list location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
                 <h2>{{location.title}}</h2>
                 <p>{{location.typ}}</p>

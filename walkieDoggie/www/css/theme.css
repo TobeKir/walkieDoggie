@@ -2,6 +2,7 @@
 
 @import url("../lib/ionic/scss/doggicons/style.css");
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+
 /* Genereal */
 body{
     font-family: 'Open Sans', sans-serif;
@@ -54,6 +55,7 @@ i{
 .login p{
     text-align: center;
     font-size: 30px;
+    line-height: 125%;
     font-weight: 700;
     margin-bottom: 0px 0px 50px 0px;
     color: #565656;
@@ -136,6 +138,13 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     height: 22px;
     margin: 8px auto 0;
 }
+/* Standort Liste */
+.standort-liste .basic:before {
+    content: "\e600";
+}{
+
+}
+
 
 /* Profiles */
 
