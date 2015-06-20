@@ -139,11 +139,6 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     margin: 8px auto 0;
 }
 /* Standort Liste */
-.standort-liste .basic:before {
-    content: "\e600";
-}{
-
-}
 
 
 /* Profiles */
