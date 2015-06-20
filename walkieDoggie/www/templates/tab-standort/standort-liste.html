@@ -27,7 +27,7 @@
                     <b>{{location.latitue}}</b>
                     <b>{{location.longitute}}</b>
                 </p>              
-                <i class="icon icon-games"></i>
+                <i class="icon" ng-class="'icon-' + getCssClass(location.typ);"></i>
             </ion-item>
         </ion-list>
 
