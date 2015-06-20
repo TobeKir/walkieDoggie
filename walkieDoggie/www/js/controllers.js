@@ -392,19 +392,19 @@ angular.module('starter.controllers', [])
     
     $scope.getCssClass = function(locationType){
         if(locationType == 'Ausbildung'){
-            return 'training';
+            return 'education';
         }else if (locationType == 'Betreuung & Pflege'){
             return 'care';
         }else if (locationType == 'Gesundheit'){
             return 'health';
         }else if (locationType == 'Hundefreundliche Orte'){
-            return 'dogfriendly';
+            return 'dog-friendly';
         }else if (locationType == 'Hundeklo'){
-            return 'toilet';
+            return 'dog-toilet';
         }else if (locationType == 'Shopping'){
             return 'shopping';
         }else if (locationType == 'Spielen & Gassi gehen'){
-            return 'entertainment';
+            return 'games';
         }else if (locationType == 'Sonstiges'){
             return 'other';
         }else{
