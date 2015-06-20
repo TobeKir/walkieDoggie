@@ -12,9 +12,9 @@
     </div>
 
         <ion-list>
-            <ion-item class="item item-icon-right" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
+            <ion-item class="item item-icon-right {{location.typ}}" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
                 <h2>{{location.title}}</h2>
-                <p>{{location.type}}</p>
+                <p>{{location.typ}}</p>
                 <p>
                     <b>{{location.latitue}}</b>
                     <b>{{location.longitute}}</b>

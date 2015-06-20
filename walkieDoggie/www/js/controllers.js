@@ -153,7 +153,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('MapCtrl', function($scope) {
+.controller('MapCtrl', function($scope, Location) {
 
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
@@ -179,6 +179,10 @@ angular.module('starter.controllers', [])
 		var markerUserArray = [];
 		var markerPoisonArray = [];
 		
+        //Getting all Locations from Firebase
+        var allLocations = Location.all();
+        console.log( allLocations );
+    
 		markerLocationArray.push(
 		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2220),map: map,type: "location",title: "Location 1"}),
 		new google.maps.Marker({position: new google.maps.LatLng(49.1553,9.2223),map: map,type: "location",title: "Location 2"}),
