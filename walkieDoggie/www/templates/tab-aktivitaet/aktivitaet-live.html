@@ -1,15 +1,32 @@
-<ion-view view-title="Aktivität">
+<ion-view view-title="Aktivität" class="activity">
 	<ion-content>
-		<div class="row responsive-sm">
-			<timer autostart="false" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
-		</div>
-		<div class="row responsive-sm">
-			<div>
-				{{routeLength}} km
+        
+        <div class="activity-box">
+		  <div class="row time">
+            <div class="col">
+                <timer autostart="false" interval="1000">
+                    <span class="hours">{{hhours}}</span>
+                    <span class="minutes">:{{mminutes}}</span>
+                    <span class="seconds">:{{sseconds}}</span></timer>
+            </div>
+		  </div>
+		<div class="row activity-info">
+			<div class="col">
+				<i class="icon-goal"></i>
+                <span class="distance">
+                    {{routeLength}} km
+                </span>
 			</div>
+            <div class="col">
+                <i class="icon-time"></i>
+                <span class="time-distance">
+                    5 min/km    
+                </span>
+            </div>
 		</div>
+      </div>
 
-			<div id="activityMap" data-tap-disabled="true"></div>
+        <div id="activityMap" data-tap-disabled="true"></div>
 
 
 		<ion-footer-bar class="button-bar">

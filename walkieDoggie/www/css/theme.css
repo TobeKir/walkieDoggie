@@ -139,7 +139,35 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     margin: 8px auto 0;
 }
 /* Standort Liste */
+/* Activity */
 
+.activity .activity-box{
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    top: 0px;
+    text-align: center;
+}
+.activity .activity-box .time timer{
+    display: block;
+}
+.activity .activity-box .time timer span{
+    font-weight: 300;
+    font-size: 100px;
+    line-height: 125%;
+}
+.activity .activity-box .time timer .seconds{
+    font-weight: 300;
+    font-size: 30px;
+}
+.activity .activity-box .activity-info span{
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
 /* Profiles */
 
