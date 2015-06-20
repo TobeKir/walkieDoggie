@@ -1,17 +1,23 @@
 <ion-view view-title="Aktivität">
 	<ion-content>
-		<div class="row responsive-sm">1</div>
-		<div class="row responsive-sm">2</div>
+		<div class="row responsive-sm">
+			<timer autostart="false" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
+		</div>
+		<div class="row responsive-sm">
+			<div>
+				{{routeLength}} km
+			</div>
+		</div>
 
 			<div id="activityMap" data-tap-disabled="true"></div>
 
 
 		<ion-footer-bar class="button-bar">
-			<a class="button button-balanced" ng-show="!activityRecording" ng-click="activityRecording = true">Start</a>
-			<div ng-show="activityRecording" class="button-bar">
-				<a class="button button-stable"  ng-click="activityRecordingPause = !activityRecordingPause"><span ng-show="!activityRecordingPause">Pause</span><span ng-show="activityRecordingPause">Weiter</span></a>
-				<a class="button button-stable" ng-show="activityRecording">Beenden</a>
-				<a class="button button-stable" ng-show="activityRecording" ng-click="activityRecording = false">Abbrechen</a>
+			<a class="button button-balanced" ng-show="!timerRunning" ng-click="startTimer()">Start</a>
+			<div ng-show="timerRunning" class="button-bar">
+				<a class="button button-stable"  ng-click="resumepauseTimer()"><span ng-show="!activityRecordingPause">Pause</span><span ng-show="activityRecordingPause">Weiter</span></a>
+				<a class="button button-stable" ng-show="timerRunning" ng-click="endTimer()">Beenden</a>
+				<a class="button button-stable" ng-show="timerRunning" ng-click="abortTimer()">Abbrechen</a>
 			</div>
 		</ion-footer-bar>
 	</ion-content>
