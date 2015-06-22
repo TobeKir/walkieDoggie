@@ -163,7 +163,26 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 .location-view .location-quick-info{
     position: absolute;
     z-index: 3;
+    color:#fff;
+    top:180px;
 }
+.location-view .location-quick-info h2{
+    color:#fff;
+    font-weight: 300;
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+.location-view .location-quick-info .item-avatar{
+    background: transparent;
+    border: 0px;
+}
+.location-view .location-quick-info .item-avatar p,
+.location-view .location-quick-info .item-avatar span,
+.location-view .location-quick-info .item-avatar i{
+    color: #fff;
+    font-size: 14px;
+}
+
 .location-view .location-header{
     background-image: url(../img/default-avatar-location.png);
     background-size: cover;
@@ -172,6 +191,35 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     height:300px;
     overflow: hidden;
     top:200px;
+}
+
+.location-view .location-header .category{
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 20px;
+    z-index: 4;
+}
+.location-view .location-header .category span{
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: #1c57ff;
+    display: inline-block;
+    margin-top: -20px;
+    padding: 10px 20px;
+}
+.arrow-left {
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent; 
+	border-right:20px solid #1c57ff; 
+    margin-left: -20px;
+    margin-bottom: -29px;
+    border-radius: 0px;
 }
 .location-view .location-image{
 	background-image: url(../img/default-avatar-location.png);

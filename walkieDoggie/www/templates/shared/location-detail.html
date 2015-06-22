@@ -7,12 +7,32 @@
   <ion-content>
 
     <div class="location-header">
+        
+    
+        <div class="category">
+            <div class="arrow-left"></div>
+                <span>{{location.typ}}</span>
+        </div>
+
+        
         <div class="row location-quick-info">
             <div class="col">
                 <h2>{{location.title}}</h2>
-                <span>{{location.typ}}</span>
+                <div class="item item-avatar">
+                    <img class="user-image" src="../../img/default-avatar.png">
+                    <p>Jack Russel</p>
+                    <i class="icon-clock"></i>
+                    <span>vor 2 Tagen</span>
+                </div>
             </div>
         </div>
+        
+
+        
+
+        
+        
+        
         <div class="gradient"></div> 
         <img class="location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
     </div>
