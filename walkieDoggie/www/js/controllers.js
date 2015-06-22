@@ -181,22 +181,38 @@ angular.module('starter.controllers', [])
         var allLocations = Location.all();
         console.log( allLocations );
     
-		markerLocationArray.push(
-		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2220),map: map,type: "location",title: "Location 1"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1553,9.2223),map: map,type: "location",title: "Location 2"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1550,9.2223),map: map,type: "location",title: "Location 3"})
-		);
+        var allLocations = allLocations.$loaded().then(function (value){
+            for (i = 0; i < value.length; i++){
+                var markerType = getMarkerType(value[i].typ);
+                var mapMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(value[i].latitude, value[i].longitude),
+                    map: map,
+                    type: markerType,
+                    title: value[i].title
+                });
+                if( markerType == 'poison' ){ 
+                    markerPoisonArray.push( mapMarker ); 
+                } else { 
+                    markerLocationArray.push( mapMarker ); 
+                }
+            }
+        });
+    
+        function getMarkerType( locationType ){
+            if (locationType == 'Giftköder'){
+                return 'poison';
+            }else{
+                return 'location';
+            }
+        }
+
 		markerUserArray.push(
 		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
 		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
 		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
 		);
-		markerPoisonArray.push(
-		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2230),map: map,type: "poison",title: "Poisonbait 1"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2228),map: map,type: "poison",title: "Poisonbait 2"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2228),map: map,type: "poison",title: "Poisonbait 3"})
-		);
 		
+    
 		toggleLocationFilter = function(param){
 		
 			if(jQuery(param).hasClass("active")){
@@ -405,6 +421,8 @@ angular.module('starter.controllers', [])
             return 'shopping';
         }else if (locationType == 'Spielen & Gassi gehen'){
             return 'games';
+        }else if (locationType == 'Giftköder'){
+            return 'poison';
         }else if (locationType == 'Sonstiges'){
             return 'other';
         }else{
