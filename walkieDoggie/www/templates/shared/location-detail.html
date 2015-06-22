@@ -5,22 +5,18 @@
   </ion-nav-buttons>    
     
   <ion-content>
- <!--   MUSS NOCH EINGEFÜGT WERDEN ZERSTÖRT TEMPLATE FUNKTIONALITÄT
 
-        <div class="location-header">
-
-            <div class="row location-quick-info">
-                <div class="col">
-                    <h2>{{location.title}}</h2>
-                    <span>{{location.typ}}</span>
-                </div>
+    <div class="location-header">
+        <div class="row location-quick-info">
+            <div class="col">
+                <h2>{{location.title}}</h2>
+                <span>{{location.typ}}</span>
             </div>
-            <div class="gradient">
-            </div> 
-            <img class="location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
-
         </div>
--->
+        <div class="gradient"></div> 
+        <img class="location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
+    </div>
+    
     <ion-list class="list" ng-class="getCssClass(location.typ);">
     
       <img class="location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
