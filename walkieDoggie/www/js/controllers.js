@@ -260,7 +260,7 @@ angular.module('starter.controllers', [])
         $scope.map = map;
 })
 
-.controller('ActivityCtrl', function($scope, $cordovaGeolocation){
+.controller('ActivityCtrl', function($scope, $cordovaGeolocation, $ionicPopup){
 	var activityLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
         var activityMapOptions = {
@@ -307,6 +307,11 @@ angular.module('starter.controllers', [])
 			 
 			// Error
 			function(error){
+				$ionicPopup.alert({
+					 title: 'Cordova Geolocation Debugging:',
+					 template: error
+				   });
+			
 				console.log(error);
 			},
 			 
