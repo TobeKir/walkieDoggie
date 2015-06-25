@@ -8,18 +8,18 @@
     <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Suche">
+            <input type="search" ng-model="searchText" placeholder="Suche">
         </label>
     </div>
 
     
     <ion-item>
-        <p class="mini-title">XX Ergebnisse</p>
+        <p class="mini-title">{{(allLocations | filter: searchText).length}} Ergebnisse</p>
     </ion-item>
     
     
         <ion-list>
-            <ion-item class="item-avatar item-icon-right" ng-class="getCssClass(location.typ);" ng-repeat="location in allLocations" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
+            <ion-item class="item-avatar item-icon-right" ng-class="getCssClass(location.typ);" ng-repeat="location in allLocations | filter: searchText" type="item-text-wrap" ui-sref="^.ort-detail" ng-click="locationDetail(location.$id)">
                 <img class="list location-image" ng-src="data:image/jpeg;base64,{{location.image}}">
                 <h2>{{location.title}}</h2>
                 <p>{{location.typ}}</p>
@@ -37,9 +37,12 @@
         <div class="tab-item active" onclick="toggleLocationFilter(this)">
             <span>Orte</span>
        </div>
-       <div class="tab-item active" onclick="toggleUserFilter(this)">
-            <span>Mitglieder</span>
+       <div class="tab-item">
+        Platzhalter
        </div>
+<!--        <div class="tab-item active" onclick="toggleUserFilter(this)">
+            <span>Mitglieder</span>
+       </div> -->
        <div class="tab-item active" onclick="togglePoisonFilter(this)">
             <span>Giftköder</span>
        </div>
