@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'timer'])
 
-.run(function($ionicPlatform, $state, $rootScope, Auth, User) {
+.run(function($ionicPlatform, $state, $rootScope, Auth, User, Dog) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,6 +27,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       $state.go('login');
     } else {
       $rootScope.user = User.get();
+      $rootScope.userDogs = Dog.all();
     }
 
   });
@@ -149,116 +150,86 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('tab.mitglieder', {
+  .state('tab.mitglieder-liste', {
     url: '/mitglieder',
-    abstract: true,
     views: {
       'tab-mitglieder': {
-        templateUrl: 'templates/tabs/tab-mitglieder.html',
+        templateUrl: 'templates/tab-mitglieder/mitglieder.html',
         controller: 'MitgliederCtrl'
       }
     }
-  }).state('tab.mitglieder.alle', {
-    url: '/alle',
+  }).state('tab.mitglieder-profil', {
+    url: '/mitglieder/profil',
+    params: {userId : {}},
     views: {
-      'mitglieder-alle': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-alle.html',
+      'tab-mitglieder': {
+        templateUrl: 'templates/shared/user-detail.html',
+        controller: 'ProfilCtrl'
       }
     }
-  }).state('tab.mitglieder.alle-detail', {
-    url: '/alle/detail',
-    // params: {mitgliedId:{}},
+  }).state('tab.mitglieder-profil-dog', {
+    url: '/mitglieder/profil/dog',
+    params: {dogId : {}},
     views: {
-      'mitglieder-alle': {
-        templateUrl: 'templates/shared/user-detail.html'
-      }
-    }
-  }).state('tab.mitglieder.rudel-detail', {
-    url: '/alle/detail/rudel/detail',
-    // params: {mitgliedId:{}},
-    views: {
-      'mitglieder-alle': {
-        templateUrl: 'templates/shared/dog-detail.html'
-      }
-    }
-  }).state('tab.mitglieder.freunde', {
-    url: '/freunde',
-    views: {
-      'mitglieder-freunde': {
-        templateUrl: 'templates/tab-mitglieder/mitglieder-freunde.html'
-      }
-    }
-  }).state('tab.mitglieder.freunde-detail', {
-    url: '/freunde/detail',
-    views: {
-      'mitglieder-freunde': {
-        templateUrl: 'templates/shared/user-detail.html'
+      'tab-mitglieder': {
+        templateUrl: 'templates/shared/dog-detail.html',
+        controller: 'DogCtrl'
       }
     }
   })
 
   .state('tab.profil', {
     url: '/profil',
-    abstract: true,
     views: {
       'tab-profil': {
-        templateUrl: 'templates/tabs/tab-profil.html',
+        templateUrl: 'templates/shared/user-detail.html',
         controller: 'ProfilCtrl'
       }
     }
-  }).state('tab.profil.ich', {
-    url: '/ich',
+  }).state('tab.profil-edit', {
+    url: '/profil/edit',
     views: {
-      'profil-ich': {
-        templateUrl: 'templates/shared/user-detail.html'
+      'tab-profil': {
+        templateUrl: 'templates/shared/user-edit.html',
+        controller: 'EditCtrl'
       }
     }
-  }).state('tab.profil.ich-edit', {
-    url: '/ich/edit',
+  }).state('tab.profil-dog', {
+    url: '/profil/dog/',
+    params: {dogId : {}},
     views: {
-      'profil-ich': {
-        templateUrl: 'templates/shared/user-edit.html'
+      'tab-profil': {
+        templateUrl: 'templates/shared/dog-detail.html',
+        controller: 'DogCtrl'
       }
     }
-  }).state('tab.profil.rudel', {
-    url: '/rudel',
+  }).state('tab.profil-dog-edit', {
+    url: '/profil/dog/edit',
     views: {
-      'profil-rudel': {
-        templateUrl: 'templates/shared/user-dogs.html'
+      'tab-profil': {
+        templateUrl: 'templates/shared/dog-edit.html',
+        controller: 'EditCtrl'
       }
     }
-  }).state('tab.profil.rudel-detail', {
-    url: '/rudel/detail',
+  }).state('tab.profil-dog-add', {
+    url: '/profil/dog/add',
     views: {
-      'profil-rudel': {
-        templateUrl: 'templates/shared/dog-detail.html'
+      'tab-profil': {
+        templateUrl: 'templates/shared/dog-edit.html',
+        controller: 'EditCtrl'
       }
     }
-  }).state('tab.profil.rudel-edit', {
-    url: '/rudel/edit',
-    views: {
-      'profil-rudel': {
-        templateUrl: 'templates/shared/dog-edit.html'
-      }
-    }
-  }).state('tab.profil.rudel-add', {
-    url: '/rudel/add',
-    views: {
-      'profil-rudel': {
-        templateUrl: 'templates/shared/dog-edit.html'
-      }
-    }
-  }).state('tab.profil.einstellungen', {
+  }).state('tab.einstellungen', {
     url: '/einstellungen',
     views: {
-      'profil-ich': {
+      'tab-profil': {
         templateUrl: 'templates/main/einstellungen.html'
       }
     }
-  }).state('tab.profil.rechtliches', {
+  }).state('tab.rechtliches', {
     url: '/einstellungen/rechtliches',
     views: {
-      'profil-ich': {
+      'tab-profil': {
         templateUrl: 'templates/einstellungen/rechtliches.html'
       }
     }
@@ -266,7 +237,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/feed/alle');
-  $urlRouterProvider.otherwise('/feed/alle');
+  $urlRouterProvider.otherwise('/login');
 
   // Tab Position for Android
   $ionicConfigProvider.tabs.position("bottom");

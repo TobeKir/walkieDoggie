@@ -22,43 +22,55 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MitgliederCtrl', function($scope, $state, User, Dog) {
+  
   $scope.allUsers = User.all();
 
-  $scope.userDetail = function(userId) {
-    $scope.user = User.get(userId);
-    $scope.dogs = Dog.all(userId);
-  }
+  // $scope.userDetail = function(userId) {
+  //   $scope.user = User.get(userId);
+  //   $scope.dogs = Dog.all(userId);
+  // }
 
-  $scope.dogDetail = function(dogId) {
-    $scope.dog = Dog.get(dogId);
-  }
-  
+  // $scope.dogDetail = function(dogId) {
+  //   $scope.dog = Dog.get(dogId);
+  // }
+
 })
 
-// .controller('MitgliederDetailCtrl', function($scope, $stateParams, User) {
-// 	$scope.mitglied = User.get($stateParams.mitgliedId);
-// })
+.controller('ProfilCtrl', function($scope, $rootScope, $stateParams, $state, User){
 
-.controller('ProfilCtrl', function($scope, $state, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
-
-  // Rudel
-  $scope.allDogs = Dog.all();
-
-  // Hunde Profil
-  $scope.dogDetail = function(dogId) {
-    $scope.dog = Dog.get(dogId);
+  if($state.includes('tab.profil')){
+    $scope.userId = $rootScope.user.$id;
+  } else {
+    $scope.user = User.get($stateParams.userId);
   }
 
-  $scope.edit = function(originScope) {
-    $scope.editScope = {};
-    angular.forEach(originScope, function(value, key) {
-      this[key] = value;
-    }, $scope.editScope);
-  }
+})
+
+.controller('DogCtrl', function($scope, Dog, $stateParams, $rootScope){
+
+  $rootScope.dog = Dog.get($stateParams.dogId);
+
+})
+
+.controller('EditCtrl', function($scope, $rootScope, $state, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
+
+  originScope = {};
+
+  if($state.includes('tab.profil-edit')){
+    originScope = $rootScope.user;
+  } else if($state.includes('tab.profil-dog-edit')){
+    originScope = $rootScope.dog;
+  } 
+
+  $scope.editScope = {};
+  angular.forEach(originScope, function(value, key) {
+    this[key] = value;
+  }, $scope.editScope);
 
   $scope.save = function(originScope) {
     // Unterscheidung zwischen Bearbeitung oder Erstellung (nur existentes hat $id)
-    if($state.includes('tab.profil.rudel-add')){
+    if($state.includes('tab.profil-dog-add')){
+      $scope.editScope.ownerId = $rootScope.user.$id;
       Dog.add($scope.editScope);
     } else {
       angular.forEach($scope.editScope, function(value, key) {
@@ -69,13 +81,10 @@ angular.module('starter.controllers', [])
     if($scope.editScope.name === undefined){
       User.save(originScope);
     } else {
-      Dog.save(originScope);      
+      Dog.save(originScope);
+      $ionicHistory.goBack(-2);      
       }
     }
-
-    $timeout(function() {
-      $scope.allDogs = Dog.all(); 
-    }, 300);
     
   }
 

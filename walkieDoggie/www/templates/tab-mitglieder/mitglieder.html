@@ -4,16 +4,16 @@
     <div class="bar bar-header item-input-inset">
         <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Suche">
+            <input type="search" ng-model="searchText.vorname" placeholder="Suche">
         </label>
     </div>
         
     <ion-item>
-        <p class="mini-title">XX Mitglieder</p>
+        <p class="mini-title">{{(allUsers | filter: searchText).length}} Mitglieder</p>
     </ion-item>
       
     <ion-list>
-      <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers" type="item-text-wrap" ui-sref="^.alle-detail" ng-click="userDetail(user.$id);">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="user in allUsers | filter: searchText" type="item-text-wrap" ui-sref="^.mitglieder-profil({userId:user.$id})">
         <img ng-src="data:image/jpeg;base64,{{user.image}}">
         <h2>
             {{user.vorname}} {{user.nachname}}
@@ -21,10 +21,8 @@
         <p>
           <span ng-if="user.ort">in</span>
           <b>{{user.ort}}</b>
-          <span ng-if="user.dogs">mit</span>
-          <b ng-repeat="dog in user.dogs"><span ng-if="!$first">, </span>{{dog.name}}</b>
         </p>
-        <a ng-click="$event.stopPropagation()" href="javascript:alert('Anfrage gesendet');" class="icon"><i class="icon-add"></i></a>
+        <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
     </ion-list>
 

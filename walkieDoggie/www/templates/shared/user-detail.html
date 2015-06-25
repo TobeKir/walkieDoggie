@@ -1,8 +1,8 @@
 <ion-view view-title="Profil" class="user-view">
 
   <ion-nav-buttons side="right">
-    <ion-button ng-show="state.includes('tab.profil')" ui-sref="tab.profil.einstellungen" class="button button-icon icon ion-ios-gear-outline"></ion-button>
-    <ion-button ng-show="state.includes('tab.profil')" ui-sref="tab.profil.ich-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
+    <ion-button ng-show="state.includes('tab.profil')" ui-sref="^.einstellungen" class="button button-icon icon ion-ios-gear-outline"></ion-button>
+    <ion-button ng-show="state.includes('tab.profil')" ui-sref="^.profil-edit" class="button button-icon icon ion-ios-compose-outline" ng-click="edit(user)"></ion-button>
   </ion-nav-buttons>
 
   <ion-content>
@@ -115,23 +115,36 @@
         </div>
       </div>
 
-      <div ng-show="state.includes('tab.mitglieder')">
-        <div class="item item-divider">
-          {{user.vorname}}s Rudel
-        </div>
-        <ion-list>
-          <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in dogs" type="item-text-wrap" ui-sref=".rudel-detail" ng-click="dogDetail(value.$id);">
-
-            <img ng-src="data:image/jpeg;base64,{{value.image}}">
-            <h2>{{value.name}}</h2>
-            <p>
-              <b>{{value.rasse}}</b>, {{value.geschlecht}}
-            </p>
-            <i class="icon ion-ios-arrow-right"></i>
-            
-          </ion-item>
-        </ion-list>
+      <div class="item item-divider">
+        {{user.vorname}}s Rudel
       </div>
+      <ion-list>
+        <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in userDogs | filter: {ownerId: user.$id}" type="item-text-wrap" ui-sref="^.profil-dog({dogId:value.$id})" ng-show="state.includes('tab.profil') || state.includes('tab.profil-dog')">
+
+          <img ng-src="data:image/jpeg;base64,{{value.image}}">
+          <h2>{{value.name}}</h2>
+          <p>
+            <b>{{value.rasse}}</b>, {{value.geschlecht}}
+          </p>
+          <i class="icon ion-ios-arrow-right"></i>
+          
+        </ion-item>
+        <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in userDogs | filter: {ownerId: user.$id}" type="item-text-wrap" ui-sref="^.mitglieder-profil-dog({dogId:value.$id})" ng-show="state.includes('tab.mitglieder-profil') || state.includes('tab.mitglieder-profil-dog') || state.includes('tab.mitglieder-liste')">
+
+          <img ng-src="data:image/jpeg;base64,{{value.image}}">
+          <h2>{{value.name}}</h2>
+          <p>
+            <b>{{value.rasse}}</b>, {{value.geschlecht}}
+          </p>
+          <i class="icon ion-ios-arrow-right"></i>
+          
+        </ion-item>
+      </ion-list>
+
+      <button class="button button-full button-positive" ui-sref="^.profil-dog-add">
+        Hund hinzufügen
+      </button>
+
 
       <ion-item ng-hide="isProfil" class="item item-divider">
         Kontakt

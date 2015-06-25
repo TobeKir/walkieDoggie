@@ -18,7 +18,7 @@ angular.module('starter.services', ['firebase'])
         password: user.password
       }).then(function(authData) {
           console.log("Nutzer " + authData.uid + " wurde eingeloggt");
-          $state.go('tab.feed.alle');
+          $state.go('tab.profil');
           console.log("Weiterleitung auf den Feed");
       }).catch(function(error) {
           console.error("Authentication failed:", error);
@@ -27,7 +27,7 @@ angular.module('starter.services', ['firebase'])
     facebook: function() {
       return auth.$authWithOAuthPopup("facebook")
       .then(function(authData) {
-          $state.go('tab.feed.alle');
+          $state.go('login');
           console.log(authData);
       }).catch(function(error) {
           console.error("Authentication failed:", error);
@@ -70,20 +70,20 @@ angular.module('starter.services', ['firebase'])
   var dogKeyRef = ref.child("users").child(Auth.getAuth().uid).child("dogs");
   var dogList = $firebaseArray(ref.child("dogs"));
   return {
-    all: function(id) {
-      if(id){
-        dogKeyRef = ref.child("users").child(id).child("dogs");
-      }
-      var allDogs = [];
-      var dogKeys = $firebaseObject(dogKeyRef);
-      dogKeys.$loaded().then(function() {
-        dogList.$loaded().then(function(){
-          angular.forEach(dogKeys, function(value, key) {
-            this.push(dogList.$getRecord(key));
-          },allDogs)
-        })
-     })
-      return allDogs;
+    all: function() {
+     //  if(id){
+     //    dogKeyRef = ref.child("users").child(id).child("dogs");
+     //  }
+     //  var allDogs = [];
+     //  var dogKeys = $firebaseObject(dogKeyRef);
+     //  dogKeys.$loaded().then(function() {
+     //    dogList.$loaded().then(function(){
+     //      angular.forEach(dogKeys, function(value, key) {
+     //        this.push(dogList.$getRecord(key));
+     //      },allDogs)
+     //    })
+     // })
+      return dogList;
     },
     add: function(dog) {
       return dogList.$add(dog).then(function(ref) {
@@ -100,7 +100,8 @@ angular.module('starter.services', ['firebase'])
       return dogList.$remove(dog).then(function(ref){
         dogKeyRef.child(ref.key()).remove();
       })
-    }
+    },
+    dogKeyRef : $firebaseObject(dogKeyRef)
   }
 }])
 
