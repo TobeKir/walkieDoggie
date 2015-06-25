@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'timer'])
 
-.run(function($ionicPlatform, $state, $rootScope, Auth, User, Dog) {
+.run(function($ionicPlatform, $state, $rootScope, Auth, User) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,7 +27,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       $state.go('login');
     } else {
       $rootScope.user = User.get();
-      $rootScope.userDogs = Dog.all();
     }
 
   });
@@ -102,24 +101,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   }).state('tab.feed', {
     url: '/feed',
-    abstract: true,
     views: {
       'tab-feed': {
-        templateUrl: 'templates/tabs/tab-feed.html'
-      }
-    }
-  }).state('tab.feed.alle', {
-    url: '/alle',
-    views: {
-      'feed-alle': {
-        templateUrl: 'templates/tab-feed/feed-alle.html'
-      }
-    }
-  }).state('tab.feed.ich', {
-    url: '/ich',
-    views: {
-      'feed-ich': {
-        templateUrl: 'templates/tab-feed/feed-ich.html'
+        templateUrl: 'templates/tab-feed/feed.html'
       }
     }
   })
@@ -237,7 +221,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/feed/alle');
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/profil');
 
   // Tab Position for Android
   $ionicConfigProvider.tabs.position("bottom");

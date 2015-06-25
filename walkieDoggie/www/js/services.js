@@ -24,7 +24,7 @@ angular.module('starter.services', ['firebase'])
           console.error("Authentication failed:", error);
       })
     },
-    facebook: function() {
+    /* facebook: function() {
       return auth.$authWithOAuthPopup("facebook")
       .then(function(authData) {
           $state.go('login');
@@ -32,7 +32,7 @@ angular.module('starter.services', ['firebase'])
       }).catch(function(error) {
           console.error("Authentication failed:", error);
       })
-    },
+    },*/
     logout: function () {
       return auth.$unauth();
     },
@@ -50,7 +50,7 @@ angular.module('starter.services', ['firebase'])
       return $firebaseArray(userRef);
     },
     create: function(auth,userData) {
-      auth.password = undefined;
+      delete auth.password;
       return userRef.child(userData.uid).set(auth);
     },
     get: function(id) {

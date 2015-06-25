@@ -14,8 +14,8 @@ angular.module('starter.controllers', [])
 
   $scope.register = function() {
     Auth.register($scope.auth).then(function(userData) {
-      User.create($scope.auth, userData);
       Auth.login($scope.auth);
+      User.create($scope.auth, userData);
     });
   };
 
@@ -25,25 +25,12 @@ angular.module('starter.controllers', [])
   
   $scope.allUsers = User.all();
 
-  // $scope.userDetail = function(userId) {
-  //   $scope.user = User.get(userId);
-  //   $scope.dogs = Dog.all(userId);
-  // }
-
-  // $scope.dogDetail = function(dogId) {
-  //   $scope.dog = Dog.get(dogId);
-  // }
-
 })
 
-.controller('ProfilCtrl', function($scope, $rootScope, $stateParams, $state, User){
+.controller('ProfilCtrl', function($scope, $stateParams, $state, User, Dog){
 
-  if($state.includes('tab.profil')){
-    $scope.userId = $rootScope.user.$id;
-  } else {
-    $scope.user = User.get($stateParams.userId);
-  }
-
+  $scope.user = User.get($stateParams.userId);
+  $scope.userDogs = Dog.all();
 })
 
 .controller('DogCtrl', function($scope, Dog, $stateParams, $rootScope){

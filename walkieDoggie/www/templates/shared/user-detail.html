@@ -74,7 +74,7 @@
             </div>
         </div>
         
-        <div class="item item-divider">
+<!--         <div class="item item-divider">
             Social Media
         </div>
         
@@ -91,7 +91,7 @@
             <div class="col">
                 <a class="sm tumblr" href="#"><i class="icon-tumblr"></i></a>
             </div>
-        </div>
+        </div> -->
 
         
         <div ng-show="user.description">
@@ -119,6 +119,9 @@
         {{user.vorname}}s Rudel
       </div>
       <ion-list>
+        <ion-item type="item-text-wrap" ng-hide="(userDogs | filter: {ownerId: user.$id}).length > 0">
+          <h2> Noch kein Hund hinzugefügt </h2>
+        </ion-item>
         <ion-item class="item-avatar item-icon-right" ng-repeat="(key, value) in userDogs | filter: {ownerId: user.$id}" type="item-text-wrap" ui-sref="^.profil-dog({dogId:value.$id})" ng-show="state.includes('tab.profil') || state.includes('tab.profil-dog')">
 
           <img ng-src="data:image/jpeg;base64,{{value.image}}">
@@ -144,31 +147,6 @@
       <button class="button button-full button-positive" ui-sref="^.profil-dog-add">
         Hund hinzufügen
       </button>
-
-
-      <ion-item ng-hide="isProfil" class="item item-divider">
-        Kontakt
-      </ion-item>
-        
-          <ion-item>
-        <div class="row">
-            <div class="col">
-                <button class="button button-balanced icon-left button-profile">
-                    <i class="icon-add"></i> hinzufügen
-                </button>
-            </div>
-            <div class="col">
-                <button class="button button-assertive icon-left button-profile">
-                    <i class="icon-report"></i> Profil melden
-                </button>
-            </div>
-        </div>
-    </ion-item>
-        
-      <ion-item ng-hide="isProfil" class="item item-icon-left" href="javascript:alert('Anfrage gesendet');">
-        <i class="icon ion-ios-personadd"></i>
-        Freundschaft anfragen
-      </ion-item>
 
       <!-- <ion-item ng-hide="isProfil"class="item item-icon-left" href="javascript:alert('Nachricht wird gesendet');">
         <i class="icon ion-ios-email"></i>
