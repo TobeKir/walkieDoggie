@@ -164,6 +164,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.profil', {
     url: '/profil',
+    cache: false,
     views: {
       'tab-profil': {
         templateUrl: 'templates/shared/user-detail.html',
