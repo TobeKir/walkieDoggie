@@ -2,7 +2,7 @@ angular.module('starter.services', ['firebase'])
 
 .constant('FBURL', 'https://boiling-torch-520.firebaseio.com/')
 
-.factory('Auth', ['$firebaseAuth', 'FBURL', '$state', function($firebaseAuth, FBURL, $state) {
+.factory('Auth', ['$firebaseAuth', 'FBURL', '$state', function($firebaseAuth, FBURL) {
   var ref = new Firebase(FBURL);
   var auth = $firebaseAuth(ref);
   return {
@@ -16,12 +16,6 @@ angular.module('starter.services', ['firebase'])
       return auth.$authWithPassword({
         email: user.email, 
         password: user.password
-      }).then(function(authData) {
-          console.log("Nutzer " + authData.uid + " wurde eingeloggt");
-          $state.go('tab.profil');
-          console.log("Weiterleitung auf den Feed");
-      }).catch(function(error) {
-          console.error("Authentication failed:", error);
       })
     },
     /* facebook: function() {

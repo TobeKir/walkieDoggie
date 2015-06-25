@@ -1,11 +1,16 @@
 angular.module('starter.controllers', [])
 
-.controller('AuthCtrl', function($scope, $state, Auth, User) {
+.controller('AuthCtrl', function($scope, $rootScope, $state, Auth, User) {
 
   $scope.auth = {};
 
   $scope.login = function() {
-    Auth.login($scope.auth);
+    Auth.login($scope.auth).then(function(authData) {
+          $rootScope.user = User.get(authData.uid);
+          $state.go('tab.profil');
+      }).catch(function(error) {
+          console.error("Authentication failed:", error);
+      });
   };
 
   $scope.facebookConnect = function() {
@@ -154,7 +159,8 @@ angular.module('starter.controllers', [])
         var mapOptions = {
             center: myLatlng,
             zoom: 18,
-            mapTypeId: google.maps.MapTypeId.SATELLITE
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
 			/*mapTypeId: google.maps.MapTypeId.ROADMAP*/
         };
  
@@ -224,20 +230,20 @@ angular.module('starter.controllers', [])
 				jQuery(param).addClass("active");
 			}
 		};
-		toggleUserFilter = function(param){
-			if(jQuery(param).hasClass("active")){
-				markerUserArray.forEach(function(marker){
-					marker.setVisible(false);
-				});
-				jQuery(param).removeClass("active");
-			}
-			else {
-				markerUserArray.forEach(function(marker){
-					marker.setVisible(true);
-				});
-				jQuery(param).addClass("active");
-			}
-		};
+		// toggleUserFilter = function(param){
+		// 	if(jQuery(param).hasClass("active")){
+		// 		markerUserArray.forEach(function(marker){
+		// 			marker.setVisible(false);
+		// 		});
+		// 		jQuery(param).removeClass("active");
+		// 	}
+		// 	else {
+		// 		markerUserArray.forEach(function(marker){
+		// 			marker.setVisible(true);
+		// 		});
+		// 		jQuery(param).addClass("active");
+		// 	}
+		// };
 		togglePoisonFilter = function(param){
 			if(jQuery(param).hasClass("active")){
 				markerPoisonArray.forEach(function(marker){
@@ -262,7 +268,8 @@ angular.module('starter.controllers', [])
         var activityMapOptions = {
             center: activityLatlng,
             zoom: 18,
-            mapTypeId: google.maps.MapTypeId.SATELLITE
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
 			/*mapTypeId: google.maps.MapTypeId.ROADMAP*/
         };
 		
@@ -374,16 +381,11 @@ angular.module('starter.controllers', [])
 
 .controller('LocationCtrl', function($scope, $stateParams, Location, $timeout, $ionicActionSheet, $cordovaCamera){
     
-    console.log('LocationController called');
     $scope.allLocations = Location.all();
     
     $scope.locationDetail = function(locationId){
         $scope.location = Location.get(locationId);
     }
-    
-//    $scope.createEditScope = function(){
-//        $scope.editScope = {};
-//    }
     
     $scope.edit = function(originScope) {
         $scope.editScope = {};
