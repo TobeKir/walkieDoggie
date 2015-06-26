@@ -6,6 +6,10 @@
 	bottom: 49px;
 }
 
+.login .scroll-content {
+	bottom: 0;
+}
+
 .error {
 	padding-right: 16px;
 	color: red;
