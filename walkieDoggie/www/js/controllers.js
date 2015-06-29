@@ -202,6 +202,10 @@ angular.module('starter.controllers', [])
                     type: markerType,
                     title: value[i].title
                 });
+				google.maps.event.addListener(mapMarker, 'click', function() {
+					//DIRECT TO DETAIL SITE HANNES
+					alert(mapMarker.title);
+				  });
                 if( markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
                 } else { 
@@ -224,7 +228,15 @@ angular.module('starter.controllers', [])
 		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
 		);
 		
-    
+		/* testMarker for marker click listener
+		var testMarker = new google.maps.Marker({position: new google.maps.LatLng(49.1536,9.2210),map: map,type: "location",title: "User 3"});
+		google.maps.event.addListener(testMarker, 'click', function() {
+					//DIRECT TO DETAIL SITE HANNES
+					alert(testMarker.title);
+				  });
+		markerUserArray.push(testMarker);*/
+	
+	
 		toggleLocationFilter = function(param){
 		
 			if(jQuery(param).hasClass("active")){
@@ -309,13 +321,14 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-start');
 		$scope.timerRunning = true;
 		
-		$watch_id = navigator.geolocation.watchPosition(
+		watch_id = navigator.geolocation.watchPosition(
 			// Success
 			function(pos){
 				//$scope.tracking_data.push(position);
 				tracking_data.push(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 				$scope.routeLength = (Math.round((google.maps.geometry.spherical.computeLength(activityRoute.getPath().getArray())*100)/100))/1000;
 				console.log($scope.routeLength);
+				console.log(tracking_data);
 			},
 			 
 			// Error
@@ -363,6 +376,8 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-stop');
 		$scope.timerRunning = false;
 		console.log('Finished - data = ', tracking_data);
+		
+		alert("Exit?");
 		//save route HIER HANNES activityRoute enthält die route
 		
 		navigator.geolocation.clearWatch(watch_id);

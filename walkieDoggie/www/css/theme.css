@@ -1,12 +1,13 @@
 /* Imports */
 
 @import url("../lib/ionic/scss/doggicons/style.css");
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,600,300);
 
 /* Genereal */
 
-body{
-    font-family: 'Open Sans', sans-serif;
+body,
+button{
+    font-family: 'Raleway', sans-serif;
 }
 a{
     font-size: 14px;
@@ -66,8 +67,13 @@ i{
     background-color: #33cd5f;
 }
 
-/* Login */
+/* Login & Registry*/
 
+.login .scroll-content,
+.registry .scroll-content{
+    background: url(../img/login-bg.jpg) center center;
+    background-size: cover;
+}
 .login .logo{
     width:35%;
     margin: 20px auto;
@@ -75,24 +81,39 @@ i{
 }
 .login p{
     text-align: center;
-    font-size: 30px;
-    line-height: 40px;
-    font-weight: 700;
+    font-size: 25px;
+    line-height: 125%;
+    font-weight: 300;
     margin-bottom: 0px 0px 50px 0px;
-    color: #565656;
+    color: #ffffff;
 }
-.login span{
+.login .sub{
     color: #c4c4c4;
     font-size: 16px;
+    line-height: 125%;
     font-weight: 300;
     text-transform: uppercase;
 }
-.login .orange{
-    color:#F9B343;
-    font-size: 30px;
-    font-weight: 700;
+.login .color{
+    color:#33CD5F;
+    font-weight: 600;
     text-transform: none;
 }
+.login .item-input,
+.registry .item-input{
+    background-color:rgba(255,255,255,0.5);
+    color: #fff;
+}
+.login .item-input input,
+.registry .item-input input{
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+.login .input-label,
+.registry .input-label{
+    color:#e6e6e6; 
+}
+
 
 /* Header bar */
 
