@@ -176,8 +176,6 @@ angular.module('starter.controllers', [])
             });
         });
 		
-        
-
 		//some dummy markers
 		var markerLocationArray = [];
 		var markerUserArray = [];
@@ -189,21 +187,16 @@ angular.module('starter.controllers', [])
     
         var allLocations = allLocations.$loaded().then(function (value){
             for (i = 0; i < value.length; i++){
-                var markerType = getMarkerType(value[i].typ);
+                value[i].markerType = getMarkerType(value[i].typ);
                 console.log("------------------------------------------------------");
                 console.log( "Initiating Geocoding for:" + value[i].address);
-                var addressBasedLocation = codeAddress( value[i].address );
-                var mapMarker = new google.maps.Marker({
-                    position: codeAddress(value[i].address),
-                    map: map,
-                    type: markerType,
-                    title: value[i].title,
-                    id: value[i].id
-                });
-				google.maps.event.addListener(mapMarker, 'click', function() {
-					//DIRECT TO DETAIL SITE HANNES
-				  });
-                if( markerType == 'poison' ){ 
+
+               var mapMarker = createMarker(value[i]);
+                if( mapMarker != null ){
+				    google.maps.event.addListener(mapMarker, 'click', function(){
+                    });
+                }
+                if( value[i].markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
                 } else { 
                     markerLocationArray.push( mapMarker ); 
@@ -211,12 +204,21 @@ angular.module('starter.controllers', [])
             }
         });
     
-        function codeAddress( address ) {
-            console.log("Starting Geocoding for: " + address );
-            geocoder.geocode( { 'address': address }, function(results, status) {
+        function createMarker( location ) {
+            console.log("Starting Geocoding for: " + location.address );
+            geocoder.geocode( { 'address': location.address }, function(results, status) {
+                
               if (status == google.maps.GeocoderStatus.OK) {
                   console.log("Geocode succesfull: " + results[0].geometry.location);
-                  return results[0].geometry.location;
+                  
+                  return mapMarker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    type: location.markerType,
+                    title: location.title,
+                    id: location.id
+                  });
+                
                   console.log("------------------------------------------------------");
               } else {
                 console.log("Geocode failed for: " + address );
