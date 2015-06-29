@@ -194,6 +194,7 @@ angular.module('starter.controllers', [])
                 });
 				google.maps.event.addListener(mapMarker, 'click', function() {
 					//DIRECT TO DETAIL SITE HANNES
+					alert(mapMarker.title);
 				  });
                 if( markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
@@ -217,7 +218,15 @@ angular.module('starter.controllers', [])
 		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
 		);
 		
-    
+		/* testMarker for marker click listener
+		var testMarker = new google.maps.Marker({position: new google.maps.LatLng(49.1536,9.2210),map: map,type: "location",title: "User 3"});
+		google.maps.event.addListener(testMarker, 'click', function() {
+					//DIRECT TO DETAIL SITE HANNES
+					alert(testMarker.title);
+				  });
+		markerUserArray.push(testMarker);*/
+	
+	
 		toggleLocationFilter = function(param){
 		
 			if(jQuery(param).hasClass("active")){
