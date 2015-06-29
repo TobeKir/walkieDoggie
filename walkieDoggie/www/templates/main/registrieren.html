@@ -1,4 +1,4 @@
-<ion-view view-title="Registrieren">
+<ion-view view-title="Registrieren" class="registry">
 
   <ion-nav-buttons side="right">
   </ion-nav-buttons>
@@ -7,6 +7,9 @@
     <form name="registerForm" ng-submit="registerForm.$valid && register()" novalidate>
       <div class="list">
 
+            <div class="row">
+            <div class="col">
+          
         <ion-item class="item item-input">
           <span class="input-label">Vorname</span>
           <input type="text" name="vorname" placeholder="Vorname" ng-model="auth.vorname" required>
@@ -22,13 +25,10 @@
             <span ng-show="registerForm.nachname.$error.required">Nachname erforderlich</span>
           </span>
         </ion-item>
-
-      </div>
-
-      <div class="list">
-
-        <label class="item item-input">
-          <span class="input-label">Email</span>
+    
+                <label class="item item-input">
+            
+          <span class="input-label"><i class="ion-ios-email-outline"></i> Email</span>
           <input type="email" name="email" placeholder="Email" ng-model="auth.email" required>
           <span class="error" ng-show="registerForm.email.$touched && registerForm.email.$invalid">
             <span ng-show="registerForm.email.$error.required">Email erforderlich</span>
@@ -37,19 +37,23 @@
         </label>
 
         <label class="item item-input">
-          <span class="input-label">Passwort</span>
+          <span class="input-label"><i class="ion-ios-locked-outline"></i> Passwort</span>
           <input type="password" name="password" placeholder="Passwort" ng-model="auth.password" required>
           <span class="error" ng-show="registerForm.password.$touched && registerForm.password.$invalid">
             <span ng-show="registerForm.password.$error.required">Password erforderlich</span>
           </span>
         </label>
-
+            </div>
+          </div>
       </div>
+        
+ <div class="row">
+            <div class="col">
+      <button ng-disabled="registerForm.$invalid" type="submit" class="button button-block button-balanced">Registrieren</button>
 
-      <button ng-disabled="registerForm.$invalid" type="submit" class="button button-full button-positive">Registrieren</button>
-
-      <button ui-sref="login" class="button button-full button-outline">Abbrechen</button>
-
+      <button ui-sref="login" class="button button-block button-outline">Abbrechen</button>
+     </div>
+        </div>
     </form>
   </ion-content>
 </ion-view>

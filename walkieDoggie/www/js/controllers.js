@@ -19,9 +19,16 @@ angular.module('starter.controllers', [])
 
   $scope.register = function() {
     Auth.register($scope.auth).then(function(userData) {
-      Auth.login($scope.auth);
-      User.create($scope.auth, userData);
+      Auth.login($scope.auth).then(function(authData){
+        User.create($scope.auth, authData);
+        $state.go('tab.profil');
+      });
     });
+  };
+
+  $scope.logout = function() {
+    Auth.logout();
+    $state.go('login');
   };
 
 })
@@ -34,8 +41,11 @@ angular.module('starter.controllers', [])
 
 .controller('ProfilCtrl', function($scope, $stateParams, $state, User, Dog){
 
-  $scope.user = User.get($stateParams.userId);
+  if($state.includes('tab.mitglieder-profil')){
+    $scope.user = User.get($stateParams.userId);
+  };
   $scope.userDogs = Dog.all();
+
 })
 
 .controller('DogCtrl', function($scope, Dog, $stateParams, $rootScope){
@@ -46,7 +56,7 @@ angular.module('starter.controllers', [])
 
 .controller('EditCtrl', function($scope, $rootScope, $state, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
 
-  originScope = {};
+  var originScope = {};
 
   if($state.includes('tab.profil-edit')){
     originScope = $rootScope.user;
@@ -128,14 +138,14 @@ angular.module('starter.controllers', [])
         saveToPhotoAlbum: false
       };
       $cordovaCamera.getPicture(options).then(function(imageData) {
-        $scope.editUser.image = imageData;
+        $scope.editScope.image = imageData;
       });
     };
   }
 
   $scope.datePicker = function() {
     var options = {
-      date: new Date($scope.editUser.geburtsdatum),
+      date: new Date($scope.editScope.geburtsdatum),
       mode: 'date', // or 'time' // TIME HERE
       minDate: new Date() - 10000,
       allowOldDates: true,
@@ -147,7 +157,7 @@ angular.module('starter.controllers', [])
     };
 
    $cordovaDatePicker.show(options).then(function (date) {
-       $scope.editUser.geburtsdatum = date.toJSON();
+       $scope.editScope.geburtsdatum = date.toJSON();
    });
   }
 
@@ -187,6 +197,7 @@ angular.module('starter.controllers', [])
     
         var allLocations = allLocations.$loaded().then(function (value){
             for (i = 0; i < value.length; i++){
+
                 value[i].markerType = getMarkerType(value[i].typ);
                 console.log("------------------------------------------------------");
                 console.log( "Initiating Geocoding for:" + value[i].address);
@@ -194,6 +205,7 @@ angular.module('starter.controllers', [])
                var mapMarker = createMarker(value[i]);
                 if( mapMarker != null ){
 				    google.maps.event.addListener(mapMarker, 'click', function(){
+                        alert(mapMarker.title);
                     });
                 }
                 if( value[i].markerType == 'poison' ){ 
@@ -243,7 +255,15 @@ angular.module('starter.controllers', [])
 //		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
 //		);
 		
-    
+		/* testMarker for marker click listener
+		var testMarker = new google.maps.Marker({position: new google.maps.LatLng(49.1536,9.2210),map: map,type: "location",title: "User 3"});
+		google.maps.event.addListener(testMarker, 'click', function() {
+					//DIRECT TO DETAIL SITE HANNES
+					alert(testMarker.title);
+				  });
+		markerUserArray.push(testMarker);*/
+	
+	
 		toggleLocationFilter = function(param){
 		
 			if(jQuery(param).hasClass("active")){
@@ -503,7 +523,7 @@ angular.module('starter.controllers', [])
             saveToPhotoAlbum: false
           };
           $cordovaCamera.getPicture(options).then(function(imageData) {
-            $scope.editUser.image = imageData;
+            $scope.editScope.image = imageData;
           });
         };
       }
