@@ -200,6 +200,9 @@ angular.module('starter.controllers', [])
                     title: value[i].title,
                     id: value[i].id
                 });
+				google.maps.event.addListener(mapMarker, 'click', function() {
+					//DIRECT TO DETAIL SITE HANNES
+				  });
                 if( markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
                 } else { 
@@ -323,13 +326,14 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-start');
 		$scope.timerRunning = true;
 		
-		$watch_id = navigator.geolocation.watchPosition(
+		watch_id = navigator.geolocation.watchPosition(
 			// Success
 			function(pos){
 				//$scope.tracking_data.push(position);
 				tracking_data.push(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 				$scope.routeLength = (Math.round((google.maps.geometry.spherical.computeLength(activityRoute.getPath().getArray())*100)/100))/1000;
 				console.log($scope.routeLength);
+				console.log(tracking_data);
 			},
 			 
 			// Error
@@ -377,6 +381,8 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-stop');
 		$scope.timerRunning = false;
 		console.log('Finished - data = ', tracking_data);
+		
+		alert("Exit?");
 		//save route HIER HANNES activityRoute enthält die route
 		
 		navigator.geolocation.clearWatch(watch_id);
