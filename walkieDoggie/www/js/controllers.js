@@ -299,7 +299,7 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-start');
 		$scope.timerRunning = true;
 		
-		$watch_id = navigator.geolocation.watchPosition(
+		watch_id = navigator.geolocation.watchPosition(
 			// Success
 			function(pos){
 				//$scope.tracking_data.push(position);
