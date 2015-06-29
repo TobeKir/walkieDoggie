@@ -23,11 +23,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $rootScope.state = $state;
 
     // lead User to login-page if not signed in
-    if(!Auth.getAuth()){
-      $state.go('login');
-    } else {
-      $rootScope.user = User.get();
-    }
+    // if(!Auth.getAuth()){
+    //   $state.go('login');
+    // } 
+    // else {
+    //   $rootScope.user = User.get();
+    // }
 
   });
 })
@@ -39,7 +40,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab', {
     abstract: true,
-    templateUrl: "templates/main/tabs.html"
+    templateUrl: "templates/main/tabs.html",
   })
 
   .state('login', {
@@ -208,7 +209,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/einstellungen',
     views: {
       'tab-profil': {
-        templateUrl: 'templates/main/einstellungen.html'
+        templateUrl: 'templates/main/einstellungen.html',
+        controller: 'AuthCtrl'
       }
     }
   }).state('tab.rechtliches', {
