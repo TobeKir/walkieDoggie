@@ -154,6 +154,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MapCtrl', function($scope, $cordovaGeolocation, Location) {
+        
         var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
  
         var mapOptions = {
@@ -165,7 +166,8 @@ angular.module('starter.controllers', [])
         };
  
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
- 
+        var geocoder = new google.maps.Geocoder();
+     
         navigator.geolocation.getCurrentPosition(function(pos) {
             map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
             var myLocation = new google.maps.Marker({
@@ -174,6 +176,8 @@ angular.module('starter.controllers', [])
             });
         });
 		
+        
+
 		//some dummy markers
 		var markerLocationArray = [];
 		var markerUserArray = [];
@@ -186,11 +190,15 @@ angular.module('starter.controllers', [])
         var allLocations = allLocations.$loaded().then(function (value){
             for (i = 0; i < value.length; i++){
                 var markerType = getMarkerType(value[i].typ);
+                console.log("------------------------------------------------------");
+                console.log( "Initiating Geocoding for:" + value[i].address);
+                var addressBasedLocation = codeAddress( value[i].address );
                 var mapMarker = new google.maps.Marker({
-                    position: new google.maps.LatLng(value[i].latitude, value[i].longitude),
+                    position: codeAddress(value[i].address),
                     map: map,
                     type: markerType,
-                    title: value[i].title
+                    title: value[i].title,
+                    id: value[i].id
                 });
                 if( markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
@@ -200,6 +208,22 @@ angular.module('starter.controllers', [])
             }
         });
     
+        function codeAddress( address ) {
+            console.log("Starting Geocoding for: " + address );
+            geocoder.geocode( { 'address': address }, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  console.log("Geocode succesfull: " + results[0].geometry.location);
+                  return results[0].geometry.location;
+                  console.log("------------------------------------------------------");
+              } else {
+                console.log("Geocode failed for: " + address );
+                console.log("Geocode was not successful for the following reason: " + status);
+                return null; 
+                console.log("------------------------------------------------------");
+              }
+            });
+        }
+    
         function getMarkerType( locationType ){
             if (locationType == 'Giftköder'){
                 return 'poison';
@@ -208,11 +232,11 @@ angular.module('starter.controllers', [])
             }
         }
 
-		markerUserArray.push(
-		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
-		);
+//		markerUserArray.push(
+//		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
+//		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
+//		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
+//		);
 		
     
 		toggleLocationFilter = function(param){
