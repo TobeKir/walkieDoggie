@@ -24,11 +24,6 @@
           <input type="text" name="nachname" ng-model="editScope.nachname" placeholder="z.B. Rupprecht" required>
         </label>
 
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          {{editScope.email}}
-        </label>
-
         <!-- Geschlecht //-->
         <label class="item item-input item-select">
           <div class="input-label">
@@ -44,7 +39,7 @@
         <!-- Alter //-->
         <label class="item item-input">
           <span class="input-label">Geburtsdatum</span>
-          <input type="date" ng-click="datePicker()" placeholder="Geburtstag wählen">{{editScope.geburtsdatum | date : 'dd.MM.yyyy'}}</input>
+          <input type="date" ng-click="datePicker()" placeholder="Geburtstag wählen" ng-model="editScope.geburtsdatum" required>
         </label>
 
         <!-- Ort und Telefon //-->
