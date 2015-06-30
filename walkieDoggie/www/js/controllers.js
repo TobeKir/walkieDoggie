@@ -205,7 +205,7 @@ angular.module('starter.controllers', [])
                var mapMarker = createMarker(value[i]);
                 if( mapMarker != null ){
 				    google.maps.event.addListener(mapMarker, 'click', function(){
-                        alert(mapMarker.title);
+						//showLocationDetail(mapMarker.id);
                     });
                 }
                 if( value[i].markerType == 'poison' ){ 
@@ -222,13 +222,34 @@ angular.module('starter.controllers', [])
                 
               if (status == google.maps.GeocoderStatus.OK) {
                   console.log("Geocode succesfull: " + results[0].geometry.location);
+				  
+				  var image = {};
+				  
+				  switch(location.markerType){
+					case "poison":
+						image.url = '../img/icon-poison.png';
+					break;
+					
+					case "user":
+						image.url = '../img/icon-user.png';
+					break;
+					
+					default:
+						image.url = '../img/icon-location.png';
+					break;
+				  }
                   
+				  image.size = new google.maps.Size(30, 30),
+				  image.origin = new google.maps.Point(0,0);
+				  image.anchor = new google.maps.Point(15, 15); 
+				  
                   return mapMarker = new google.maps.Marker({
                     map: map,
                     position: results[0].geometry.location,
                     type: location.markerType,
                     title: location.title,
-                    id: location.id
+                    id: location.id,
+					icon: image
                   });
                 
                   console.log("------------------------------------------------------");
