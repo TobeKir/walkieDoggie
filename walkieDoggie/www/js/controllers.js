@@ -19,9 +19,16 @@ angular.module('starter.controllers', [])
 
   $scope.register = function() {
     Auth.register($scope.auth).then(function(userData) {
-      Auth.login($scope.auth);
-      User.create($scope.auth, userData);
+      Auth.login($scope.auth).then(function(authData){
+        User.create($scope.auth, authData);
+        $state.go('tab.profil');
+      });
     });
+  };
+
+  $scope.logout = function() {
+    Auth.logout();
+    $state.go('login');
   };
 
 })
@@ -34,8 +41,11 @@ angular.module('starter.controllers', [])
 
 .controller('ProfilCtrl', function($scope, $stateParams, $state, User, Dog){
 
-  $scope.user = User.get($stateParams.userId);
+  if($state.includes('tab.mitglieder-profil')){
+    $scope.user = User.get($stateParams.userId);
+  };
   $scope.userDogs = Dog.all();
+
 })
 
 .controller('DogCtrl', function($scope, Dog, $stateParams, $rootScope){
@@ -46,7 +56,7 @@ angular.module('starter.controllers', [])
 
 .controller('EditCtrl', function($scope, $rootScope, $state, User, Dog, $ionicActionSheet, $cordovaCamera, $cordovaDatePicker, $timeout, $ionicHistory) {
 
-  originScope = {};
+  var originScope = {};
 
   if($state.includes('tab.profil-edit')){
     originScope = $rootScope.user;
@@ -128,14 +138,14 @@ angular.module('starter.controllers', [])
         saveToPhotoAlbum: false
       };
       $cordovaCamera.getPicture(options).then(function(imageData) {
-        $scope.editUser.image = imageData;
+        $scope.editScope.image = imageData;
       });
     };
   }
 
   $scope.datePicker = function() {
     var options = {
-      date: new Date($scope.editUser.geburtsdatum),
+      date: new Date($scope.editScope.geburtsdatum),
       mode: 'date', // or 'time' // TIME HERE
       minDate: new Date() - 10000,
       allowOldDates: true,
@@ -147,33 +157,34 @@ angular.module('starter.controllers', [])
     };
 
    $cordovaDatePicker.show(options).then(function (date) {
-       $scope.editUser.geburtsdatum = date.toJSON();
+       $scope.editScope.geburtsdatum = date.toJSON();
    });
   }
 
 })
 
 .controller('MapCtrl', function($scope, $cordovaGeolocation, $state, $stateParams, Location) {
-
-    var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
-
-    var mapOptions = {
-        center: myLatlng,
-        zoom: 18,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        disableDefaultUI: true
-	     /*mapTypeId: google.maps.MapTypeId.ROADMAP*/
-    };
-
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-        var myLocation = new google.maps.Marker({
-            position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-            map: map,
+        
+        var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
+ 
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 18,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true
+			/*mapTypeId: google.maps.MapTypeId.ROADMAP*/
+        };
+ 
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var geocoder = new google.maps.Geocoder();
+     
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: map,
+            });
         });
-    });
 		
 		//some dummy markers
 		var markerLocationArray = [];
@@ -186,25 +197,72 @@ angular.module('starter.controllers', [])
     
         var allLocations = allLocations.$loaded().then(function (value){
             for (i = 0; i < value.length; i++){
-                var locationId = value[i].$id;
-                var markerType = getMarkerType(value[i].typ);
-                var mapMarker = new google.maps.Marker({
-                    position: new google.maps.LatLng(value[i].latitude, value[i].longitude),
-                    map: map,
-                    type: markerType,
-                    title: value[i].title
-                });
-        				google.maps.event.addListener(mapMarker, 'click', function() {
-                  console.log(locationId);
-                  $state.go('tab.standort.karte-detail', {'locationId':locationId} );
-        				});
-                if( markerType == 'poison' ){ 
+
+                value[i].markerType = getMarkerType(value[i].typ);
+                // console.log("------------------------------------------------------");
+                // console.log( "Initiating Geocoding for:" + value[i].address);
+
+                var mapMarker = createMarker(value[i]);
+                if( mapMarker != null ){
+				          google.maps.event.addListener(mapMarker, 'click', function(){
+                    console.log("locationId");
+                    alert("jo");
+                    $state.go('tab.standort.karte-detail', {'locationId':locationId} );
+                  });
+                }
+                if( value[i].markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
                 } else { 
                     markerLocationArray.push( mapMarker ); 
                 }
             }
         });
+    
+        function createMarker( location ) {
+            console.log("Starting Geocoding for: " + location.address );
+            geocoder.geocode( { 'address': location.address }, function(results, status) {
+                
+              if (status == google.maps.GeocoderStatus.OK) {
+                  console.log("Geocode succesfull: " + results[0].geometry.location);
+				  
+				  var image = {};
+				  
+				  switch(location.markerType){
+					case "poison":
+						image.url = '../img/icon-poison.png';
+					break;
+					
+					case "user":
+						image.url = '../img/icon-user.png';
+					break;
+					
+					default:
+						image.url = '../img/icon-location.png';
+					break;
+				  }
+                  
+				  image.size = new google.maps.Size(30, 30),
+				  image.origin = new google.maps.Point(0,0);
+				  image.anchor = new google.maps.Point(15, 15); 
+				  
+                  return mapMarker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    type: location.markerType,
+                    title: location.title,
+                    id: location.id,
+					icon: image
+                  });
+                
+                  console.log("------------------------------------------------------");
+              } else {
+                console.log("Geocode failed for: " + address );
+                console.log("Geocode was not successful for the following reason: " + status);
+                return null; 
+                console.log("------------------------------------------------------");
+              }
+            });
+        }
     
         function getMarkerType( locationType ){
             if (locationType == 'Giftköder'){
@@ -214,13 +272,23 @@ angular.module('starter.controllers', [])
             }
         }
 
-		markerUserArray.push(
-  		// new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
-  		// new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
-  		// new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
-		);
+
+//		markerUserArray.push(
+//		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
+//		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
+//		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
+//		);
+
 		
-    
+		/* testMarker for marker click listener
+		var testMarker = new google.maps.Marker({position: new google.maps.LatLng(49.1536,9.2210),map: map,type: "location",title: "User 3"});
+		google.maps.event.addListener(testMarker, 'click', function() {
+					//DIRECT TO DETAIL SITE HANNES
+					alert(testMarker.title);
+				  });
+		markerUserArray.push(testMarker);*/
+	
+	
 		toggleLocationFilter = function(param){
 		
 			if(jQuery(param).hasClass("active")){
@@ -483,7 +551,7 @@ angular.module('starter.controllers', [])
             saveToPhotoAlbum: false
           };
           $cordovaCamera.getPicture(options).then(function(imageData) {
-            $scope.editUser.image = imageData;
+            $scope.editScope.image = imageData;
           });
         };
       }

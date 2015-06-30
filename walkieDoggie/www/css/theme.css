@@ -18,6 +18,14 @@ a{
 i{
     font-size: 18px;
 }
+.logo{
+    background: url(../img/logo-walkiedoggie.png) center center;
+    width:160px;
+    height:160px;
+    margin: 20px auto;
+    background-size: cover;
+    text-indent: -99999px;
+}
 .mini-title{
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -73,11 +81,7 @@ i{
     background: url(../img/login-bg.jpg) center center;
     background-size: cover;
 }
-.login .logo{
-    width:35%;
-    margin: 20px auto;
-    display: block;
-}
+
 .login p{
     text-align: center;
     font-size: 25px;
@@ -113,6 +117,22 @@ i{
     color:#e6e6e6; 
 }
 
+input::-webkit-input-placeholder {
+  color: red !important;
+}
+input:-moz-placeholder {
+  color: red !important;
+}
+input:-ms-input-placeholder { /* IE10+ */
+  color: red !important;
+}
+.registry .logo{
+    background: url(../img/logo-walkiedoggie.png) center center;
+    width:80px;
+    height:80px;
+    margin: 20px auto;
+    background-size: contain;
+}
 
 /* Header bar */
 
