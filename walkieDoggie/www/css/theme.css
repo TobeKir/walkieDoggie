@@ -114,17 +114,17 @@ i{
 }
 .login .input-label,
 .registry .input-label{
-    color:#e6e6e6; 
+    color: #fff; 
 }
 
 input::-webkit-input-placeholder {
-  color: red !important;
+  color: #ddd !important;
 }
 input:-moz-placeholder {
-  color: red !important;
+  color: #ddd !important;
 }
 input:-ms-input-placeholder { /* IE10+ */
-  color: red !important;
+  color: #ddd !important;
 }
 .registry .logo{
     background: url(../img/logo-walkiedoggie.png) center center;

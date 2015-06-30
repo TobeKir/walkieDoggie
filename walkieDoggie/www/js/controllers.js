@@ -1,29 +1,42 @@
 angular.module('starter.controllers', [])
 
-.controller('AuthCtrl', function($scope, $rootScope, $state, Auth, User) {
+.controller('AuthCtrl', function($scope, $rootScope, $state, Auth, User, $ionicLoading) {
 
   $scope.auth = {};
 
   $scope.login = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
+      noBackdrop: true
+    });
     Auth.login($scope.auth).then(function(authData) {
-          $rootScope.user = User.get(authData.uid);
           $state.go('tab.profil');
+          $rootScope.user = User.get(authData.uid);
       }).catch(function(error) {
           console.error("Authentication failed:", error);
+          $ionicLoading.hide();
       });
   };
 
-  $scope.facebookConnect = function() {
-    Auth.facebook();
-  };
+  // $scope.facebookConnect = function() {
+  //   Auth.facebook();
+  // };
 
   $scope.register = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
+      noBackdrop: true
+    });
     Auth.register($scope.auth).then(function(userData) {
       Auth.login($scope.auth).then(function(authData){
         User.create($scope.auth, authData);
         $state.go('tab.profil');
-      });
-    });
+      }).catch(function(error){
+
+        })
+    }).catch(function(error){
+
+      })
   };
 
   $scope.logout = function() {
@@ -33,17 +46,17 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MitgliederCtrl', function($scope, $state, User, Dog) {
+.controller('MitgliederCtrl', function($scope, memberData, $ionicLoading) {
   
-  $scope.allUsers = User.all();
+  $scope.allUsers = memberData.members;
+  $ionicLoading.hide();
 
 })
 
-.controller('ProfilCtrl', function($scope, $stateParams, $state, User, Dog){
+.controller('ProfilCtrl', function($scope, $stateParams, $state, userData, User, Dog, $ionicLoading){
 
-  if($state.includes('tab.mitglieder-profil')){
-    $scope.user = User.get($stateParams.userId);
-  };
+  $scope.user = userData.user;
+  $ionicLoading.hide();
   $scope.userDogs = Dog.all();
 
 })
