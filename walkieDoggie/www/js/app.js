@@ -71,6 +71,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'MapCtrl'
       }
     }
+  }).state('tab.standort.karte-detail', {
+    url: '/karte/detail',
+    params: {locationId : {}},
+    views: {
+      'standort-karte': {
+        templateUrl: 'templates/shared/location-detail.html',
+        controller: 'LocationCtrl'
+      }
+    }
   }).state('tab.standort.liste', {
     url: '/liste',
     views: {

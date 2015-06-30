@@ -153,26 +153,27 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MapCtrl', function($scope, $cordovaGeolocation, Location) {
-        var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
- 
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 18,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI: true
-			/*mapTypeId: google.maps.MapTypeId.ROADMAP*/
-        };
- 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
- 
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            var myLocation = new google.maps.Marker({
-                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                map: map,
-            });
+.controller('MapCtrl', function($scope, $cordovaGeolocation, $state, $stateParams, Location) {
+
+    var myLatlng = new google.maps.LatLng(49.3716253, 9.1489621);
+
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 18,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true
+	     /*mapTypeId: google.maps.MapTypeId.ROADMAP*/
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    navigator.geolocation.getCurrentPosition(function(pos) {
+        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        var myLocation = new google.maps.Marker({
+            position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+            map: map,
         });
+    });
 		
 		//some dummy markers
 		var markerLocationArray = [];
@@ -185,6 +186,7 @@ angular.module('starter.controllers', [])
     
         var allLocations = allLocations.$loaded().then(function (value){
             for (i = 0; i < value.length; i++){
+                var locationId = value[i].$id;
                 var markerType = getMarkerType(value[i].typ);
                 var mapMarker = new google.maps.Marker({
                     position: new google.maps.LatLng(value[i].latitude, value[i].longitude),
@@ -192,9 +194,10 @@ angular.module('starter.controllers', [])
                     type: markerType,
                     title: value[i].title
                 });
-				google.maps.event.addListener(mapMarker, 'click', function() {
-					//DIRECT TO DETAIL SITE HANNES
-				  });
+        				google.maps.event.addListener(mapMarker, 'click', function() {
+                  console.log(locationId);
+                  $state.go('tab.standort.karte-detail', {'locationId':locationId} );
+        				});
                 if( markerType == 'poison' ){ 
                     markerPoisonArray.push( mapMarker ); 
                 } else { 
@@ -206,15 +209,15 @@ angular.module('starter.controllers', [])
         function getMarkerType( locationType ){
             if (locationType == 'Giftköder'){
                 return 'poison';
-            }else{
+            } else {
                 return 'location';
             }
         }
 
 		markerUserArray.push(
-		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
-		new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
+  		// new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2212),map: map,type: "user",title: "User 1"}),
+  		// new google.maps.Marker({position: new google.maps.LatLng(49.1540,9.2215),map: map,type: "user",title: "User 2"}),
+  		// new google.maps.Marker({position: new google.maps.LatLng(49.1538,9.2215),map: map,type: "user",title: "User 3"})
 		);
 		
     
@@ -392,6 +395,9 @@ angular.module('starter.controllers', [])
     $scope.locationDetail = function(locationId){
         $scope.location = Location.get(locationId);
     }
+
+    // If State Params:
+    $scope.location = Location.get($stateParams.locationId);
     
     $scope.edit = function(originScope) {
         $scope.editScope = {};
