@@ -442,6 +442,8 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-stop');
 		$scope.timerRunning = false;
 		console.log('Finished - data = ', tracking_data);
+
+    $("#newFeed").show();
 	
 		//save route HIER HANNES activityRoute enthält die route
 		
