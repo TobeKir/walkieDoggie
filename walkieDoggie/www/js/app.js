@@ -9,6 +9,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 .run(function($ionicPlatform, $state, $rootScope, Auth, User) {
   $ionicPlatform.ready(function() {
+
+    if(window.Connection) {
+                   if(navigator.connection.type == Connection.NONE) {
+                       $ionicPopup.confirm({
+                           title: "Internet Disconnected",
+                           content: "The internet is disconnected on your device."
+                       })
+                       .then(function(result) {
+                           if(!result) {
+                               ionic.Platform.exitApp();
+                           }
+                       });
+                   }
+               };
+               
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -23,12 +38,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $rootScope.state = $state;
 
     // lead User to login-page if not signed in
-    // if(!Auth.getAuth()){
-    //   $state.go('login');
-    // } 
-    // else {
-    //   $rootScope.user = User.get();
-    // }
+    if(!Auth.getAuth()){
+      $state.go('login');
+    } 
+    else {
+      $rootScope.user = User.get();
+    }
 
   });
 })
@@ -142,6 +157,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         templateUrl: 'templates/tab-mitglieder/mitglieder.html',
         controller: 'MitgliederCtrl'
       }
+    },
+    resolve: {
+      memberData: function(User, $ionicLoading) {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
+          noBackdrop: true,
+          duration: 2000
+        });
+        return User.all().$loaded().then(function(data){
+          return {members:data};
+        });
+      }
     }
   }).state('tab.mitglieder-profil', {
     url: '/mitglieder/profil',
@@ -150,6 +177,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'tab-mitglieder': {
         templateUrl: 'templates/shared/user-detail.html',
         controller: 'ProfilCtrl'
+      }
+    },
+    resolve: {
+      userData: function(User, $stateParams, $ionicLoading) {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
+          noBackdrop: true
+        });
+        return User.get($stateParams.userId).$loaded().then(function(data){
+          return {user:data};
+        });
       }
     }
   }).state('tab.mitglieder-profil-dog', {
@@ -170,6 +208,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'tab-profil': {
         templateUrl: 'templates/shared/user-detail.html',
         controller: 'ProfilCtrl'
+      }
+    },
+    resolve: {
+      userData: function(User, $stateParams, $ionicLoading) {
+        $ionicLoading.show({
+          template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
+          noBackdrop: true
+        });
+        return User.get($stateParams.userId).$loaded().then(function(data){
+          return {user:data};
+        });
       }
     }
   }).state('tab.profil-edit', {
