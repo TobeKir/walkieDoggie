@@ -39,6 +39,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     // lead User to login-page if not signed in
     if(!Auth.getAuth()){
+      Auth.logout();
       $state.go('login');
     } 
     else {
@@ -192,7 +193,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       userData: function(User, $stateParams, $ionicLoading) {
         $ionicLoading.show({
           template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
-          noBackdrop: true
+          noBackdrop: true,
+          duration: 2000
         });
         return User.get($stateParams.userId).$loaded().then(function(data){
           return {user:data};
@@ -223,7 +225,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       userData: function(User, $stateParams, $ionicLoading) {
         $ionicLoading.show({
           template: '<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>',
-          noBackdrop: true
+          noBackdrop: true,
+          duration: 2000
         });
         return User.get($stateParams.userId).$loaded().then(function(data){
           return {user:data};
@@ -282,7 +285,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/feed/alle');
-  $urlRouterProvider.otherwise('/profil');
+  $urlRouterProvider.otherwise('/karte');
 
   // Tab Position for Android
   $ionicConfigProvider.tabs.position("bottom");

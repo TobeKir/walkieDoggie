@@ -61,9 +61,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DogCtrl', function($scope, Dog, $stateParams, $rootScope){
+.controller('DogCtrl', function($scope, Dog, $stateParams, $rootScope, $ionicLoading){
 
   $rootScope.dog = Dog.get($stateParams.dogId);
+  $ionicLoading.hide();
 
 })
 
@@ -441,8 +442,7 @@ angular.module('starter.controllers', [])
 		$scope.$broadcast('timer-stop');
 		$scope.timerRunning = false;
 		console.log('Finished - data = ', tracking_data);
-		
-		alert("Exit?");
+	
 		//save route HIER HANNES activityRoute enthält die route
 		
 		navigator.geolocation.clearWatch(watch_id);
